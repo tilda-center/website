@@ -1,0 +1,4 @@
+Mezzanine==3.1.10
+south
+mezzanine-events
+uwsgi
