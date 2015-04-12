@@ -15,5 +15,6 @@ cd /app
 pip install -r requirements.txt
 rm -f Dockerfile Vagrantfile build.sh
 
+apt-get purge -y ${SYSTEM_PACKAGES}
 apt-get autoremove -y --purge
 apt-get clean
