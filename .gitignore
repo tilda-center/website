@@ -5,3 +5,4 @@
 .coverage
 /static
 .ropeproject/
+local_settings.py
