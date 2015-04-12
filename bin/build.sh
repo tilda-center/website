@@ -3,6 +3,7 @@
 set -e
 
 SYSTEM_PACKAGES="\
+    postgresql-server-dev-9.4 \
     python-pip \
     python-dev"
 
