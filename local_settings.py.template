@@ -1,0 +1,21 @@
+DEBUG = True
+
+# Make these unique, and don't share it with anybody.
+SECRET_KEY = "9f320aef-fd3d-44c3-b3e9-5c54d4a5483bb2f0fe62-5373-44d8-a26a-ea6e0e4f1e5c60bf27fa-5493-4d5b-89e0-8edb66c335c8"
+NEVERCACHE_KEY = "06d83596-75e3-451e-bdb9-a3ec88587ad7bdd8418b-116a-46fd-9cbe-a669a591e412c7a7bac3-4492-4282-9110-cdfb04e85dd0"
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
+    }
+}
+
+TIME_ZONE = 'Europe/Belgrade'
+SITE_TAGLINE = 'Hackerspace in Novi Sad'
+SITE_TITLE = 'Tilda Center'
+
+import os
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = PROJECT_ROOT + '/static'
+MEDIA_ROOT = PROJECT_ROOT + '/media'

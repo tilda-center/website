@@ -217,7 +217,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = "/tilda_center/media"
 
 # Package/module name to import the root urlpatterns from for the project.
-ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
+ROOT_URLCONF = "urls"
 
 # Put strings here, like "/home/html/django_templates"
 # or "C:/www/django/templates".
