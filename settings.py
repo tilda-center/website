@@ -250,6 +250,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     "mezzanine.mobile",
     "mezzanine_events",
+    "tilda_center",
     #"mezzanine.accounts",
 )
 
