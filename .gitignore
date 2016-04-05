@@ -1,6 +1,7 @@
 *.pyc
 *.pyo
 *.db
+*.pid
 .DS_Store
 .coverage
 /static
