@@ -5,10 +5,8 @@ Arduino vs Raspberry Pi
 :modified: 2016-04-03 18:20
 :tags: arduino, microboard, microcontroller, bone, pi, 3.14
 :category: hardware
-:slug: arduinovspi
 :author: Meka
 :summary: Arduino vs RaspberryPi
-:template: arduinovspi
 :beforemore: When I heard about Arduino, RaspberryPi, BeagleBone and some other boards, my first question was "Why such diversity?" Let me concentrate only on Arduino and RaspberryPi.
 
 RaspberryPi 2 B
