@@ -31,11 +31,11 @@ TIMEZONE = 'Europe/Belgrade'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
-CATEGORY_FEED_ATOM = None
+FEED_ALL_ATOM = 'feeds/atom.xml'
+CATEGORY_FEED_ATOM = 'feeds/categories/%s/atom.xml'
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
-AUTHOR_FEED_RSS = None
+TAG_FEED_ATOM = 'feeds/tags/%s/atom.xml'
 
 # Blogroll
 LINKS = (('Pelican', 'http://getpelican.com/'),
