@@ -5,10 +5,10 @@ Flask Workshop
 :modified: 2016-04-03 18:20
 :tags: flask, python
 :category: frontend
-:slug: flask-workshop
 :authors: Meka
 :summary: Happenings from Tilda
-:template: flask-workshop
+:template: event
+:image: coder-git.png
 
 Flask is micro WEB framework written in Python. Although by default it's stripped down and doesn't offer much, it's extremly powerfull and extensible. With existing extensions it can be configured as a full blown WEB framework, or you can leave it as small as posible, serving as a micro service - it's up to you.
 

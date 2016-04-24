@@ -5,10 +5,10 @@ Second Fundraising Night
 :modified: 2016-04-03 18:20
 :tags: flask, python
 :category: frontend
-:slug: second-fundraising-night
 :authors: Meka
 :summary: Happenings from Tilda
-:template: second-fundraising-night
+:template: event
+:image: fundraiser-2.png
 
 Winter is coming!
 

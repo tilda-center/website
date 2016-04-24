@@ -1,118 +1,16 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, maximum-scale=1">
-
-    <title>Tilda Center - {{ page.title }}</title>
-    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
-
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
-
-    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="../static/css/styleME.css" rel="stylesheet" type="text/css">
-    <link href="../static/css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="../static/css/responsiveME.css" rel="stylesheet" type="text/css">
-    <link href="../static/css/animateME.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../static/css/animate.css" />
-    <link rel="stylesheet" href="../static/css/set.css" />
-
-    <!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->
-
-    <script type="text/javascript" src="../static/js/jquery.1.8.3.min.js"></script>
-    <script type="text/javascript" src="../static/js/bootstrap.js"></script>
-    <script type="text/javascript" src="../static/js/jquery-scrolltofixed.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.isotope.js"></script>
-    <script type="text/javascript" src="../static/js/wow.js"></script>
-    <script src="../static/js/wow.min.js"></script>
-    <script src="../static/js/touchSwipe.min.js"></script>
-    <script src="../static/js/respond.js"></script>
-    <script src="../static/js/script.js"></script>
-    <script type="text/javascript" src="../static/js/classie.js"></script>
-
-
-    <!--[if lt IE 9]>
-    <script src="js/respond-1.1.0.min.js"></script>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/html5element.js"></script>
-    <![endif]-->
-
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
-
-    <!-- animate.css -->
-    <link rel="stylesheet" href="../static/css/animateME.css" />
-    <link rel="stylesheet" href="../static/css/set.css" />
-
-    <!-- gallery -->
-    <link rel="stylesheet" href="../static/css/blueimp-gallery.min.css">
-
-    <!-- favicon -->
-    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/style.css">
-    <link rel="stylesheet" href="../static/css/styleME.css">
-    <link rel="stylesheet" href="../static/css/responsiveME.css">
-
-
+    {% include 'head.html' %}
   </head>
   <head>
 
   </head>
   <body>
 
-  <div class="container-fluid">
-  <div class="row">
-  <div class="col-md-12">
-  <div class="topbar animated fadeInLeftBig"></div>
-
-  <!-- Header Starts -->
-  <div class="navbar-wrapper">
-  <div class="container">
-
-  <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
-  <div class="container">
-  <div class="navbar-header">
-  <!-- Logo Starts -->
-  <a class="navbar-brand" href="/"><img src="static/images/logo.png" alt="logo"></a>
-  <!-- #Logo Ends -->
-
-
-  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-  <span class="sr-only">Toggle navigation</span>
-  <span class="icon-bar"></span>
-  <span class="icon-bar"></span>
-  <span class="icon-bar"></span>
-  </button>
-
-  </div>
-
-
-  <!-- Nav Starts -->
-  <div class="navbar-collapse  collapse">
-  <ul class="nav navbar-nav navbar-right scroll">
-  <li class="active"><a href="/events.html">Events</a></li>
-  <li ><a href="/blog.html">Blog</a></li>
-  <li ><a href="/gallery.html">Gallery</a></li>
-  <li ><a href="/contact.html">Contact</a></li>
-  </ul>
-  </div>
-  <!-- #Nav Ends -->
-
-  </div>
-  </div>
-
-  </div>
-  </div>
-  <!-- #Header Starts -->
-  </div>
-  </div>
-  </div>
+    {% with active='events' %}
+    {% include 'menu.html' %}
+    {% endwith %}
 
   <section class="main-section paddind" id="Portfolio"><!--main-section-start-->
   <div class="container">
@@ -133,85 +31,85 @@
   <div class="portfolioContainer wow fadeInUp delay-04s">
 
   <div class=" Portfolio-box software">
-  <a href="there-cant-be-only-one.html"><img src="../static/images/flask.png" alt="Flask"></a>
+  <a href="{{ SITE_URL }}/pages/there-cant-be-only-one/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/flask.png" alt="Flask"></a>
   <h3>There can('t) be only one</h3>
   <p>Flask...</p>
   </div>
 
   <div class="Portfolio-box software">
-  <a href="web-services-with-flask-applications.html"><img src="../static/images/https-githubcom-DEAP-deap.png" alt="Flask"></a>
+  <a href="{{ SITE_URL }}/pages/web-services-with-flask-applications/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/https-githubcom-DEAP-deap.png" alt="Flask"></a>
   <h3>WEB services with Flask applications </h3>
   <p>Flask apps</p>
   </div>
 
   <div class=" Portfolio-box software">
-  <a href="big-apps-with-flask.html"><img src="../static/images/python.png" alt="Flask"></a>
+  <a href="{{ SITE_URL }}/pages/big-apps-with-flask/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/python.png" alt="Flask"></a>
   <h3>Big apps with Flask</h3>
   <p>Very big apps!</p>
   </div>
 
   <div class=" Portfolio-box software" >
-  <a href="git-github-2.html"><img src="../static/images/gitcat.png" alt="Git"></a>
+  <a href="{{ SITE_URL }}/pages/git-github-2/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/gitcat.png" alt="Git"></a>
   <h3>Git & Github 2</h3>
   <p>Learn. Record. Have fun.</p>
   </div>
 
   <div class=" Portfolio-box software">
-  <a href="git-github-1.html"><img src="../static/images/teacher-git.png" alt="Git"></a>
+  <a href="{{ SITE_URL }}/pages/git-github/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/teacher-git.png" alt="Git"></a>
   <h3>Git & Github</h3>
   <p>Master the most used platform</p>
   </div>
 
   <div class=" Portfolio-box software">
-  <a href="flask-security.html"><img src="../static/images/coder-git.png" alt="Git"></a>
+  <a href="{{ SITE_URL }}/pages/flask-security/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/coder-git.png" alt="Git"></a>
   <h3>Flask-Security</h3>
   <p>Be "private"</p>
   </div>
 
   <div class=" Portfolio-box software">
-  <a href="flask-workshop.html"><img src="../static/images/coder-git.png" alt="Flask"></a>
+  <a href="{{ SITE_URL }}/pages/flask-workshop/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/coder-git.png" alt="Flask"></a>
   <h3>Flask Workshop</h3>
   <p>Flask is a WEB microframework written in Python</p>
   </div>
 
   <div class=" Portfolio-box gatherings">
-  <a href="second-fundraising-night.html"><img src="../static/images/fundraiser-2.png" alt="Tilda"></a>
+  <a href="{{ SITE_URL }}/pages/second-fundraising-night/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/fundraiser-2.png" alt="Tilda"></a>
   <h3>Second Fundraising Night</h3>
   <p>Winter is coming!</p>
   </div>
 
   <div class=" Portfolio-box software">
-  <a href="web-dev-part-1.html"><img src="../static/images/webdev.png" alt="Web"></a>
+  <a href="{{ SITE_URL }}/pages/web-development-part-1/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/webdev.png" alt="Web"></a>
   <h3>Web Development | part 1</h3>
   <p>Tilda Center is starting a series of lectures about WEB technologies</p>
   </div>
 
   <div class=" Portfolio-box gatherings">
-  <a href="fundraising-night.html"><img src="../static/images/fundraiser.png" alt="Fundraiser"></a>
+  <a href="{{ SITE_URL }}/pages/fundraising-night/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/fundraiser.png" alt="Fundraiser"></a>
   <h3>Fundraising Night</h3>
   <p>Dear friends,</p>
   </div>
 
   <div class=" Portfolio-box hacking">
-  <a href="hacking-how-to-2.html"><img src="../static/images/planethack-badge.png" alt="Hack"></a>
+  <a href="{{ SITE_URL }}/pages/hacking-how-to-again/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/planethack-badge.png" alt="Hack"></a>
   <h3>Hacking How to! Again.</h3>
   <p>Take it to the next lvl</p>
   </div>
 
   <div class=" Portfolio-box hacking">
-  <a href="hacking-how-to-1.html"><img src="../static/images/hacker-badge.png" alt="Hack"></a>
+  <a href="{{ SITE_URL }}/pages/hacking-how-to/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/hacker-badge.png" alt="Hack"></a>
   <h3>Hacking How to!</h3>
   <p>Motivation. Exploration. Accomplishment.</p>
   </div>
 
   <div class=" Portfolio-box software">
-  <a href="django-angular-hakaton.html"><img src="../static/images/django.png" alt="Django"></a>
+  <a href="{{ SITE_URL }}/pages/django-angular-hakaton/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/django.png" alt="Django"></a>
   <h3>Django + Angular hakaton</h3>
   <p>If you know any of the two - help us</p>
   </div>
 
   <div class=" Portfolio-box hacking">
-  <a href="hakaton.html"><img src="../static/images/hack.png" alt="Hakaton"></a>
+  <a href="{{ SITE_URL }}/pages/hakaton/"><img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/hack.png" alt="Hakaton"></a>
   <h3>Hakaton</h3>
   <p>Hacking and playing</p>
   </div>

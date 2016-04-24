@@ -5,10 +5,10 @@ Fundraising Night
 :modified: 2016-04-03 18:20
 :tags: flask, python
 :category: frontend
-:slug: fundraising-night
 :authors: Meka
 :summary: Happenings from Tilda
-:template: fundraising-night
+:template: event
+:image: fundraiser.png
 
 Dear friends,
 

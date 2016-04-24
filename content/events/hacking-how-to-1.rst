@@ -5,10 +5,10 @@ Hacking How To!
 :modified: 2016-04-03 18:20
 :tags: flask, python
 :category: frontend
-:slug: hacking-how-to-1
 :authors: Meka
 :summary: Happenings from Tilda
-:template: hacking-how-to-1
+:template: event
+:image: hacker-badge.png
 
 We expect students to come over at Tilda and discuss about how to motivate them properly. The last time we talked we have found that schools fail to motivate students. Everyone tells us that math is important for anyone interested in technic knowledge, and we study it but we rarely see why we need it.
 

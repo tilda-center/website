@@ -5,9 +5,9 @@ Hakaton
 :modified: 2016-04-03 18:20
 :tags: flask, python
 :category: frontend
-:slug: hakaton
 :authors: Meka
 :summary: Happenings from Tilda
-:template: hakaton
+:template: event
+:image: hack.png
 
 Come and join us in hacking and playing. All topics open, no code unturned

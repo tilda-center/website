@@ -1,243 +1,215 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-	<title>Tilda Center</title>
-    <meta name="description" content="Come and have FUN!">
-    <meta name="TildaTeam" content="Hacking is FUN!">
-
-	<!-- Mobile Specific Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-
-    <!-- Bootstrap -->
-    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Font awesome -->
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/font-awesome.min.css">
-
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/animate.css">
-
-    <!-- Owl-carousel style -->
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/owl.carousel.css">
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/owl.theme.css">
-
-    <!-- magnific style -->
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/magnific-popup.css">
-
-    <!-- Custom stylesheet-->
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css">
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/responsive.css" media="screen">
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/logo-nav.css">
-
-    <!-- Added google font -->
-    <link href='http://fonts.googleapis.com/css?family=Dosis:400,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-
-    <!--Fav and touch icons-->
-    <link rel="shortcut icon" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/favicon.ico">
-    <link rel="apple-touch-icon" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/apple-touch-icon-114x114.png">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-  </head>
+    {% include 'head.html' %}
+  <head>
   <body>
-
-	<!-- Preloader -->
-      <div id="faceoff">
-        <div id="preloader"></div>
-        <div class="preloader-section"></div>
-      </div>
-    <!-- Preloader end -->
-
-<!-- Header Starts -->
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-		<a class="navbar-brand" href="/"><img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/logo.png" alt="logo"></a>
+    {% with active='blog' %}
+    {% include 'menu.html' %}
+    {% endwith %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="carousel slide" id="carousel-blog">
+            <ol class="carousel-indicators">
+              <li class="active" data-slide-to="0" data-target="#carousel-blog">
+              </li>
+              <li data-slide-to="1" data-target="#carousel-blog">
+              </li>
+              <li data-slide-to="2" data-target="#carousel-blog">
+              </li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                <!-- works -->
+                <div id="works"  class=" clearfix grid">
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/microboards.jpg" alt="Microboards"/>
+                    <figcaption>
+                      <h2>Arduino vs Raspberry Pi</h2>
+                      <p>What is which?<br>
+                      <a href="{{ SITE_URL }}/blog/2015/12/03/arduino-vs-raspberry-pi/">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/02.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Music</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/03.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Hotel</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/04.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Coffee</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/05.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Cameras</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/06.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Design</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                </div>
+                <!-- works -->
+              </div>
+              <div class="item">
+                <!-- works -->
+                <div id="works"  class=" clearfix grid">
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/01.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Arduino vs Raspberry Pi</h2>
+                      <p>What is which?<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/02.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Music</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/03.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Hotel</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/04.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Coffee</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/05.jpeg" alt="img01"/>
+                    <figcaption>
+                        <h2>Cameras</h2>
+                        <p>Lily likes to play with crayons and pencils<br>
+                        <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/06.jpeg" alt="img01"/>
+                    <figcaption>
+                        <h2>Design</h2>
+                        <p>Lily likes to play with crayons and pencils<br>
+                        <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                </div>
+                <!-- works -->
+              </div>
+              <div class="item">
+                <!-- works -->
+                <div id="works"  class=" clearfix grid">
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/01.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Arduino vs Raspberry Pi</h2>
+                      <p>What is which?<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/02.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Music</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/03.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Hotel</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/04.jpeg" alt="img01"/>
+                    <figcaption>
+                      <h2>Coffee</h2>
+                      <p>Lily likes to play with crayons and pencils<br>
+                      <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/05.jpeg" alt="img01"/>
+                    <figcaption>
+                        <h2>Cameras</h2>
+                        <p>Lily likes to play with crayons and pencils<br>
+                        <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img src="{{ SITE_URL }}/{{ THEME_STATIC_DIR }}/images/06.jpeg" alt="img01"/>
+                    <figcaption>
+                        <h2>Design</h2>
+                        <p>Lily likes to play with crayons and pencils<br>
+                        <a href="#">Read</a></p>
+                    </figcaption>
+                  </figure>
+                </div>
+                <!-- works -->
+              </div>
             </div>
-
-            <!-- Nav Starts -->
-            <div class="navbar-collapse  collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right scroll">
-		 <!-- Logo Starts -->
-
-              	 <!-- #Logo Ends -->
-                 <li ><a href="events.html">Events</a></li>
-                 <li ><a href="blog.html">Blog</a></li>
-                 <li ><a href="gallery.html">Gallery</a></li>
-                 <li ><a href="contact.html">Contact</a></li>
-              </ul>
-            </div>
-            <!-- #Nav Ends -->
-
+            <a class="left carousel-control" href="#carousel-blog" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-blog" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
           </div>
         </div>
+      </div>
+    </div>
 
-<!-- #Header Starts -->
-
-    <!-- banner start -->
-    <section id="banner" class="banner">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-12">
-              <h2><a href="" class="lg-logo default-color">Tilda</a></h2> <!--/ .lg-logo -->
-               <div class="flex_text text-slider">
-		<br>
-                  <ul class="slides">
-                      <li><i>"Art is the only serious thing in the world. And the artist is the only person who is never serious."</i></li>
-                      <li>"As children we are told to ask questions. As adults we are told not to. But here we can..."</li>
-                      <li>"The one real object of education is to have a man in the condition of continually asking questions."</li>
-                  </ul>
-		<br>
-                </div>
-                <!--/.text-slider end-->
-			<div class="container">
-			  <div class="row">
-			    <div class="col-sm-12 text-center">
-			      <div class="social-icon">
-			       <a href="https://www.facebook.com/tilda.center" class="wow rollIn animated" data-wow-delay=".1s"><i class="fa fa-facebook"></i></a>
-			       <a href="https://twitter.com/TildaCenter" class="wow rollIn animated" data-wow-delay=".2s"><i class="fa fa-twitter"></i></a>
-			       <a href="/feeds/atom.xml" class="wow rollIn animated" data-wow-delay=".5s"><i class="fa fa-rss"></i></a>
-			       <a href="https://www.linkedin.com/company/10278252" class="wow rollIn animated" data-wow-delay=".6s"><i class="fa fa-linkedin"></i></a>
-			       <a href="https://www.youtube.com/channel/UCTOOFrATTIHcqLZrU92UpYA" class="wow rollIn animated" data-wow-delay=".8s"><i class="fa fa-youtube-square"></i></a>
-			      </div>
-			      <div class="copyright">
-				<p>&copy; <span>TildaCenter</span>2016</p>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			<!--/.go-to-top end-->
-	    </div>
-	  </div>
-	</div>
-    </section>
-    <!-- banner end -->
-
-
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-     <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/smoothscroll.js"></script>
-  <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.scrollTo.min.js"></script>
-  <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.localScroll.min.js"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.nav.js"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/owl.carousel.js"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.magnific-popup.js"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.parallax.js"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.flexslider-min.js"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.ajaxchimp.min.js"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/matchMedia.js"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/script.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/wow.js"></script>
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/easing.js"></script>
+    <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+        <!-- The container for the modal slides -->
+        <div class="slides"></div>
+        <!-- Controls for the borderless lightbox -->
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    </div>
 
     <script>
-    	$(document).ready(function() {
-		// "use strict";
-        $('#banner').parallax("50%", 0.5, true);
-    		$('#feature').parallax("50%", 0.5, true);
-    		$('#video').parallax("50%", 0.5, true);
-    		$('#subscription').parallax("50%", 0.5, true);
-    		$('#review').parallax("50%", 0.5, true);
-    		$('#download').parallax("50%", 0.5, true);
-        $('#footer').parallax("50%", 0.5, true);
-    	});
-
+      $("#carousel-blog").carousel('pause');
     </script>
 
-    <script>
-      // --------Google map---------------
-		 var map;
-		 function initialize() {
-		  // Create an array of styles.
-		  var styles = [
-			{
-			  stylers: [
-				{ hue: "#0AABE1" },
-				{ saturation: 0 }
-			  ]
-			},
-			{
-			  featureType: 'water',
-			  stylers: [
-			   { visibility: "on" },
-			   { color: "#9a9efd" },
-			   { weight: 2.2 },
-			   { gamma: 2.54 }
-			  ]
-			},
-			{
-			  featureType: "road",
-			  elementType: "geometry",
-			  stylers: [
-				{ lightness: 100 },
-				{ visibility: "simplified" }
-			  ]
-			},{
-			  featureType: "road",
-			  elementType: "labels",
-			  stylers: [
-				{ visibility: "off" }
-			  ]
-			}
-		  ];
 
-		  // Create a new StyledMapType object, passing it the array of styles,
-		  // as well as the name to be displayed on the map type control.
-		  var styledMap = new google.maps.StyledMapType(styles,
-			{name: "Styled Map"});
-
-		  // Create a map object, and include the MapTypeId to add
-		  // to the map type control.
-		  var losAngeles = new google.maps.LatLng(33.8030716,-118.0725641);
-		  var mapOptions = {
-			zoom: 13,
-			center: losAngeles,
-			mapTypeControlOptions: {
-			  mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-			},
-			scrollwheel: false,
-		  };
-		  var map = new google.maps.Map(document.getElementById('map'),
-			mapOptions);
-
-
-		  //Associate the styled map with the MapTypeId and set it to display.
-		  map.mapTypes.set('map_style', styledMap);
-		  map.setMapTypeId('map_style');
-
-		  // To add the marker to the map, use the 'map' property
-		  var image = 'imgs/map_icon_3.png';
-		  var marker = new google.maps.Marker({
-			  position: losAngeles,
-			  map: map,
-			  title:"GRAPE App Store!",
-			  icon: image
-		  });
-
-		 }
-
-    </script>
-
+    {% include 'javascript.html' %}
   </body>
 </html>

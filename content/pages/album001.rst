@@ -8,4 +8,4 @@ Album 001
 :slug: album001
 :authors: Meka, Krle, Maja
 :summary: Memories from Tilda
-:template: album001
+:template: album

@@ -20,3 +20,4 @@ Contact
 :hours_2_event: Members meeting
 :hours_3_day: Friday
 :hours_3_event: Lectures
+:save_as: contact/index.html

@@ -5,7 +5,7 @@ Gallery
 :modified: 2010-10-04 18:20
 :tags: photos
 :category: images
-:slug: gallery
 :authors: Alexis Metaireau, Conan Doyle
 :summary: Memories from Tilda
 :template: gallery
+:save_as: gallery/index.html

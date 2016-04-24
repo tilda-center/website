@@ -9,3 +9,4 @@ Events
 :authors: Alexis Metaireau, Conan Doyle
 :summary: Happenings from Tilda
 :template: events
+:save_as: events/index.html

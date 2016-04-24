@@ -1,87 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Tilda Center - {{ page.title }}</title>
-
-<!-- Google fonts -->
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-
-<!-- font awesome -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-<!-- bootstrap -->
-<link rel="stylesheet" href="../static/css/bootstrap.min.css" />
-
-<!-- animate.css -->
-<link rel="stylesheet" href="../static/css/animateME.css" />
-<link rel="stylesheet" href="../static/css/set.css" />
-
-<!-- gallery -->
-<link rel="stylesheet" href="../static/css/blueimp-gallery.min.css">
-
-<!-- favicon -->
-<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
-<link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
-
-<link rel="stylesheet" href="../static/css/style.css">
-<link rel="stylesheet" href="../static/style.css">
-<link rel="stylesheet" href="../static/css/styleME.css">
-<link rel="stylesheet" href="../static/css/responsiveME.css">
+  {% include 'head.html' %}
 
 </head>
 
 <body>
-	<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="topbar animated fadeInLeftBig"></div>
-
-					<!-- Header Starts -->
-					<div class="navbar-wrapper">
-					      <div class="container">
-
-						<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
-						  <div class="container">
-						    <div class="navbar-header">
-						      <!-- Logo Starts -->
-						      <a class="navbar-brand" href="/"><img src="static/images/logo.png" alt="logo"></a>
-						      <!-- #Logo Ends -->
-
-
-						      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-						      </button>
-
-						    </div>
-
-
-						    <!-- Nav Starts -->
-						    <div class="navbar-collapse  collapse">
-						      <ul class="nav navbar-nav navbar-right scroll">
-                    <li ><a href="/events.html">Events</a></li>
-                    <li ><a href="/blog.html">Blog</a></li>
-                    <li ><a href="/gallery.html">Gallery</a></li>
-                    <li class="active"><a href="/contact.html">Contact</a></li>
-						      </ul>
-						    </div>
-						    <!-- #Nav Ends -->
-
-						  </div>
-						</div>
-
-					      </div>
-					    </div>
-					<!-- #Header Ends-->
-			</div>
-		</div>
-	</div>
-	<div class="container-fluid">
+  {% with active='contact' %}
+  {% include 'menu.html' %}
+  {% endwith %}
+		<div class="container-fluid">
 		<div class="row well">
 		<div class="col-md-6">
 				<section class="main-section contact" id="contact">
