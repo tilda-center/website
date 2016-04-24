@@ -9,7 +9,7 @@ SITENAME = u'Tilda Center'
 SITEURL = ''
 OUTPUT_PATH = 'output'
 
-PAGE_PATHS = ['pages', 'events']
+PAGE_PATHS = ['pages']
 PAGE_URL = '{slug}'
 PAGE_SAVE_AS = 'pages/{slug}/index.html'
 
@@ -20,7 +20,7 @@ THEME = 'theme'
 THEME_STATIC_DIR = 'static'
 
 INDEX_SAVE_AS = 'blog/index.html'
-ARTICLE_PATHS = ['blog']
+ARTICLE_PATHS = ['blog', 'events']
 ARTICLE_URL = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 TIMEZONE = 'Europe/Belgrade'

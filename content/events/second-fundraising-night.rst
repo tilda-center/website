@@ -1,10 +1,7 @@
 Second Fundraising Night
 ########################
 
-:date: 2016-03-11 20:00
-:modified: 2016-04-03 18:20
-:tags: flask, python
-:category: frontend
+:date: 2015-11-07 20:00
 :authors: Meka
 :summary: Happenings from Tilda
 :template: event
