@@ -15,18 +15,22 @@
 				<section class="main-section contact" id="contact">
 				  <center><h1>{{ page.title }}</h1></center>
 				  <div class="contact-info-box address clearfix">
-					<h3><i class=" icon-map-marker"></i>Address:</h3>
-					<span>
-					  <a href="{{ page.address_osm }}" target="_blank">{{ page.address }}</a><br>{{ page.city }}
-					</span>
+            <h3><i class="fa-home icon-map-marker"></i>Address:</h3>
+            <span>
+              <a href="{{ page.address_osm }}" target="_blank">{{ page.address }}</a><br>{{ page.city }}
+            </span>
 				  </div>
 				  <div class="contact-info-box phone clearfix">
-					<h3><i class="fa-phone"></i>Phone:</h3>
-					<span>{{ page.phone }}</span>
+            <h3><i class="fa-phone"></i>Phone:</h3>
+            <span>{{ page.phone }}</span>
 				  </div>
 				  <div class="contact-info-box email clearfix">
-					<h3><i class="fa-pencil"></i>email:</h3>
-					<span>{{ page.email }}</span>
+            <h3><i class="fa-pencil"></i>email:</h3>
+            <span>{{ page.email }}</span>
+				  </div>
+				  <div class="contact-info-box irc clearfix">
+            <h3><i class="fa-comments"></i>irc:</h3>
+            <span>{{ page.irc }}</span>
 				  </div>
 				  <div class="contact-info-box hours clearfix">
 					  <h3><i class="fa-clock-o"></i>Hours:</h3>

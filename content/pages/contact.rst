@@ -21,3 +21,4 @@ Contact
 :hours_3_day: Friday
 :hours_3_event: Lectures
 :save_as: contact/index.html
+:irc: #tilda.center @ irc.freenode.net
