@@ -22,3 +22,4 @@ Contact
 :hours_3_event: Lectures
 :save_as: contact/index.html
 :irc: #tilda.center @ irc.freenode.net
+:mailing_list: https://mailman.tilda.center/

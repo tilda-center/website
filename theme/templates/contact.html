@@ -17,7 +17,10 @@
 				  <div class="contact-info-box address clearfix">
             <h3><i class="fa-home icon-map-marker"></i>Address:</h3>
             <span>
-              <a href="{{ page.address_osm }}" target="_blank">{{ page.address }}</a><br>{{ page.city }}
+              <a href="{{ page.address_osm }}" target="_blank">
+                {{ page.address }}
+              </a><br>
+              {{ page.city }}
             </span>
 				  </div>
 				  <div class="contact-info-box phone clearfix">
@@ -31,6 +34,10 @@
 				  <div class="contact-info-box irc clearfix">
             <h3><i class="fa-comments"></i>irc:</h3>
             <span>{{ page.irc }}</span>
+				  </div>
+				  <div class="contact-info-box email clearfix">
+            <h3><i class="fa-pencil"></i>list:</h3>
+            <a href="{{ page.mailing_list }}">Mailing Lists</a>
 				  </div>
 				  <div class="contact-info-box hours clearfix">
 					  <h3><i class="fa-clock-o"></i>Hours:</h3>
