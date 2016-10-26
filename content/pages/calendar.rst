@@ -10,3 +10,4 @@ Calendar
 :summary: Happenings from Tilda
 :template: calendar
 :save_as: calendar/index.html
+:c: c
