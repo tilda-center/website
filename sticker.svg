@@ -4170,10 +4170,10 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="252.11103"
+     inkscape:cx="338.5396"
      inkscape:cy="301.27625"
      inkscape:document-units="px"
-     inkscape:current-layer="layer5"
+     inkscape:current-layer="layer3"
      showgrid="false"
      inkscape:window-width="1676"
      inkscape:window-height="1011"
@@ -4192,7 +4192,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -4200,7 +4200,8 @@
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="Background"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <rect
        transform="translate(-75.882637,-296.97992)"
        style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:0.89820359"
@@ -5791,7 +5792,8 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-75.882637,-296.97992)"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#4bddff;stroke-width:23.67393875;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.89820359"
@@ -5832,17 +5834,8 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Text"
-     sodipodi:insensitive="true"
      style="display:inline"
      transform="translate(-74.285716,-131.87973)">
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="text19782"
-       sodipodi:linespacing="125%"><textPath
-         xlink:href="#path21097"
-         id="textPath21118"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'ClearlyU PUA';-inkscape-font-specification:'ClearlyU PUA'">YOU CAN BE GENIUS &amp; NICE @ THE SAME TIME</textPath></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -5870,5 +5863,13 @@
          ry="180.91606"
          transform="matrix(-0.85980282,-0.51062619,0.497064,-0.86771388,0,0)" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text19782"
+       sodipodi:linespacing="125%"><textPath
+         xlink:href="#path21097"
+         id="textPath21118"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'ClearlyU PUA';-inkscape-font-specification:'ClearlyU PUA'">YOU CAN BE GENIUS &amp; NICE @ THE SAME TIME</textPath></text>
   </g>
 </svg>
