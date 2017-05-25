@@ -1,0 +1,9 @@
+flask-admin
+flask-bootstrap
+flask-collect
+flask-cors
+flask-jwt
+flask-restplus
+flask-script
+flask-security
+peewee
