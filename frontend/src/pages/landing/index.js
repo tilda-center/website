@@ -11,7 +11,7 @@ class Landing extends Component {
     return (
       <Template>
         <Paper style={styles.root}>
-          Landing
+          Land
         </Paper>
       </Template>
     );
