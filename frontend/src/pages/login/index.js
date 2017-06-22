@@ -10,14 +10,11 @@ import { isLoggedIn } from '../../utils';
 import actions from './actions';
 import radium from 'radium';
 
-function mapStateToProps(state) {
-  return {
-    token: state.login.token,
-    status: state.login.status,
-    error: state.login.error,
-  };
-}
-
+const mapStateToProps = (state) => ({
+  token: state.login.token,
+  status: state.login.status,
+  error: state.login.error,
+});
 
 const styles = {
   root: {
@@ -45,7 +42,21 @@ const styles = {
 };
 
 
+@connect(mapStateToProps, actions)
 class Login extends Component {
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  }
+
+  static propTypes = {
+    children: PropTypes.node,
+    status: PropTypes.string,
+    error: PropTypes.string,
+    reset: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -134,18 +145,6 @@ class Login extends Component {
   }
 }
 
-
-Login.propTypes = {
-  children: PropTypes.node,
-  status: PropTypes.string,
-  error: PropTypes.string,
-  reset: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
-};
-
-Login.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
 
 
 export default connect(mapStateToProps, actions)(radium(Login));
