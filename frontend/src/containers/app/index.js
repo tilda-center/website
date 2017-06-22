@@ -14,7 +14,15 @@ const mapStateToProps = (state) => ({
 });
 
 
+@connect(mapStateToProps, actions)
 class App extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    notifications: PropTypes.node,
+    notificationsOpen: PropTypes.bool,
+    close: PropTypes.func.isRequired,
+    setBackendUrl: PropTypes.func.isRequired,
+  }
   componentWillMount() {
     // eslint-disable-next-line no-undef
     const hostname = window.location.hostname;
@@ -44,18 +52,9 @@ class App extends Component {
   }
 }
 
-
-App.propTypes = {
-  children: PropTypes.node,
-  notifications: PropTypes.node,
-  notificationsOpen: PropTypes.bool,
-  close: PropTypes.func.isRequired,
-  setBackendUrl: PropTypes.func.isRequired,
-};
-
 App.childContextTypes = {
   socket: PropTypes.object,
 };
 
 
-export default connect(mapStateToProps, actions)(App);
+export default App;
