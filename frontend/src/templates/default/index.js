@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DragDropContext as dndContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import styles from 'styles';
+import styles from './styles';
 
 
 class Template extends Component {
