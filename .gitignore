@@ -3,12 +3,4 @@
 *.db
 *.pid
 .DS_Store
-.coverage
-/static
-.ropeproject/
-local_settings.py
-db.sqlite3
-output/*
-!output/.keep
 frontend/node_modules
-
