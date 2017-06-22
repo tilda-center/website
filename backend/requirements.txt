@@ -1,5 +1,4 @@
 flask-admin
-flask-bootstrap
 flask-collect
 flask-cors
 flask-jwt
