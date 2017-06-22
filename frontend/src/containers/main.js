@@ -7,6 +7,7 @@ import { StyleRoot } from 'radium';
 import { requireAuth } from '../utils';
 import Landing from '../pages/landing';
 import Login from '../pages/login';
+import Gallery from '../pages/gallery';
 import NotFound from '../pages/not-found';
 import Template from '../templates/default';
 import App from './app';
@@ -21,6 +22,10 @@ const routes = {
       onEnter: requireAuth,
       childRoutes: [
       ],
+    },
+    {
+      path: '/gallery',
+      component: Gallery,
     },
     {
       path: '/login',
