@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { StyleRoot } from 'radium';
 import { requireAuth } from '../utils';
 import Landing from '../pages/landing';
+import Events from '../pages/events';
 import Login from '../pages/login';
 import NotFound from '../pages/not-found';
 import Template from '../templates/default';
@@ -29,6 +30,10 @@ const routes = {
     {
       path: '/landing',
       component: Landing,
+    },
+    {
+      path: '/events',
+      component: Events,
     },
     {
       path: '*',
