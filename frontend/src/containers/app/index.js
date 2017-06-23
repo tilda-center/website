@@ -9,7 +9,7 @@ import Landing from '../../pages/landing';
 import Home from '../../pages/home';
 import Events from '../../pages/events';
 import Login from '../../pages/login';
-/* import Gallery from '../../pages/gallery';*/
+import Gallery from '../../pages/gallery';
 import NotFound from '../../pages/not-found';
 import actions from './actions';
 
@@ -87,10 +87,10 @@ export default {
           path: '/events',
           component: Events,
         },
-        /* {
-        *   path: '/gallery',
-        *   component: Gallery,
-        * },*/
+        {
+          path: '/gallery',
+          component: Gallery,
+        },
       ],
     },
     {
