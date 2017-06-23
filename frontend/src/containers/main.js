@@ -4,7 +4,6 @@ import { Router, hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { StyleRoot } from 'radium';
-import { requireAuth } from '../utils';
 import Landing from '../pages/landing';
 import Events from '../pages/events';
 import Login from '../pages/login';
@@ -20,7 +19,6 @@ const routes = {
     {
       path: '/',
       component: Template,
-      onEnter: requireAuth,
       childRoutes: [
       ],
     },
