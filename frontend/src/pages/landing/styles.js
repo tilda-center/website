@@ -1,11 +1,16 @@
+import background from './background.jpg';
+
+
 function getStyles(theme) {
   const styles = {
     ...theme,
     root: {
       height: 300 - theme.appBar.height,
+      background: 'rgba(255,255,255,.5)',
+      fontSize: '30px',
     },
     firstpage: {
-      backgroundImage: 'url("https://static.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg")',
+      backgroundImage: `url("${background}")`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100% 100%',
       height: `calc(100vh - ${theme.appBar.height}px)`,
