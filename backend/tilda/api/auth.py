@@ -30,7 +30,7 @@ class AuthAPI(Resource):
 
         identity = _jwt.authentication_callback(username, password)
         if identity is not None:
-            user = User.objects.get(id=identity.id)
+            user = User.get(id=identity.id)
 
         if identity and user and user.active:
             access_token = _jwt.jwt_encode_callback(identity)

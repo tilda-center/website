@@ -7,6 +7,7 @@ from flask_security.script import CreateUserCommand
 
 from tilda import TildaCenter
 from config import configs
+from tilda.models import User, Role, UserRoles
 
 
 config_name = os.getenv('FLASK_CONFIG') or 'default'
@@ -24,6 +25,14 @@ manager.add_command(
 )
 manager.add_command('create_user', CreateUserCommand)
 
+@manager.command
+def init_db():
+    """
+    Initialize empty DB
+    """
+    User.create_table()
+    Role.create_table()
+    UserRoles.create_table()
 
 @app.route('/')
 def index():
