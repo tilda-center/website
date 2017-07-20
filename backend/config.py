@@ -8,6 +8,7 @@ PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
 class Config:
     DEBUG = False
     SECRET_KEY = 'iQfPvB6sZaNHqVFI5CJa9rM1xOEVHKIM0LwifT04yLsPlZhSSvaDuZXOgJFSpJVq'
+    SECURITY_PASSWORD_SALT = 'tilda'
     SECURITY_TRACKABLE = False
     JWT_EXPIRATION_DELTA = timedelta(days=7)
     DATABASE = {

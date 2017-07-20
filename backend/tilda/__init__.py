@@ -5,7 +5,8 @@ from flask_cors import CORS
 from flask_jwt import JWT
 from flask_restplus import apidoc
 from flask_security import Security, PeeweeUserDatastore
-from peewee import SqliteDatabase
+from flask_peewee.db import Database
+from flask_security.utils import verify_password
 from .models import User, Role, UserRoles
 
 
@@ -14,8 +15,13 @@ current_app = None
 
 class TildaCenter(object):
     """
-    My Flask App
+    Tilda Center APP
     """
+
+    class Result(object):
+        def __init__(self, **kwargs):
+            for k, v in kwargs.items():
+                setattr(self, k, v)
 
     admin = Admin(
         name='TildaCenter',
@@ -60,7 +66,7 @@ class TildaCenter(object):
         self.app.register_blueprint(apidoc.apidoc)
 
 
-        self.db = SqliteDatabase(':memory:')
+        self.db = Database(app)
 
         self.user_datastore = PeeweeUserDatastore(
             self.db,
@@ -78,8 +84,21 @@ class TildaCenter(object):
 
     @jwt.authentication_handler
     def authenticate(username, password):
-        result = {
-            'id': 'cvrc',
-            'email': 'some@example.com',
-        }
-        return result
+        try:
+            user = User.get(email=username)
+        except User.DoesNotExist:
+            return None
+        result = TildaCenter.Result(
+            id=user.id,
+            email=user.email,
+        )
+        if verify_password(password, user.password):
+            return result
+
+    @jwt.identity_handler
+    def identity(payload):
+        try:
+            user = User.get(id=payload['identity'])
+        except User.DoesNotExist:
+            user = None
+        return user
