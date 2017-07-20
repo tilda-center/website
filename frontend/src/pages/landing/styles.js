@@ -5,15 +5,19 @@ function getStyles(theme) {
   const styles = {
     ...theme,
     root: {
-      height: 300 - theme.appBar.height,
+      height: 676 - theme.appBar.height,
       background: 'rgba(255,255,255,.5)',
-      fontSize: '30px',
+      fontSize: '50px',
+      textAlign: 'center',
+    },
+    rootsmall: {
+      fontSize: '25px',
     },
     firstpage: {
       backgroundImage: `url("${background}")`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100% 100%',
-      height: `calc(100vh - ${theme.appBar.height}px)`,
+      height: '100vh',
       color: 'white',
       fontSize: '40px',
     },
