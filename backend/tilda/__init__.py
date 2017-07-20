@@ -35,7 +35,7 @@ class TildaCenter(object):
     app = None
     blueprint = None
     collect = Collect()
-    cors = CORS()
+    cors = None
     db = None
     jwt = JWT()
     security = Security()
@@ -64,9 +64,10 @@ class TildaCenter(object):
         self.api = api
         self.app.register_blueprint(api_v0)
         self.app.register_blueprint(apidoc.apidoc)
+        self.cors = CORS(self.app, resources=self.app.config['CORS_RESOURCES'])
 
 
-        self.db = Database(app)
+        self.db = Database(self.app)
 
         self.user_datastore = PeeweeUserDatastore(
             self.db,
