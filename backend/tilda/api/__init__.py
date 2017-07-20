@@ -36,4 +36,4 @@ def swagger_ui():
 
 api._doc_view = swagger_ui
 
-from . import auth
+from . import auth, gallery
