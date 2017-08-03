@@ -12,7 +12,6 @@ const begin = createAction(LOGIN, () => ({
 }));
 
 const success = createAction(LOGIN, json => {
-  // eslint-disable-next-line no-undef
   window.localStorage.OneLoveAuthToken = json.token;
   return {
     token: json.token,
