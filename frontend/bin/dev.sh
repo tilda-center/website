@@ -1,14 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
-export PROJECT_ROOT=$(readlink -f "$(dirname $0)/..")
+BIN_DIR=`dirname $0`
+PROJECT_ROOT=`readlink -f "${BIN_DIR}/.."`
 export NODE_ENV="dev"
 cd ${PROJECT_ROOT}
 
-if [ -z $(which git) ]; then
-    if [ $(uname) = "Linux" ]; then
-        apt-get update
-        apt-get install -y git-core
-    fi
-fi
 npm install
+echo "Tilda Frontend"
+echo "=============="
 npm start
