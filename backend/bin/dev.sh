@@ -6,4 +6,7 @@ PROJECT_ROOT=`readlink -f "${BIN_DIR}/.."`
 
 echo "Tilda Backend"
 echo "==============="
-${PROJECT_ROOT}/manage.py runserver
+. ~/.virtualenvs/${VIRTUALENV}/bin/activate
+cd ${PROJECT_ROOT}
+pip install -U -r requirements.txt
+./manage.py runserver
