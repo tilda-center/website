@@ -1,7 +1,6 @@
 from flask import Blueprint
 from flask_admin import Admin, AdminIndexView
 from flask_collect import Collect
-from flask_cors import CORS
 from flask_jwt import JWT
 from flask_restplus import apidoc
 from flask_security import Security, PeeweeUserDatastore
@@ -35,7 +34,6 @@ class TildaCenter(object):
     app = None
     blueprint = None
     collect = Collect()
-    cors = None
     db = None
     jwt = JWT()
     security = Security()
@@ -64,7 +62,6 @@ class TildaCenter(object):
         self.api = api
         self.app.register_blueprint(api_v0)
         self.app.register_blueprint(apidoc.apidoc)
-        self.cors = CORS(self.app, resources=self.app.config['CORS_RESOURCES'])
 
 
         self.db = Database(self.app)

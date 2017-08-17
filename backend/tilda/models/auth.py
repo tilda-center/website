@@ -3,17 +3,18 @@ from peewee import Model, CharField, TextField, BooleanField, DateTimeField, For
 
 
 class Role(Model, RoleMixin):
-    name = CharField(unique=True)
     description = TextField(null=True)
+    name = CharField(unique=True)
 
 class User(Model, UserMixin):
+    active = BooleanField(default=True)
+    admin = BooleanField(default=False)
+    confirmed_at = DateTimeField(null=True)
     email = TextField()
     password = TextField()
-    active = BooleanField(default=True)
-    confirmed_at = DateTimeField(null=True)
 
 class UserRoles(Model):
-    user = ForeignKeyField(User, related_name='roles')
-    role = ForeignKeyField(Role, related_name='users')
-    name = property(lambda self: self.role.name)
     description = property(lambda self: self.role.description)
+    name = property(lambda self: self.role.name)
+    role = ForeignKeyField(Role, related_name='users')
+    user = ForeignKeyField(User, related_name='roles')

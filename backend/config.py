@@ -11,8 +11,8 @@ class Config:
     SECURITY_TRACKABLE = False
     JWT_EXPIRATION_DELTA = timedelta(days=7)
     DATABASE = {
-        'name': 'database.db',
-        'engine': 'peewee.SqliteDatabase',
+        'name': 'tilda',
+        'engine': 'peewee.PostgresqlDatabase',
     }
 
     @staticmethod
@@ -23,8 +23,11 @@ class Config:
 class DevConfig(Config):
     DEBUG = True
     SECURITY_PASSWORD_SALT = 'tilda'
-    CORS_RESOURCES = {r"/api/*": {"origins": "*"}}
     SECURITY_SEND_REGISTER_EMAIL = False
+    DATABASE = {
+        'name': 'database.db',
+        'engine': 'peewee.SqliteDatabase',
+    }
 
 
 class TestConfig(Config):
