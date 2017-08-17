@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Style } from 'radium';
-import Snackbar from 'material-ui/Snackbar';
 import reset from '../../reset.js';
 import fonts from '../../fonts/fonts.js';
 import Landing from '../../pages/landing';
@@ -15,20 +14,6 @@ import NotFound from '../../pages/not-found';
 class App extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    notifications: PropTypes.node,
-    notificationsOpen: PropTypes.bool,
-    close: PropTypes.func.isRequired,
-    setBackendUrl: PropTypes.func.isRequired,
-  }
-
-  componentWillMount() {
-    // eslint-disable-next-line no-undef
-    const hostname = window.location.hostname;
-    this.props.setBackendUrl(hostname);
-  }
-
-  handleNotificationClose() {
-    this.props.close();
   }
 
   render() {
@@ -37,14 +22,6 @@ class App extends React.Component {
         <Style rules={fonts} />
         <Style rules={reset} />
         {this.props.children}
-        <Snackbar
-          open={this.props.notificationsOpen}
-          message={this.props.notifications}
-          autoHideDuration={5000}
-          action="close"
-          onActionTouchTap={this.handleNotificationClose}
-          onRequestClose={this.handleNotificationClose}
-        />
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../utils';
+import { apiUrl } from '../../constants';
 import LOGIN from './constants';
 
 
@@ -26,9 +27,8 @@ const fail = createAction(LOGIN, error => ({
 
 
 const login = (email, password) =>
-  (dispatch, getState) => {
+  (dispatch) => {
     dispatch(begin());
-    const apiUrl = getState().backend.apiUrl;
     fetch({
       url: `${apiUrl}/auth/tokens`,
       body: {
