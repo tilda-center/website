@@ -13,7 +13,7 @@ function getStyles(theme) {
     rootsmall: {
       fontSize: '25px',
     },
-    firstpage: {
+    welcome: {
       backgroundImage: `url("${background}")`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100% 100%',
@@ -21,11 +21,29 @@ function getStyles(theme) {
       color: 'white',
       fontSize: '40px',
     },
-    secondpage: {
-      backgroundImage: 'url("https://static.pexels.com/photos/57767/pexels-photo-57767.jpeg")',
+    about: {
+      backgroundImage: 'url("")',
       backgroundRepeat: 'no-repeat',
       backgroundSize: '50% 100%',
+      backgroundColor: 'red',
       height: '100vh',
+    },
+    address: {
+      backgroundImage: 'url("")',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: '100% 50%',
+      backgroundColor: 'green',
+      height: '100vh',
+    },
+    contact: {
+      backgroundImage: 'url("")',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: '100% 50%',
+      backgroundColor: 'red',
+      height: '100vh',
+    },
+    iframe: {
+      border: '1px solid black',
     },
   };
   return styles;
