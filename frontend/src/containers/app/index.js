@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Style } from 'radium';
 import Snackbar from 'material-ui/Snackbar';
@@ -11,17 +10,8 @@ import Events from '../../pages/events';
 import Login from '../../pages/login';
 import Gallery from '../../pages/gallery';
 import NotFound from '../../pages/not-found';
-import actions from './actions';
 
 
-const mapStateToProps = (state) => ({
-  notifications: state.notifications.notifications,
-  notificationsOpen: state.notifications.open,
-  socketUrl: state.backend.socketUrl,
-});
-
-
-@connect(mapStateToProps, actions)
 class App extends React.Component {
   static propTypes = {
     children: PropTypes.node,
@@ -70,10 +60,7 @@ export default {
   childRoutes: [
     {
       path: '/',
-      component: 'div',
-      indexRoute: {
-        component: Home,
-      },
+      indexRoute: { component: Home },
       childRoutes: [
         {
           path: '/login',
