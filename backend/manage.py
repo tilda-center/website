@@ -30,9 +30,14 @@ def init_db():
     """
     Initialize empty DB
     """
+    from tilda.factories import AdminFactory
     User.create_table()
     Role.create_table()
     UserRoles.create_table()
+    admin = AdminFactory()
+    admin.save()
+    print('Admin email: {}'.format(admin.email))
+    print('Admin password: Sekrit')
 
 @app.route('/')
 def index():
