@@ -1,10 +1,15 @@
 from flask_security import RoleMixin, UserMixin
-from peewee import Model, CharField, TextField, BooleanField, DateTimeField, ForeignKeyField
+from peewee import CharField, TextField, BooleanField, DateTimeField, ForeignKeyField
+from .. import current_app
+
+
+Model = current_app.db.Model
 
 
 class Role(Model, RoleMixin):
     description = TextField(null=True)
     name = CharField(unique=True)
+
 
 class User(Model, UserMixin):
     active = BooleanField(default=True)
@@ -12,6 +17,7 @@ class User(Model, UserMixin):
     confirmed_at = DateTimeField(null=True)
     email = TextField()
     password = TextField()
+
 
 class UserRoles(Model):
     description = property(lambda self: self.role.description)

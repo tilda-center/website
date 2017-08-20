@@ -10,10 +10,7 @@ class Config:
     SECRET_KEY = 'iQfPvB6sZaNHqVFI5CJa9rM1xOEVHKIM0LwifT04yLsPlZhSSvaDuZXOgJFSpJVq'
     SECURITY_TRACKABLE = False
     JWT_EXPIRATION_DELTA = timedelta(days=7)
-    DATABASE = {
-        'name': 'tilda',
-        'engine': 'peewee.PostgresqlDatabase',
-    }
+    PEEWEE_DATABASE_URI = 'postgresql://localhost/tilda'
 
     @staticmethod
     def init_app(app):
@@ -24,10 +21,7 @@ class DevConfig(Config):
     DEBUG = True
     SECURITY_PASSWORD_SALT = 'tilda'
     SECURITY_SEND_REGISTER_EMAIL = False
-    DATABASE = {
-        'name': 'database.db',
-        'engine': 'peewee.SqliteDatabase',
-    }
+    PEEWEE_DATABASE_URI = 'sqlite:///tilda.db'
 
 
 class TestConfig(Config):

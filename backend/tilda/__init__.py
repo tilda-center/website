@@ -4,9 +4,8 @@ from flask_collect import Collect
 from flask_jwt import JWT
 from flask_restplus import apidoc
 from flask_security import Security, PeeweeUserDatastore
-from flask_peewee.db import Database
 from flask_security.utils import verify_password
-from .models import User, Role, UserRoles
+from flask_pw import Peewee
 
 
 current_app = None
@@ -48,6 +47,8 @@ class TildaCenter(object):
 
     def init_app(self, app):
         self.app = app
+        self.db = Peewee(self.app)
+
         self.jwt.init_app(app)
         self.blueprint = Blueprint(
             'tilda_center',
@@ -64,8 +65,7 @@ class TildaCenter(object):
         self.app.register_blueprint(apidoc.apidoc)
 
 
-        self.db = Database(self.app)
-
+        from .models import User, Role, UserRoles
         self.user_datastore = PeeweeUserDatastore(
             self.db,
             User,
