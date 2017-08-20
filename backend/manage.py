@@ -3,9 +3,9 @@ import os
 
 from flask import Flask, render_template
 from flask_script import Manager, Server
-from flask_security.script import CreateUserCommand
 
 from tilda import TildaCenter
+from tilda.script import CreateAdminCommand
 from config import configs
 
 
@@ -22,7 +22,7 @@ manager.add_command(
         use_debugger=True
     )
 )
-manager.add_command('create_user', CreateUserCommand)
+manager.add_command('create_admin', CreateAdminCommand)
 manager.add_command('db', tilda_center.db.manager)
 
 @app.route('/')
