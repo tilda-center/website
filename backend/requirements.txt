@@ -2,7 +2,7 @@ flask-admin
 flask-collect
 flask-cors
 flask-jwt
-flask-peewee
+flask-pw
 flask-restplus
 flask-script
 flask-security
