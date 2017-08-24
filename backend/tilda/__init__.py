@@ -82,6 +82,7 @@ class TildaCenter(object):
 
     @jwt.authentication_handler
     def authenticate(username, password):
+        from .models import User
         try:
             user = User.get(email=username)
         except User.DoesNotExist:
