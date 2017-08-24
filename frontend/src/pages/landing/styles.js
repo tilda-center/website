@@ -5,7 +5,7 @@ function getStyles(theme) {
   const styles = {
     ...theme,
     root: {
-      height: 676 - theme.appBar.height,
+      height: `calc(100vh - ${theme.appBar.height}px)`,
       background: 'rgba(255,255,255,.5)',
       fontSize: '50px',
       textAlign: 'center',
