@@ -1,3 +1,4 @@
+bcrypt
 flask-admin
 flask-collect
 flask-cors

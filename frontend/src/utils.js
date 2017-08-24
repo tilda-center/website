@@ -1,9 +1,14 @@
 import isomorphicFetch from 'isomorphic-fetch';
 
 
+export const tokenName = window.location.origin;
+
+
 export function getAuthToken() {
-  // eslint-disable-next-line no-undef
-  return window.localStorage.MaterialUIStarter;
+  if (!window.localStorage[tokenName]) {
+    return undefined;
+  }
+  return window.localStorage[tokenName];
 }
 
 
