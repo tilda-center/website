@@ -4,7 +4,7 @@ export FLASK_CONFIG="dev"
 BIN_DIR=`dirname $0`
 PROJECT_ROOT=`readlink -f "${BIN_DIR}/.."`
 
-if [ ! -d ~/.virtualenvs/${VIRTUALENV}/bin/activate ]; then
+if [ ! -d ~/.virtualenvs/${VIRTUALENV} ]; then
     vex --make ${VIRTUALENV} pip install -U pip
 fi
 . ~/.virtualenvs/${VIRTUALENV}/bin/activate
