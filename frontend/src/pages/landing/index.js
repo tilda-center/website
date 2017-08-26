@@ -19,11 +19,13 @@ class Landing extends Component {
         <AppBar title="Tilda Center" />
         <Template>
           <Paper style={styles.root}>
-            Welcome to  Tilda Center!<br />
-            <div style={styles.rootsmall}>
-              We are an open space in Novi Sad, Serbia<br />
-              where people gather to share resources and knowledge, <br />
-              work on projects and develop their IT/technical solutions.
+            <div>
+              Welcome to  Tilda Center!<br />
+              <div style={styles.rootsmall}>
+                We are an open space in Novi Sad, Serbia<br />
+                where people gather to share resources and knowledge, <br />
+                work on projects and develop their IT/technical solutions.
+              </div>
             </div>
           </Paper>
         </Template>
