@@ -9,6 +9,7 @@ import Events from '../../pages/events';
 import Login from '../../pages/login';
 import Gallery from '../../pages/gallery';
 import NotFound from '../../pages/not-found';
+import { requireAuth } from '../../utils';
 
 
 class App extends React.Component {
@@ -37,12 +38,9 @@ export default {
   childRoutes: [
     {
       path: '/',
+      onEnter: requireAuth,
       indexRoute: { component: Home },
       childRoutes: [
-        {
-          path: '/login',
-          component: Login,
-        },
         {
           path: '/landing',
           component: Landing,
@@ -56,6 +54,10 @@ export default {
           component: Gallery,
         },
       ],
+    },
+    {
+      path: '/login',
+      component: Login,
     },
     {
       path: '*',
