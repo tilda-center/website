@@ -96,6 +96,7 @@ class TildaCenter(object):
 
     @jwt.identity_handler
     def identity(payload):
+        from .models import User
         try:
             user = User.get(id=payload['identity'])
         except User.DoesNotExist:
