@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import getStyles from './styles';
 import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton';
 import Template from '../../templates/default';
 
 
@@ -20,12 +21,13 @@ class Landing extends Component {
         <Template>
           <Paper style={styles.root}>
             <div>
-              Welcome to  Tilda Center!<br />
+              <span style={styles.title}>Welcome to  Tilda Center!</span>
               <div style={styles.rootsmall}>
                 We are an open space in Novi Sad, Serbia<br />
                 where people gather to share resources and knowledge, <br />
                 work on projects and develop their IT/technical solutions.
               </div>
+              <RaisedButton style={styles.firstbutton} label="Learn more" primary />
             </div>
           </Paper>
         </Template>
