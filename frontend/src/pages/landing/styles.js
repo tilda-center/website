@@ -7,7 +7,6 @@ function getStyles(theme) {
     root: {
       height: `calc(100vh - ${theme.appBar.height}px)`,
       background: 'rgba(255,255,255,.5)',
-      fontSize: '50px',
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'center',
@@ -15,6 +14,7 @@ function getStyles(theme) {
     },
     rootsmall: {
       fontSize: '25px',
+      marginTop: 10,
     },
     welcome: {
       backgroundImage: `url("${background}")`,
@@ -22,7 +22,6 @@ function getStyles(theme) {
       backgroundSize: '100% 100%',
       height: '100vh',
       color: 'white',
-      fontSize: '40px',
     },
     about: {
       backgroundImage: 'url("")',
@@ -47,6 +46,12 @@ function getStyles(theme) {
     },
     iframe: {
       border: '1px solid black',
+    },
+    firstbutton: {
+      marginTop: 30,
+    },
+    title: {
+      fontSize: '50px',
     },
   };
   return styles;
