@@ -9,6 +9,9 @@ function getStyles(theme) {
       background: 'rgba(255,255,255,.5)',
       fontSize: '50px',
       textAlign: 'center',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     rootsmall: {
       fontSize: '25px',
