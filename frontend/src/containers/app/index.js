@@ -42,10 +42,6 @@ export default {
       indexRoute: { component: Home },
       childRoutes: [
         {
-          path: '/landing',
-          component: Landing,
-        },
-        {
           path: '/events',
           component: Events,
         },
@@ -58,6 +54,10 @@ export default {
     {
       path: '/login',
       component: Login,
+    },
+    {
+      path: '/landing',
+      component: Landing,
     },
     {
       path: '*',
