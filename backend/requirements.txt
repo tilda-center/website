@@ -7,4 +7,3 @@ flask-pw
 flask-restplus
 flask-script
 flask-security
-peewee

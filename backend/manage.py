@@ -16,7 +16,7 @@ tilda_center = TildaCenter(app)
 
 manager = Manager(tilda_center.app)
 manager.add_command('create_admin', CreateAdminCommand)
-manager.add_command('db', tilda_center.db.manager)
+manager.add_command('migrations', tilda_center.db.manager)
 manager.add_command('runserver', Server(
         host='0.0.0.0',
         use_reloader=True,
