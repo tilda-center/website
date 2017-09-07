@@ -14,6 +14,4 @@ const reducers = {
 settings.forEach(reducer => { reducers[reducer.name] = reducer; });
 
 
-const rootReducer = combineReducers(reducers);
-
-export default rootReducer;
+export default combineReducers(reducers);
