@@ -1,7 +1,7 @@
 import isomorphicFetch from 'isomorphic-fetch';
 
 
-export const tokenName = window.location.origin;
+export const tokenName = 'auth';
 
 
 export function getAuthToken() {
