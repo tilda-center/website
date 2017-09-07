@@ -24,11 +24,22 @@ function getStyles(theme) {
       color: 'white',
     },
     about: {
+      display: 'flex',
+      justifyContent: 'space-around',
+      alignItems: 'center',
       backgroundImage: 'url("")',
       backgroundRepeat: 'no-repeat',
       backgroundSize: '50% 100%',
       backgroundColor: 'red',
       height: '100vh',
+      padding: 30,
+      text: {
+        width: '50%',
+        fontSize: '20px',
+      },
+      image: {
+        width: '50%',
+      },
     },
     address: {
       backgroundImage: 'url("")',

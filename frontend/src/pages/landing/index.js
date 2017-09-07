@@ -33,7 +33,14 @@ class Landing extends Component {
         </Template>
       </div>
       <div style={styles.about}>
-        Content
+        <div style={styles.about.text}>
+         As a collaborative space for creative individuals <br />
+         we want to enhance informal education <br /> through mentoring, workshops,
+         open source projects <br /> and personal development.
+        </div>
+        <div style={styles.about.image}>
+         slika
+        </div>
       </div>
       <div style={styles.address}>
         <iframe
