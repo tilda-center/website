@@ -30,12 +30,16 @@ function getStyles(theme) {
       backgroundImage: 'url("")',
       backgroundRepeat: 'no-repeat',
       backgroundSize: '50% 100%',
-      backgroundColor: 'red',
+      backgroundColor: 'rgb(0,188,212)',
       height: '100vh',
       padding: 30,
       text: {
         width: '50%',
-        fontSize: '20px',
+        fontSize: '22px',
+        color: 'white',
+        textAlign: 'justify',
+        textJustify: 'inter-word',
+        paddingRight: 50,
       },
       image: {
         width: '50%',
@@ -60,6 +64,11 @@ function getStyles(theme) {
     },
     firstbutton: {
       marginTop: 30,
+      flexbox: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
     },
     title: {
       fontSize: '50px',
