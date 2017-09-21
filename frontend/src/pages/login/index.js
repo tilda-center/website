@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -8,7 +8,6 @@ import Paper from 'material-ui/Paper';
 import { errors } from '../../constants';
 import { isLoggedIn } from '../../utils';
 import actions from './actions';
-import radium from 'radium';
 
 const mapStateToProps = (state) => ({
   token: state.login.token,
@@ -43,8 +42,7 @@ const styles = {
 
 
 @connect(mapStateToProps, actions)
-class Login extends Component {
-
+class Login extends React.Component {
   static contextTypes = {
     router: PropTypes.object.isRequired,
   }
@@ -145,4 +143,4 @@ class Login extends Component {
   }
 }
 
-export default radium(Login);
+export default Login;

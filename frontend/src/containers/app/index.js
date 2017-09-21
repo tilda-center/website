@@ -5,6 +5,7 @@ import reset from '../../reset.js';
 import fonts from '../../fonts/fonts.js';
 import Landing from '../../pages/landing';
 import Home from '../../pages/home';
+import Event from '../../pages/event';
 import EventList from '../../pages/event-list';
 import Login from '../../pages/login';
 import Gallery from '../../pages/gallery';
@@ -40,28 +41,32 @@ export default {
       path: '/',
       onEnter: requireAuth,
       indexRoute: { component: Home },
-      childRoutes: [
-      ],
     },
     {
       path: '/login',
-      component: Login,
+      indexRoute: { component: Login },
     },
     {
       path: '/landing',
-      component: Landing,
+      indexRoute: { component: Landing },
     },
     {
       path: '/events',
-      component: EventList,
+      indexRoute: { component: EventList },
+      childRoutes: [
+        {
+          path: ':eventId',
+          component: Event,
+        },
+      ],
     },
     {
       path: '/gallery',
-      component: Gallery,
+      indexRoute: { component: Gallery },
     },
     {
       path: '*',
-      component: NotFound,
+      indexRoute: { component: NotFound },
     },
   ],
 };
