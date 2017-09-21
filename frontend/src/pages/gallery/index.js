@@ -3,47 +3,68 @@ import PropTypes from 'prop-types';
 import Gall from 'react-photo-gallery';
 import Lightbox from 'react-images';
 import Template from '../../templates/default';
+import first from './01a.jpg';
+import second from './02a.jpg';
+import third from './03a.jpg';
+import fourth from './04a.jpg';
+import fifth from './05a.jpg';
+import sixth from './06a.jpg';
+import seventh from './07a.jpg';
+import eighth from './08a.jpg';
+import nineth from './09a.jpg';
 
 
 const PHOTO_SET = [
   {
-    src: 'http://tilda.center/static/images/album-tilda/01a.jpg',
+    src: first,
     width: 1680,
     height: 1050,
     alt: 'image 1',
   },
   {
-    src: 'http://tilda.center/static/images/album-tilda/02a.jpg',
+    src: second,
     width: 1680,
     height: 1050,
     alt: 'image 1',
   },
   {
-    src: 'http://tilda.center/static/images/album-tilda/04a.jpg',
+    src: third,
     width: 1680,
     height: 1050,
     alt: 'image 2',
   },
   {
-    src: 'http://tilda.center/static/images/album-tilda/05a.jpg',
+    src: fourth,
     width: 1680,
     height: 1050,
     alt: 'image 2',
   },
   {
-    src: 'http://tilda.center/static/images/album-tilda/06a.jpg',
+    src: fifth,
     width: 1680,
     height: 1050,
     alt: 'image 2',
   },
   {
-    src: 'http://tilda.center/static/images/album-tilda/07a.jpg',
+    src: sixth,
     width: 1680,
     height: 1050,
     alt: 'image 2',
   },
   {
-    src: 'http://tilda.center/static/images/album-tilda/08a.jpg',
+    src: seventh,
+    width: 1680,
+    height: 1050,
+    alt: 'image 2',
+  },
+  {
+    src: eighth,
+    width: 1680,
+    height: 1050,
+    alt: 'image 2',
+  },
+  {
+    src: nineth,
     width: 1680,
     height: 1050,
     alt: 'image 2',
