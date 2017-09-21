@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import getStyles from './styles';
-import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
+import Template from '../../templates/default';
 
 
 class Landing extends Component {
@@ -16,18 +16,19 @@ class Landing extends Component {
     return (
     <div>
       <div style={styles.welcome}>
-        <AppBar title="Tilda Center" />
-        <Paper style={styles.root}>
-          <div>
-            <span style={styles.title}>Welcome to  Tilda Center!</span>
-            <div style={styles.rootsmall}>
-              We are an open space in Novi Sad, Serbia<br />
-              where people gather to share resources and knowledge, <br />
-              work on projects and develop their IT/technical solutions.
+        <Template>
+          <Paper style={styles.root}>
+            <div>
+              <span style={styles.title}>Welcome to  Tilda Center!</span>
+              <div style={styles.rootsmall}>
+                We are an open space in Novi Sad, Serbia<br />
+                where people gather to share resources and knowledge, <br />
+                work on projects and develop their IT/technical solutions.
+              </div>
+              <RaisedButton style={styles.firstbutton} label="Learn more" primary />
             </div>
-            <RaisedButton style={styles.firstbutton} label="Learn more" primary />
-          </div>
-        </Paper>
+          </Paper>
+        </Template>
       </div>
       <div style={styles.about}>
         <div style={styles.about.text}>
