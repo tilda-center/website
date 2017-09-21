@@ -14,7 +14,7 @@ const close = createAction(SETTINGS_DRAWER, () => ({
 
 const toggleSettings = () =>
   (dispatch, getState) => {
-    if (getState().settingsOpen.open) {
+    if (getState().settings.open) {
       dispatch(close());
     } else {
       dispatch(open());

@@ -1,6 +1,6 @@
 import SETTINGS_DRAWER from './constants';
 
-export default function settingsOpen(
+export default function settings(
   state = { status: 'initial', open: false },
   action,
 ) {
