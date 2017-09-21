@@ -31,9 +31,12 @@ class Landing extends Component {
       </div>
       <div style={styles.about}>
         <div style={styles.about.text}>
-         As a collaborative space for creative individuals <br />
-         we want to enhance informal education <br /> through mentoring, workshops,
-         open source projects <br /> and personal development.
+         As a collaborative space for creative individuals
+         we want to enhance informal education through mentoring, workshops,
+         open source projects and personal development.<br />
+          <div style={styles.firstbutton.flexbox}>
+            <RaisedButton style={styles.firstbutton} label="Join us" default />
+          </div>
         </div>
         <div style={styles.about.image}>
          slika
