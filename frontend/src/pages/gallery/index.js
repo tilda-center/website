@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Gall from 'react-photo-gallery';
 import Lightbox from 'react-images';
+import Template from '../../templates/default';
+
 
 const PHOTO_SET = [
   {
@@ -50,19 +52,29 @@ const PHOTO_SET = [
 
 
 class Gallery extends React.Component {
-  state = { isLigthboxOpen: false, currentPhoto: 1 };
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  }
+
+  state = {
+    isLigthboxOpen: false,
+    currentPhoto: 1,
+  }
 
   openLightbox = (index, event) => {
     event.preventDefault();
     this.setState({ isLigthboxOpen: true, currentPhoto: index });
   }
-  closeLightbox = () => this.setState({ isLigthboxOpen: false });
-  nextPhoto = () => this.setState({ currentPhoto: this.state.currentPhoto + 1 });
-  prevPhoto = () => this.setState({ currentPhoto: this.state.currentPhoto - 1 });
+
+  closeLightbox = () => this.setState({ isLigthboxOpen: false })
+
+  nextPhoto = () => this.setState({ currentPhoto: this.state.currentPhoto + 1 })
+
+  prevPhoto = () => this.setState({ currentPhoto: this.state.currentPhoto - 1 })
 
   render() {
     return (
-      <div>
+      <Template>
         <Gall photos={PHOTO_SET} onClickPhoto={this.openLightbox} />
         <Lightbox
           images={PHOTO_SET}
@@ -72,14 +84,9 @@ class Gallery extends React.Component {
           onClickPrev={this.prevPhoto}
           currentImage={this.state.currentPhoto}
         />
-      </div>
+      </Template>
     );
   }
 }
-
-Gallery.contextTypes = {
-  muiTheme: PropTypes.object.isRequired,
-};
-
 
 export default Gallery;
