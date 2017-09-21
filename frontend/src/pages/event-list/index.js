@@ -1,14 +1,15 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import Template from '../../templates/default';
+import styles from './styles';
 
 
-class Home extends React.Component {
+class EventList extends React.Component {
   render() {
     return (
       <Template>
-        <Paper>
-          Home
+        <Paper style={styles.root}>
+          Events
         </Paper>
       </Template>
     );
@@ -16,4 +17,4 @@ class Home extends React.Component {
 }
 
 
-export default Home;
+export default EventList;
