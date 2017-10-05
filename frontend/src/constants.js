@@ -1,4 +1,4 @@
-export const postLogoutURL = '/login/';
+export const postLogoutURL = '/landing/';
 
 
 export const errors = {
