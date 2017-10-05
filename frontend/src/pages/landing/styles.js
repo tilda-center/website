@@ -6,7 +6,7 @@ function getStyles(theme) {
     ...theme,
     root: {
       height: `calc(100vh - ${theme.appBar.height}px)`,
-      background: 'rgba(255,255,255,.5)',
+      background: 'rgba(255,255,255,.6)',
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'center',
@@ -49,8 +49,19 @@ function getStyles(theme) {
       backgroundImage: 'url("")',
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100% 50%',
-      backgroundColor: 'green',
+      backgroundColor: '',
       height: '100vh',
+      padding: 30,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      osm: {
+        height: '100%',
+        width: '45%',
+      },
+      addr: {
+        width: '45%',
+      },
     },
     contact: {
       backgroundImage: 'url("")',
@@ -60,7 +71,10 @@ function getStyles(theme) {
       height: '100vh',
     },
     iframe: {
-      border: '1px solid black',
+      border: '1px solid rgb(0,188,212)',
+      borderRadius: 15,
+      '-webkit-mask-image': 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC)',
+      boxShadow: '0px 0px 15px rgba(0, 188, 212, 0.7)',
     },
     firstbutton: {
       marginTop: 30,
