@@ -23,6 +23,8 @@ const toggleSettings = () =>
 
 
 const actions = {
+  close,
+  open,
   toggleSettings,
 };
 

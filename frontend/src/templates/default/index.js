@@ -23,12 +23,17 @@ const mapStateToProps = (state) => ({
 class Template extends React.Component {
   static propTypes = {
     children: PropTypes.node,
+    close: PropTypes.func.isRequired,
     settingsOpen: PropTypes.bool,
     toggleSettings: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
     settingsOpen: false,
+  }
+
+  componentWillMount() {
+    this.props.close();
   }
 
   render() {
