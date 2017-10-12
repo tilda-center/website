@@ -50,6 +50,10 @@ module.exports = {
         test: /\.(png|woff(2)?|eot|ttf|)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'base64-font-loader',
       },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
     ],
   },
   postcss() {
