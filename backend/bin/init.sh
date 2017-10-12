@@ -11,6 +11,6 @@ fi
 cd ${PROJECT_ROOT}
 pip install -U -r requirements.txt
 echo "Migrating DB"
-./manage.py db migrate
+./manage.py migrations migrate
 echo "Creating admin"
 ./manage.py create_admin -e admin@example.com -p Sekrit
