@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
+import RichTextEditor from 'react-rte';
 import Paper from 'material-ui/Paper';
 import Template from '../../templates/default';
 import actions from './actions';
@@ -28,8 +29,32 @@ class Event extends React.Component {
     },
   }
 
+  constructor(props) {
+    super(props);
+
+    this.handleEditorChange = (value) => {
+      console.log(value.toString('markdown'));
+      this.setState({ value });
+    };
+  }
+
+  state = {
+    value: RichTextEditor.createEmptyValue(),
+  }
+
   componentWillMount() {
     this.props.get(this.props.params.eventId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.event) {
+      this.setState({
+        value: RichTextEditor.createValueFromString(
+          nextProps.event.markdown,
+          'markdown',
+        ),
+      });
+    }
   }
 
   render() {
@@ -45,6 +70,7 @@ class Event extends React.Component {
           <div>
             <ReactMarkdown source={this.props.event.markdown} />
           </div>
+          <RichTextEditor value={this.state.value} onChange={this.handleEditorChange} />
         </Paper>
       </Template>
     );
