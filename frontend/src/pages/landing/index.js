@@ -64,16 +64,24 @@ class Landing extends Component {
           </small>
         </div>
         <div style={styles.address.addr}>
-          Visit us @ <br />
-          country: Serbia <br />
-          city: Novi Sad <br />
-          street: Bulevar Oslobodjenja <br />
-          number of the buliding: 12 <br />
-          number of the appartment: 21 <br />
+          <div style={styles.address.text}>
+            Visit us @ <br />
+            COUNTRY: Serbia <br />
+            CITY: Novi Sad <br />
+            STREET: Bulevar Oslobodjenja <br />
+            BUILDING NUMBER: 12 <br />
+            APPARTMENT NUMBER: 21 <br />
+          </div>
         </div>
       </div>
       <div style={styles.contact}>
-        Content
+        <div style={styles.contact.overlay}>
+          <a href="mailto:info@lists.tilda.center">Subscribe to our info mailing list!</a><br />
+          EMAIL: office@tilda.center <br />
+          IRC: #tilda.center @ irc.freenode.net <br />
+          Working hours may vary! <br />
+          Please email us before stopping by to make sure someone is here to greet you. <br />
+        </div>
       </div>
     </div>
     );
