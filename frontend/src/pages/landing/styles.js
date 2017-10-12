@@ -1,4 +1,5 @@
 import background from './background.jpg';
+import contactbackground from './contact.jpg';
 
 
 function getStyles(theme) {
@@ -62,18 +63,25 @@ function getStyles(theme) {
       addr: {
         width: '45%',
       },
+      text: {
+        fontSize: '27px',
+      },
     },
     contact: {
-      backgroundImage: 'url("")',
+      backgroundImage: `url("${contactbackground}")`,
       backgroundRepeat: 'no-repeat',
-      backgroundSize: '100% 50%',
-      backgroundColor: 'red',
+      backgroundSize: '100%',
       height: '100vh',
+      overlay: {
+        background: 'rgba(255,255,255,.6)',
+        height: 'calc(100% - 60px)',
+        padding: 30,
+      },
     },
     iframe: {
       border: '1px solid rgb(0,188,212)',
       borderRadius: 15,
-      '-webkit-mask-image': 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC)',
+      '-webkit-mask-image': 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC)', // eslint-disable-line max-len
       boxShadow: '0px 0px 15px rgba(0, 188, 212, 0.7)',
     },
     firstbutton: {
