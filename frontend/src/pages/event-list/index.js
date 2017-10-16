@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import ReactMarkdown from 'react-markdown';
+import Moment from 'react-moment';
 import Paper from 'material-ui/Paper';
 import Template from '../../templates/default';
 import actions from './actions';
@@ -35,8 +37,9 @@ class EventList extends React.Component {
           {
             this.props.events.map((event) => (
               <div key={event.id} style={styles.event}>
-                <h1>{event.title}</h1>
-                <ReactMarkdown source={event.markdown} />
+                <Link to={`/events/${event.id}`}><h1>{event.title}</h1></Link>
+                <Moment interval={0} format="DD.MM.YYYY HH:mm">{event.date}</Moment>
+                <ReactMarkdown source={event.markdown.substring(0, 100)} />
               </div>
             ))
           }

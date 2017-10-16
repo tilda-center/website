@@ -1,4 +1,4 @@
-from flask_restplus.fields import String, Integer, List, Float
+from flask_restplus.fields import String, DateTime
 from .. import api
 
 
@@ -7,6 +7,7 @@ fields = api.model(
     {
         'markdown': String(description='Markdown'),
         'title': String(description='Title'),
+        'date': String(description='Title'),
     },
 )
 
