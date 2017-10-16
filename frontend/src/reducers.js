@@ -8,11 +8,13 @@ import settings from './templates/default/reducers';
 
 // Pages
 import event from './pages/event/reducers';
+import eventList from './pages/event-list/reducers';
 import login from './pages/login/reducers';
 
 
 const reducers = {
   event,
+  eventList,
   login,
   settings,
   theme,

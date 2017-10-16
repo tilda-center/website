@@ -33,7 +33,6 @@ class Event extends React.Component {
     super(props);
 
     this.handleEditorChange = (value) => {
-      console.log(value.toString('markdown'));
       this.setState({ value });
     };
   }
