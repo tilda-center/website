@@ -38,9 +38,14 @@ class Event extends React.Component {
     this.handleEditorChange = (value) => {
       this.setState({ value });
     };
+
+    this.showMarkdownEditor = () => {
+      this.setState({ showEditor: true });
+    };
   }
 
   state = {
+    showEditor: false,
     value: RichTextEditor.createEmptyValue(),
   }
 
@@ -60,6 +65,17 @@ class Event extends React.Component {
   }
 
   render() {
+    const markdownWidget = this.state.showEditor
+                         ? (
+                           <RichTextEditor
+                             value={this.state.value}
+                             onChange={this.handleEditorChange}
+                           />
+                         ) : (
+                          <ReactMarkdown
+                            source={this.props.event.markdown}
+                          />
+                         );
     const content = this.props.eventError
                   ? (
                     <h1>No such event</h1>
@@ -73,8 +89,8 @@ class Event extends React.Component {
                           </Moment>
                         </div>
                       </div>
-                      <div>
-                        <ReactMarkdown source={this.props.event.markdown} />
+                      <div onClick={this.showMarkdownEditor}>
+                        {markdownWidget}
                       </div>
                     </div>
                   );

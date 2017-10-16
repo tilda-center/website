@@ -38,8 +38,12 @@ class EventList extends React.Component {
             this.props.events.map((event) => (
               <div key={event.id} style={styles.event}>
                 <Link to={`/events/${event.id}`}><h1>{event.title}</h1></Link>
-                <Moment interval={0} format="DD.MM.YYYY HH:mm">{event.date}</Moment>
-                <ReactMarkdown source={event.markdown.substring(0, 100)} />
+                <Moment interval={0} format="DD.MM.YYYY HH:mm">
+                  {event.date}
+                </Moment>
+                <ReactMarkdown
+                  source={event.markdown.substring(0, 100)}
+                />
               </div>
             ))
           }
