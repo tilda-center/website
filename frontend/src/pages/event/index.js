@@ -5,7 +5,9 @@ import ReactMarkdown from 'react-markdown';
 import RichTextEditor from 'react-rte';
 import Moment from 'react-moment';
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 import Template from '../../templates/default';
+import { isLoggedIn } from '../../utils';
 import actions from './actions';
 import styles from './styles';
 
@@ -39,7 +41,23 @@ class Event extends React.Component {
     };
 
     this.showMarkdownEditor = () => {
-      this.setState({ showEditor: true });
+      if (isLoggedIn() && !this.state.showEditor) {
+        this.setState({ showEditor: true });
+      }
+    };
+
+    this.hideMarkdownEditor = () => {
+      if (this.state.showEditor) {
+        this.setState({ showEditor: false });
+      }
+    };
+
+    this.saveMarkdown = () => {
+      if (this.state.showEditor) {
+        const value = this.state.value.toString('markdown');
+        console.log(value);
+        this.setState({ showEditor: false });
+      }
     };
   }
 
@@ -66,10 +84,14 @@ class Event extends React.Component {
   render() {
     const markdownWidget = this.state.showEditor
                          ? (
-                           <RichTextEditor
-                             value={this.state.value}
-                             onChange={this.handleEditorChange}
-                           />
+                           <div>
+                             <RichTextEditor
+                               value={this.state.value}
+                               onChange={this.handleEditorChange}
+                             />
+                             <RaisedButton label="save" primary onClick={this.saveMarkdown} />
+                             <RaisedButton label="cancel" onClick={this.hideMarkdownEditor} />
+                           </div>
                          ) : (
                           <ReactMarkdown
                             source={this.props.event.markdown}
