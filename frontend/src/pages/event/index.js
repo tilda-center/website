@@ -16,13 +16,12 @@ const mapStateToProps = (state) => ({
 });
 
 
-@connect(mapStateToProps, actions)
 class Event extends React.Component {
   static propTypes = {
     event: PropTypes.object,
     eventError: PropTypes.string,
     get: PropTypes.func.isRequired,
-    params: PropTypes.object,
+    match: PropTypes.object,
   }
 
   static defaultProps = {
@@ -50,7 +49,7 @@ class Event extends React.Component {
   }
 
   componentWillMount() {
-    this.props.get(this.props.params.eventId);
+    this.props.get(this.props.match.params.eventId);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -105,4 +104,4 @@ class Event extends React.Component {
 }
 
 
-export default Event;
+export default connect(mapStateToProps, actions)(Event);
