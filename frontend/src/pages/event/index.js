@@ -7,7 +7,7 @@ import styles from './styles';
 
 class Event extends React.Component {
   static propTypes = {
-    params: PropTypes.object,
+    match: PropTypes.object,
   }
 
   render() {
@@ -15,7 +15,7 @@ class Event extends React.Component {
       <Template>
         <Paper style={styles.root}>
           <div style={styles.meta}>
-            <h2>Event {this.props.params.eventId} title</h2>
+            <h2>Event {this.props.match.params.eventId} title</h2>
             <div>
               date
             </div>

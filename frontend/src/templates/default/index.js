@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { DragDropContext as dndContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 import AppBar from 'material-ui/AppBar';
 import ReorderIcon from 'material-ui/svg-icons/action/reorder';
 import HomeIcon from 'material-ui/svg-icons/action/home';
@@ -19,7 +17,7 @@ const mapStateToProps = (state) => ({
   settingsOpen: state.settings.open,
 });
 
-@connect(mapStateToProps, actions)
+
 class Template extends React.Component {
   static propTypes = {
     children: PropTypes.node,
@@ -69,4 +67,4 @@ class Template extends React.Component {
   }
 }
 
-export default dndContext(HTML5Backend)(Template);
+export default connect(mapStateToProps, actions)(Template)

@@ -46,6 +46,7 @@ class Landing extends Component {
       <div style={styles.address}>
         <div style={styles.address.osm}>
           <iframe
+            title="Tilda Center"
             width="100%"
             height="95%"
             frameBorder="0"

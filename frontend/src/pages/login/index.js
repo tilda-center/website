@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper';
 import { errors } from '../../constants';
 import { isLoggedIn } from '../../utils';
 import actions from './actions';
+import styles from './styles';
 
 const mapStateToProps = (state) => ({
   token: state.login.token,
@@ -15,33 +16,7 @@ const mapStateToProps = (state) => ({
   error: state.login.error,
 });
 
-const styles = {
-  root: {
-    display: 'flex',
-    height: '100vh',
-    width: '100vw',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 
-  form: {
-    padding: '20px 50px',
-  },
-
-  button: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '20px',
-  },
-
-  title: {
-    textAlign: 'center',
-    fontFamily: 'inherit',
-  },
-};
-
-
-@connect(mapStateToProps, actions)
 class Login extends React.Component {
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -143,4 +118,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default connect(mapStateToProps, actions)(Login);
