@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Moment from 'react-moment';
 import Paper from 'material-ui/Paper';
@@ -15,7 +15,6 @@ const mapStateToProps = (state) => ({
 });
 
 
-@connect(mapStateToProps, actions)
 class EventList extends React.Component {
   static propTypes = {
     get: PropTypes.func.isRequired,
@@ -54,4 +53,4 @@ class EventList extends React.Component {
 }
 
 
-export default EventList;
+export default connect(mapStateToProps, actions)(EventList);
