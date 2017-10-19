@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import RichTextEditor from 'react-rte';
-import Moment from 'react-moment';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import DatePicker from 'material-ui/DatePicker';
 import Template from '../../templates/default';
 import { isLoggedIn } from '../../utils';
 import actions from './actions';
@@ -140,6 +140,7 @@ class Event extends React.Component {
                          ) : (
                            <h1 onClick={this.editTitle}>{this.props.event.title}</h1>
                          );
+    const date = this.props.event.date ? new Date(this.props.event.date) : new Date();
     const content = this.props.eventStatus === 'error'
                   ? (
                     <h1>No such event</h1>
@@ -148,9 +149,12 @@ class Event extends React.Component {
                       <div style={styles.meta}>
                         <div>
                           {titleComponent}
-                          <Moment interval={0} format="DD.MM.YYYY HH:mm">
-                            {this.props.event.date}
-                          </Moment>
+                          <DatePicker
+                            hintText="Portrait Inline Dialog"
+                            container="inline"
+                            defaultDate={date}
+                            disabled={!isLoggedIn()}
+                          />
                         </div>
                       </div>
                       <div onClick={this.showMarkdownEditor}>
