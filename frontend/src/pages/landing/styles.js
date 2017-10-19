@@ -68,15 +68,9 @@ function getStyles(theme) {
       },
     },
     contact: {
-      backgroundImage: `url("${contactbackground}")`,
+      backgroundImage: `url("")`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100%',
-      height: '100vh',
-      overlay: {
-        background: 'rgba(255,255,255,.6)',
-        height: 'calc(100% - 60px)',
-        padding: 30,
-      },
     },
     iframe: {
       border: '1px solid rgb(0,188,212)',
