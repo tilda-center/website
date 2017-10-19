@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import getStyles from './styles';
 import RaisedButton from 'material-ui/RaisedButton';
+import Subscribe from 'material-ui/svg-icons/editor/border-color';
+import Email from 'material-ui/svg-icons/communication/email';
+import IRC from 'material-ui/svg-icons/action/question-answer';
 import Template from '../../templates/default';
 
 
@@ -76,13 +79,11 @@ class Landing extends Component {
         </div>
       </div>
       <div style={styles.contact}>
-        <div style={styles.contact.overlay}>
-          <a href="mailto:info@lists.tilda.center">Subscribe to our info mailing list!</a><br />
-          EMAIL: office@tilda.center <br />
-          IRC: #tilda.center @ irc.freenode.net <br />
+          <a href="https://lists.tilda.center/" target="blank" title="SUBSCRIBE"><Subscribe/></a>
+          <a href="mailto:office@tilda.center" title="EMAIL"><Email/></a>
+          <a href="http://webchat.freenode.net/?channels=tilda.center" target="blank" title="IRC"><IRC/></a>
           Working hours may vary! <br />
           Please email us before stopping by to make sure someone is here to greet you. <br />
-        </div>
       </div>
     </div>
     );
