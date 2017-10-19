@@ -1,4 +1,4 @@
-from flask_restplus import Resource
+from flask_restplus import Resource, abort
 from flask import request
 from flask_jwt import _jwt, JWTError
 from .namespaces import ns_auth

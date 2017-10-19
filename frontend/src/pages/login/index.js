@@ -56,7 +56,7 @@ class Login extends React.Component {
 
   componentWillMount() {
     if (isLoggedIn()) {
-      this.context.router.push('/');
+      this.context.router.history.push('/');
     }
   }
 
@@ -69,7 +69,7 @@ class Login extends React.Component {
 
   shouldComponentUpdate() {
     if (isLoggedIn()) {
-      this.context.router.push('/');
+      this.context.router.history.push('/');
       return false;
     }
     return true;
