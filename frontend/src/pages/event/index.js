@@ -14,7 +14,7 @@ import styles from './styles';
 
 const mapStateToProps = (state) => ({
   event: state.event.event,
-  eventError: state.event.error,
+  eventStatus: state.event.status,
 });
 
 
@@ -101,7 +101,7 @@ class Event extends React.Component {
                             source={this.props.event.markdown}
                           />
                          );
-    const content = this.props.eventError
+    const content = this.props.eventStatus === 'error'
                   ? (
                     <h1>No such event</h1>
                   ) : (

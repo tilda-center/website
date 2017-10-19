@@ -21,7 +21,7 @@ const success = createAction(EVENT_SET, event => ({
 
 
 const fail = createAction(EVENT_SET, error => ({
-  error: error.message,
+  error,
   status: 'error',
 }));
 
@@ -39,7 +39,7 @@ const set = (id, fields) =>
         return token;
       })
       .catch(error => {
-        dispatch(fail(error));
+        dispatch(fail(error.message));
       });
   };
 
