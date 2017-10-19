@@ -7,7 +7,7 @@ import theme from './containers/reducers';
 import settings from './templates/default/reducers';
 
 // Pages
-import event from './pages/event/reducers';
+import { event, eventSet } from './pages/event/reducers';
 import eventList from './pages/event-list/reducers';
 import login from './pages/login/reducers';
 
@@ -15,6 +15,7 @@ import login from './pages/login/reducers';
 const reducers = {
   event,
   eventList,
+  eventSet,
   login,
   settings,
   theme,

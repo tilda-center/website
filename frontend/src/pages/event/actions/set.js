@@ -1,35 +1,39 @@
 import { createAction } from 'redux-actions';
-import { fetch } from '../../utils';
-import { apiUrl } from '../../constants';
-import EVENT from './constants';
+import { fetch } from '../../../utils';
+import { apiUrl } from '../../../constants';
+import { EVENT_SET } from '../constants';
 
 
-const reset = createAction(EVENT, () => ({
+const reset = createAction(EVENT_SET, () => ({
   status: 'initial',
 }));
 
 
-const begin = createAction(EVENT, () => ({
+const begin = createAction(EVENT_SET, () => ({
   status: 'pending',
 }));
 
 
-const success = createAction(EVENT, event => ({
+const success = createAction(EVENT_SET, event => ({
   event,
   status: 'success',
 }));
 
 
-const fail = createAction(EVENT, error => ({
+const fail = createAction(EVENT_SET, error => ({
   error: error.message,
   status: 'error',
 }));
 
 
-const get = (id) =>
+const set = (id, fields) =>
   (dispatch) => {
     dispatch(begin());
-    fetch({ url: `${apiUrl}/events/${id}` })
+    fetch({ 
+      url: `${apiUrl}/events/${id}`,
+      method: 'PATCH',
+      body: fields,
+    })
       .then(token => {
         dispatch(success(token));
         return token;
@@ -45,7 +49,7 @@ const actions = {
   begin,
   success,
   fail,
-  get,
+  set,
 };
 
 

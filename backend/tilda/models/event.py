@@ -4,10 +4,7 @@ from .. import current_app
 import datetime
 
 
-Model = current_app.db.Model
-
-
-class Event(Model, RoleMixin):
+class Event(current_app.db.Model):
     title = CharField()
     markdown = TextField(null=True)
     date = DateTimeField(default=datetime.datetime.now)

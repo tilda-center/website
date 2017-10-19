@@ -24,6 +24,7 @@ class Event extends React.Component {
     eventError: PropTypes.string,
     get: PropTypes.func.isRequired,
     match: PropTypes.object,
+    set: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -54,8 +55,11 @@ class Event extends React.Component {
 
     this.saveMarkdown = () => {
       if (this.state.showEditor) {
-        const value = this.state.value.toString('markdown');
-        console.log(value);
+        const fields = {
+          markdown: this.state.value.toString('markdown'),
+        };
+        this.props.set(this.props.match.params.eventId, fields);
+        this.props.get(this.props.match.params.eventId);
         this.setState({ showEditor: false });
       }
     };
