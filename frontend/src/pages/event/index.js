@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
+import moment from 'moment';
 import Template from '../../templates/default';
 import { isLoggedIn } from '../../utils';
 import actions from './actions';
@@ -85,6 +86,13 @@ class Event extends React.Component {
     this.handleTitleChange = (event, title) => {
       this.setState({ title });
     };
+
+    this.saveDate = (event, rawDate) => {
+      const fields = {
+        date: moment(rawDate).format('YYYY-MM-DD'),
+      };
+      this.props.set(this.props.match.params.eventId, fields);
+    };
   }
 
   state = {
@@ -154,6 +162,7 @@ class Event extends React.Component {
                             container="inline"
                             defaultDate={date}
                             disabled={!isLoggedIn()}
+                            onChange={this.saveDate}
                           />
                         </div>
                       </div>
