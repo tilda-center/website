@@ -79,11 +79,11 @@ class Landing extends Component {
         </div>
       </div>
       <div style={styles.contact}>
-          <a href="https://lists.tilda.center/" target="blank" title="SUBSCRIBE"><Subscribe/></a>
-          <a href="mailto:office@tilda.center" title="EMAIL"><Email/></a>
-          <a href="http://webchat.freenode.net/?channels=tilda.center" target="blank" title="IRC"><IRC/></a>
-          Working hours may vary! <br />
-          Please email us before stopping by to make sure someone is here to greet you. <br />
+        <a href="https://lists.tilda.center/" target="blank" title="SUBSCRIBE"><Subscribe/></a>
+        <a href="mailto:office@tilda.center" title="EMAIL"><Email/></a>
+        <a href="http://webchat.freenode.net/?channels=tilda.center" target="blank" title="IRC"><IRC/></a>
+        Working hours may vary! <br />
+        Please email us before stopping by to make sure someone is here to greet you. <br />
       </div>
     </div>
     );

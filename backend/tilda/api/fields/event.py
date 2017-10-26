@@ -7,7 +7,7 @@ fields = api.model(
     {
         'markdown': String(description='Markdown'),
         'title': String(description='Title'),
-        'date': String(description='Title'),
+        'date': DateTime(description='Date'),
     },
 )
 
