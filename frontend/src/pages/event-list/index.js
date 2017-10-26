@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Moment from 'react-moment';
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 import Template from '../../templates/default';
 import actions from './actions';
 import styles from './styles';
@@ -12,6 +13,7 @@ import styles from './styles';
 
 const mapStateToProps = (state) => ({
   events: state.eventList.events,
+  headers: state.eventList.headers,
 });
 
 
@@ -19,6 +21,7 @@ class EventList extends React.Component {
   static propTypes = {
     get: PropTypes.func.isRequired,
     events: PropTypes.array,
+    headers: PropTypes.object,
   }
 
   static defaultProps = {
@@ -30,6 +33,23 @@ class EventList extends React.Component {
   }
 
   render() {
+    let pagination = null;
+    if (this.props.headers) {
+      const firstPage = Number(this.props.headers.get('X-First-Page'));
+      const lastPage = Number(this.props.headers.get('X-Last-Page'));
+      const currentPage = Number(this.props.headers.get('X-Current-Page'));
+      pagination = [];
+      for(let i = firstPage; i <= lastPage; ++i) {
+        pagination.push(
+          <RaisedButton
+            key={i}
+            label={i}
+            primary={i === currentPage}
+            onClick={() => this.props.get(i)}
+          />
+        );
+      }
+    }
     return (
       <Template>
         <Paper style={styles.root}>
@@ -46,6 +66,9 @@ class EventList extends React.Component {
               </div>
             ))
           }
+          <div style={styles.pagination}>
+            {pagination}
+          </div>
         </Paper>
       </Template>
     );

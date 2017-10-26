@@ -6,4 +6,9 @@ export default {
   event: {
     marginBottom: 10,
   },
+
+  pagination: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 };

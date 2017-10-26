@@ -29,12 +29,16 @@ const get = (id) =>
   (dispatch) => {
     dispatch(begin());
     fetch({ url: `${apiUrl}/events/${id}` })
-      .then(token => {
-        dispatch(success(token));
-        return token;
+      .then(response => {
+        response.json()
+          .then(event => {
+            dispatch(success(event));
+            return event;
+          });
+        return response;
       })
       .catch(error => {
-        dispatch(fail(error.message));
+        dispatch(fail(error));
       });
   };
 
