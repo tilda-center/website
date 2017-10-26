@@ -1,5 +1,5 @@
 import background from './background.jpg';
-import contactBackground from './contact.jpg';
+// import contactBackground from './contact.jpg';
 
 
 function getStyles(theme) {

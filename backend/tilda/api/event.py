@@ -1,5 +1,6 @@
 import os
 import re
+import pagination
 from flask_restplus import Resource, abort
 from flask_jwt import current_identity, jwt_required
 from .namespaces import ns_events
@@ -16,10 +17,12 @@ parser.add_argument('markdown', type=str, required=True, location='json')
 @ns_events.route('', endpoint='events')
 class EventListAPI(Resource):
     @ns_events.marshal_with(get_fields)
+    @ns_events.response(409, 'Invalid page')
+    @ns_events.doc(parser=pagination.parser)
     def get(self):
         """List events"""
-        events = [event for event in Event.select()]
-        return events
+        events = pagination.limit(Event.select())
+        return [event for event in events], 200, events.headers
 
     @jwt_required()
     @ns_events.marshal_with(get_fields)

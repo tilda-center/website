@@ -14,8 +14,9 @@ const begin = createAction(EVENT_LIST, () => ({
 }));
 
 
-const success = createAction(EVENT_LIST, events => ({
+const success = createAction(EVENT_LIST, (events, headers) => ({
   events,
+  headers,
   status: 'success',
 }));
 
@@ -26,13 +27,20 @@ const fail = createAction(EVENT_LIST, error => ({
 }));
 
 
-const get = () =>
+const get = (page = 1) =>
   (dispatch) => {
     dispatch(begin());
-    fetch({ url: `${apiUrl}/events` })
-      .then(token => {
-        dispatch(success(token));
-        return token;
+    fetch({
+      page,
+      url: `${apiUrl}/events`,
+    })
+      .then(response => {
+        response.json()
+          .then(events => {
+            dispatch(success(events, response.headers));
+            return events;
+          });
+        return response;
       })
       .catch(error => {
         dispatch(fail(error));
