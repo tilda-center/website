@@ -11,4 +11,8 @@ export default {
     textIndent: 10,
     marginBottom: 10,
   },
+
+  inlineBlock: {
+    display: 'inline-block',
+  },
 };
