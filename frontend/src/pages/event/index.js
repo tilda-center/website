@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
+import Toggle from 'material-ui/Toggle';
 import PencilIcon from 'material-ui/svg-icons/content/create';
 import moment from 'moment';
 import Template from '../../templates/default';
@@ -15,10 +16,17 @@ import actions from './actions';
 import styles from './styles';
 
 
-const mapStateToProps = (state) => ({
-  event: state.event.event,
-  eventStatus: state.event.status,
-});
+const mapStateToProps = (state) => {
+  const data = {
+    event: state.event.event,
+    eventStatus: state.event.status,
+  };
+  if (state.eventPublish.status === 'success') {
+    data.event = state.eventPublish.event;
+    console.log(state.eventPublish);
+  }
+  return data;
+};
 
 
 class Event extends React.Component {
@@ -28,12 +36,14 @@ class Event extends React.Component {
     get: PropTypes.func.isRequired,
     match: PropTypes.object,
     set: PropTypes.func.isRequired,
+    publish: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
     event: {
       markdown: '',
       title: '',
+      published: false,
     },
   }
 
@@ -130,6 +140,10 @@ class Event extends React.Component {
         this.setState({ overMarkdown: false });
       }
     };
+
+    this.togglePublished = (event, published) => {
+      this.props.publish(this.props.match.params.eventId, { published });
+    };
   }
 
   state = {
@@ -190,16 +204,22 @@ class Event extends React.Component {
                              <RaisedButton label="cancel" onClick={this.hideTitleEditor} />
                            </div>
                          ) : (
-                           <div>
-                             <h1
-                               onMouseOver={this.titleMouseOver}
-                               onMouseLeave={this.titleMouseLeave}
-                               onClick={this.editTitle}
-                               style={styles.inlineBlock}
-                             >
-                               {this.props.event.title}
-                             </h1>
-                             {titlePencil}
+                           <div style={styles.flex}>
+                             <div>
+                               <h1
+                                 onMouseOver={this.titleMouseOver}
+                                 onMouseLeave={this.titleMouseLeave}
+                                 onClick={this.editTitle}
+                                 style={styles.inlineBlock}
+                               >
+                                 {this.props.event.title}
+                               </h1>
+                               {titlePencil}
+                             </div>
+                             <div>
+                               published
+                               <Toggle onToggle={this.togglePublished} toggled={this.props.event.published} />
+                            </div>
                            </div>
                          );
     const date = this.props.event.date ? new Date(this.props.event.date) : new Date();
@@ -234,6 +254,7 @@ class Event extends React.Component {
       <Template>
         <Paper style={styles.root}>
           {content}
+          <RaisedButton label="delete" secondary />
         </Paper>
       </Template>
     );
