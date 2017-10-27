@@ -15,4 +15,10 @@ export default {
   inlineBlock: {
     display: 'inline-block',
   },
+
+  flex: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  }
 };

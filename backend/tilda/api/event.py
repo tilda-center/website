@@ -12,6 +12,8 @@ from ..utils import all_fields_optional
 parser = ns_events.parser()
 parser.add_argument('title', type=str, required=True, location='json')
 parser.add_argument('markdown', type=str, required=True, location='json')
+parser.add_argument('date', type=str, required=False, location='json')
+parser.add_argument('published', type=bool, required=False, location='json')
 
 
 @ns_events.route('', endpoint='events')
@@ -21,7 +23,7 @@ class EventListAPI(Resource):
     @ns_events.doc(parser=pagination.parser)
     def get(self):
         """List events"""
-        events = pagination.limit(Event.select().order_by(Event.date))
+        events = pagination.limit(Event.select().order_by(Event.date.desc()))
         return [event for event in events], 200, events.headers
 
     @jwt_required()
@@ -63,6 +65,10 @@ class EventAPI(Resource):
         event.title = args.get('title') or event.title
         event.markdown = args.get('markdown') or event.markdown
         event.date = args.get('date') or event.date
+        published = args.get('published', None)
+        print(published)
+        if published is not None:
+            event.published = published
         event.save()
         return event
 
