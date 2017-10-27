@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import Template from '../../templates/default';
 import actions from './actions';
-import styles from './styles';
+import getStyles from './styles';
 
 
 const mapStateToProps = (state) => ({
@@ -28,11 +28,16 @@ class EventList extends React.Component {
     events: [],
   }
 
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  }
+
   componentWillMount() {
     this.props.get();
   }
 
   render() {
+    const styles = getStyles(this.context.muiTheme);
     let pagination = null;
     if (this.props.headers) {
       const firstPage = Number(this.props.headers.get('X-First-Page'));
@@ -56,7 +61,9 @@ class EventList extends React.Component {
           {
             this.props.events.map((event) => (
               <div key={event.id} style={styles.event}>
-                <Link to={`/events/${event.id}`}><h1>{event.title}</h1></Link>
+                <Link to={`/events/${event.id}`} style={styles.link}>
+                  <h1>{event.title}</h1>
+                </Link>
                 <Moment interval={0} format="DD.MM.YYYY HH:mm">
                   {event.date}
                 </Moment>

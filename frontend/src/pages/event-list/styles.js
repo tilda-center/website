@@ -1,4 +1,4 @@
-export default {
+export default (theme) => ({
   root: {
     padding: 10,
   },
@@ -11,4 +11,8 @@ export default {
     display: 'flex',
     justifyContent: 'center',
   },
-};
+
+  link: {
+    color: theme.palette.primary2Color,
+  }
+});
