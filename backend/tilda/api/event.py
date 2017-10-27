@@ -80,5 +80,5 @@ class EventAPI(Resource):
             event = Event.get(id=id)
         except Event.DoesNotExist:
             abort(404, 'Event not found')
-        event.delete()
+        event.delete_instance()
         return event

@@ -5,6 +5,8 @@ import ReactMarkdown from 'react-markdown';
 import RichTextEditor from 'react-rte';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import Toggle from 'material-ui/Toggle';
@@ -23,7 +25,6 @@ const mapStateToProps = (state) => {
   };
   if (state.eventPublish.status === 'success') {
     data.event = state.eventPublish.event;
-    console.log(state.eventPublish);
   }
   return data;
 };
@@ -37,6 +38,7 @@ class Event extends React.Component {
     match: PropTypes.object,
     set: PropTypes.func.isRequired,
     publish: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -45,6 +47,10 @@ class Event extends React.Component {
       title: '',
       published: false,
     },
+  }
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -144,12 +150,26 @@ class Event extends React.Component {
     this.togglePublished = (event, published) => {
       this.props.publish(this.props.match.params.eventId, { published });
     };
+
+    this.handleDeleteDialogOpen = () => {
+      this.setState({ deleteDialog: true });
+    };
+
+    this.handleDeleteDialogClose = () => {
+      this.setState({ deleteDialog: false });
+    };
+
+    this.handleEventDelete = () => {
+      this.props.remove(this.props.match.params.eventId);
+      this.context.router.history.push('/events');
+    };
   }
 
   state = {
     showEditor: false,
     showTitleEditor: false,
     value: RichTextEditor.createEmptyValue(),
+    deleteDialog: false,
   }
 
   componentWillMount() {
@@ -191,6 +211,13 @@ class Event extends React.Component {
                              </div>
                             );
     const titlePencil = this.state.overTitle ? <PencilIcon /> : null;
+    const publishedComponent = isLoggedIn()
+                             ? (
+                               <div>
+                                 published
+                                 <Toggle onToggle={this.togglePublished} toggled={this.props.event.published} />
+                               </div>
+                             ) : null;
     const titleComponent = this.state.showTitleEditor
                          ? (
                            <div>
@@ -216,14 +243,18 @@ class Event extends React.Component {
                                </h1>
                                {titlePencil}
                              </div>
-                             <div>
-                               published
-                               <Toggle onToggle={this.togglePublished} toggled={this.props.event.published} />
-                            </div>
+                             {publishedComponent}
                            </div>
                          );
     const date = this.props.event.date ? new Date(this.props.event.date) : new Date();
     const datePencil = this.state.overDate ? <PencilIcon /> : null;
+    const deleteButton = isLoggedIn()
+                       ? <RaisedButton
+                           label="delete"
+                           onClick={this.handleDeleteDialogOpen}
+                           secondary
+                         />
+                       : null;
     const content = this.props.eventStatus === 'error'
                   ? (
                     <h1>No such event</h1>
@@ -248,13 +279,32 @@ class Event extends React.Component {
                       <div onClick={this.showMarkdownEditor}>
                         {markdownComponent}
                       </div>
+                      {deleteButton}
                     </div>
                   );
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        onClick={this.handleDeleteDialogClose}
+      />,
+      <FlatButton
+        primary
+        label="OK"
+        onClick={this.handleEventDelete}
+      />,
+    ];
     return (
       <Template>
         <Paper style={styles.root}>
           {content}
-          <RaisedButton label="delete" secondary />
+          <Dialog
+            title="Delete Event"
+            open={this.state.deleteDialog}
+            onRequestClose={this.handleEventClose}
+            actions={actions}
+          >
+            Are you sure?
+          </Dialog>
         </Paper>
       </Template>
     );
