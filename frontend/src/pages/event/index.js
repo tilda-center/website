@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
+import PencilIcon from 'material-ui/svg-icons/content/create';
 import moment from 'moment';
 import Template from '../../templates/default';
 import { isLoggedIn } from '../../utils';
@@ -93,6 +94,42 @@ class Event extends React.Component {
       };
       this.props.set(this.props.match.params.eventId, fields);
     };
+
+    this.titleMouseOver = () => {
+      if (isLoggedIn()) {
+        this.setState({ overTitle: true });
+      }
+    };
+
+    this.titleMouseLeave = () => {
+      if (isLoggedIn()) {
+        this.setState({ overTitle: false });
+      }
+    };
+
+    this.dateMouseOver = () => {
+      if (isLoggedIn()) {
+        this.setState({ overDate: true });
+      }
+    };
+
+    this.dateMouseLeave = () => {
+      if (isLoggedIn()) {
+        this.setState({ overDate: false });
+      }
+    };
+
+    this.markdownMouseOver = () => {
+      if (isLoggedIn()) {
+        this.setState({ overMarkdown: true });
+      }
+    };
+
+    this.markdownMouseLeave = () => {
+      if (isLoggedIn()) {
+        this.setState({ overMarkdown: false });
+      }
+    };
   }
 
   state = {
@@ -118,6 +155,7 @@ class Event extends React.Component {
   }
 
   render() {
+    const markdownPencil = this.state.overMarkdown ? <PencilIcon /> : null;
     const markdownComponent = this.state.showEditor
                             ? (
                               <div>
@@ -129,10 +167,16 @@ class Event extends React.Component {
                                 <RaisedButton label="cancel" onClick={this.hideMarkdownEditor} />
                               </div>
                             ) : (
-                             <ReactMarkdown
-                               source={this.props.event.markdown}
-                             />
+                             <div>
+                               <div onMouseOver={this.markdownMouseOver} onMouseLeave={this.markdownMouseLeave} style={styles.inlineBlock}>
+                                 <ReactMarkdown
+                                   source={this.props.event.markdown}
+                                 />
+                               </div>
+                               {markdownPencil}
+                             </div>
                             );
+    const titlePencil = this.state.overTitle ? <PencilIcon /> : null;
     const titleComponent = this.state.showTitleEditor
                          ? (
                            <div>
@@ -146,9 +190,20 @@ class Event extends React.Component {
                              <RaisedButton label="cancel" onClick={this.hideTitleEditor} />
                            </div>
                          ) : (
-                           <h1 onClick={this.editTitle}>{this.props.event.title}</h1>
+                           <div>
+                             <h1
+                               onMouseOver={this.titleMouseOver}
+                               onMouseLeave={this.titleMouseLeave}
+                               onClick={this.editTitle}
+                               style={styles.inlineBlock}
+                             >
+                               {this.props.event.title}
+                             </h1>
+                             {titlePencil}
+                           </div>
                          );
     const date = this.props.event.date ? new Date(this.props.event.date) : new Date();
+    const datePencil = this.state.overDate ? <PencilIcon /> : null;
     const content = this.props.eventStatus === 'error'
                   ? (
                     <h1>No such event</h1>
@@ -163,7 +218,11 @@ class Event extends React.Component {
                             defaultDate={date}
                             disabled={!isLoggedIn()}
                             onChange={this.saveDate}
+                            onMouseOver={this.dateMouseOver}
+                            onMouseLeave={this.dateMouseLeave}
+                            style={styles.inlineBlock}
                           />
+                          {datePencil}
                         </div>
                       </div>
                       <div onClick={this.showMarkdownEditor}>
