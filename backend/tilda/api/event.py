@@ -21,7 +21,7 @@ class EventListAPI(Resource):
     @ns_events.doc(parser=pagination.parser)
     def get(self):
         """List events"""
-        events = pagination.limit(Event.select())
+        events = pagination.limit(Event.select().order_by(Event.date))
         return [event for event in events], 200, events.headers
 
     @jwt_required()
