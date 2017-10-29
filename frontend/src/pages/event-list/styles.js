@@ -4,7 +4,6 @@ export default (theme) => ({
   },
 
   event: {
-    marginBottom: 10,
   },
 
   pagination: {
@@ -12,7 +11,12 @@ export default (theme) => ({
     justifyContent: 'center',
   },
 
-  link: {
-    color: theme.palette.primary2Color,
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 33%)',
+    gridTemplateRows: 'repeat(3, 33%)',
+    gridColumnGap: 10,
+    gridRowGap: 10,
+    marginBottom: 10,
   }
 });
