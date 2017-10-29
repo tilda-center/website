@@ -4,6 +4,7 @@ import pagination
 from flask_restplus import Resource, abort
 from flask_jwt import current_identity, jwt_required
 from .namespaces import ns_events
+from .resources import ProtectedResource
 from .fields.event import fields, get_fields
 from ..models.event import Event
 from ..utils import all_fields_optional
@@ -23,7 +24,9 @@ class EventListAPI(Resource):
     @ns_events.doc(parser=pagination.parser)
     def get(self):
         """List events"""
-        events = pagination.limit(Event.select().order_by(Event.date.desc()))
+        events = pagination.limit(
+            Event.select().where(Event.published==True).order_by(Event.date.desc())
+        )
         return [event for event in events], 200, events.headers
 
     @jwt_required()
@@ -82,3 +85,27 @@ class EventAPI(Resource):
             abort(404, 'Event not found')
         event.delete_instance()
         return event
+
+
+@ns_events.route('/all', endpoint='events-all')
+class EventListAllAPI(ProtectedResource):
+    @ns_events.marshal_with(get_fields)
+    @ns_events.response(409, 'Invalid page')
+    @ns_events.doc(parser=pagination.parser)
+    def get(self):
+        """List events"""
+        events = pagination.limit(Event.select().order_by(Event.date.desc()))
+        return [event for event in events], 200, events.headers
+
+
+@ns_events.route('/private', endpoint='events-private')
+class EventListPrivateAPI(ProtectedResource):
+    @ns_events.marshal_with(get_fields)
+    @ns_events.response(409, 'Invalid page')
+    @ns_events.doc(parser=pagination.parser)
+    def get(self):
+        """List events"""
+        events = pagination.limit(
+            Event.select().where(Event.published==False).order_by(Event.date.desc())
+        )
+        return [event for event in events], 200, events.headers

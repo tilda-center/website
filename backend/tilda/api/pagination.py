@@ -3,7 +3,7 @@ from flask_restplus import abort
 from . import api
 
 
-def_per_page = 10
+def_per_page = 9
 
 
 parser = api.parser()
