@@ -3,7 +3,7 @@ from flask import request
 from flask_jwt import _jwt, JWTError
 from .namespaces import ns_auth
 from .fields.auth import fields, token_response
-from ..models import User
+from ..models.auth import User
 import uuid
 
 
