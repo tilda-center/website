@@ -4,20 +4,18 @@ import os
 from flask import Flask, render_template
 from flask_script import Manager, Server
 
-from tilda import TildaCenter
+from tilda import create_app
 from tilda.script import CreateAdminCommand
 from config import configs
 
 
 config_name = os.getenv('FLASK_CONFIG') or 'default'
-app = Flask(__name__)
-app.config.from_object(configs[config_name])
-tilda_center = TildaCenter(app)
+app = create_app(configs[config_name])
 
-manager = Manager(tilda_center.app)
-manager.add_command('create_admin', CreateAdminCommand)
-manager.add_command('migrations', tilda_center.db.manager)
-manager.add_command('runserver', Server(
+app.manager = Manager(app)
+app.manager.add_command('create_admin', CreateAdminCommand)
+app.manager.add_command('db', app.db.manager)
+app.manager.add_command('runserver', Server(
         host='0.0.0.0',
         use_reloader=True,
         use_debugger=True,
@@ -30,4 +28,4 @@ def index():
 
 
 if __name__ == '__main__':
-    manager.run()
+    app.manager.run()

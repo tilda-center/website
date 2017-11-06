@@ -1,10 +1,13 @@
 from flask_security import RoleMixin, UserMixin
 from peewee import CharField, TextField, DateTimeField, BooleanField
-from .. import current_app
 import datetime
+from ..db import db
 
 
-class Event(current_app.db.Model):
+Model = db.Model
+
+
+class Event(Model):
     title = CharField()
     markdown = TextField(null=True)
     date = DateTimeField(default=datetime.datetime.now)

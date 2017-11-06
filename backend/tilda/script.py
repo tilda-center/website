@@ -2,6 +2,7 @@ import re
 from flask_script import Command, Option
 from flask_security.script import commit, pprint
 from flask_security.utils import hash_password
+from flask import current_app
 
 
 class CreateAdminCommand(Command):
@@ -15,7 +16,6 @@ class CreateAdminCommand(Command):
 
     @commit
     def run(self, **kwargs):
-        from . import current_app
         # sanitize active input
         ai = re.sub(r'\s', '', str(kwargs['active']))
         kwargs['active'] = ai.lower() in ['', 'y', 'yes', '1', 'active']

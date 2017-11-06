@@ -1,9 +1,10 @@
 from flask_security import RoleMixin, UserMixin
 from peewee import CharField, TextField, BooleanField, DateTimeField, ForeignKeyField
-from .. import current_app
+from flask import current_app
+from ..db import db
 
 
-Model = current_app.db.Model
+Model = db.Model
 
 
 class Role(Model, RoleMixin):
