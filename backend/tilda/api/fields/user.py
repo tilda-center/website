@@ -1,43 +1,23 @@
-from flask_restplus.fields import String, Nested
+from flask_restplus.fields import String, Nested, Integer, Boolean, DateTime
 from .. import api
 from .role import fields as role_fields
 
 
 fields = api.model(
     'User', {
+        'active': Boolean(),
+        'admin': Boolean(),
+        'confirmed_at': DateTime(),
         'email': String(
             description='The email',
             required=True,
             default='admin@example.com'
         ),
+        'id': Integer(),
         'username': String(
             description='Username',
             required=True,
             default='admin'
         ),
-        'first_name': String(),
-        'last_name': String(),
-    }
-)
-
-
-body_fields = api.clone(
-    'User password',
-    fields,
-    {
-        'password': String(
-            description='Password',
-            required=True,
-            default='Sekrit',
-        )
-    },
-)
-
-response_fields = api.clone(
-    'Get User',
-    fields,
-    {
-        'id': String(),
-        'roles': Nested(role_fields),
     }
 )

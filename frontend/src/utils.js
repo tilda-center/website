@@ -29,6 +29,7 @@ export function fetch(args) {
     url,
     body,
     method,
+    page,
   } = args;
   const newbody = JSON.stringify(body);
   const newargs = {
@@ -36,23 +37,24 @@ export function fetch(args) {
     method: method || 'GET',
     headers: {
       Accept: 'application/json',
-      Authorization: `JWT ${getAuthToken()}`,
     },
   };
-  if (!isLoggedIn()) {
-    delete newargs.headers.Authorization;
+  if (isLoggedIn()) {
+    newargs.headers.Authorization = `JWT ${getAuthToken()}`;
   }
   if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
     newargs.headers['Content-Type'] = 'application/json';
   }
+  if (page && newargs.method === 'GET') {
+    newargs.headers['X-Page'] = page;
+  }
   return isomorphicFetch(url, newargs)
     .then(response => {
-      const json = response.json();
       if (response.status >= 400) {
         const error = new Error(response.statusText);
         error.response = response;
         throw error;
       }
-      return json;
+      return response;
     });
 }

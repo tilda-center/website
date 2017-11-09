@@ -1,8 +1,10 @@
 import os
 import re
+import pagination
 from flask_restplus import Resource, abort
 from flask_jwt import current_identity, jwt_required
 from .namespaces import ns_events
+from .resources import ProtectedResource
 from .fields.event import fields, get_fields
 from ..models.event import Event
 from ..utils import all_fields_optional
@@ -11,15 +13,21 @@ from ..utils import all_fields_optional
 parser = ns_events.parser()
 parser.add_argument('title', type=str, required=True, location='json')
 parser.add_argument('markdown', type=str, required=True, location='json')
+parser.add_argument('date', type=str, required=False, location='json')
+parser.add_argument('published', type=bool, required=False, location='json')
 
 
 @ns_events.route('', endpoint='events')
 class EventListAPI(Resource):
     @ns_events.marshal_with(get_fields)
+    @ns_events.response(409, 'Invalid page')
+    @ns_events.doc(parser=pagination.parser)
     def get(self):
         """List events"""
-        events = [event for event in Event.select()]
-        return events
+        events = pagination.limit(
+            Event.select().where(Event.published==True).order_by(Event.date.desc())
+        )
+        return [event for event in events], 200, events.headers
 
     @jwt_required()
     @ns_events.marshal_with(get_fields)
@@ -60,6 +68,10 @@ class EventAPI(Resource):
         event.title = args.get('title') or event.title
         event.markdown = args.get('markdown') or event.markdown
         event.date = args.get('date') or event.date
+        published = args.get('published', None)
+        print(published)
+        if published is not None:
+            event.published = published
         event.save()
         return event
 
@@ -71,5 +83,29 @@ class EventAPI(Resource):
             event = Event.get(id=id)
         except Event.DoesNotExist:
             abort(404, 'Event not found')
-        event.delete()
+        event.delete_instance()
         return event
+
+
+@ns_events.route('/all', endpoint='events-all')
+class EventListAllAPI(ProtectedResource):
+    @ns_events.marshal_with(get_fields)
+    @ns_events.response(409, 'Invalid page')
+    @ns_events.doc(parser=pagination.parser)
+    def get(self):
+        """List events"""
+        events = pagination.limit(Event.select().order_by(Event.date.desc()))
+        return [event for event in events], 200, events.headers
+
+
+@ns_events.route('/private', endpoint='events-private')
+class EventListPrivateAPI(ProtectedResource):
+    @ns_events.marshal_with(get_fields)
+    @ns_events.response(409, 'Invalid page')
+    @ns_events.doc(parser=pagination.parser)
+    def get(self):
+        """List events"""
+        events = pagination.limit(
+            Event.select().where(Event.published==False).order_by(Event.date.desc())
+        )
+        return [event for event in events], 200, events.headers

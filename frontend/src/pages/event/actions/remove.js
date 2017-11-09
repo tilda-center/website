@@ -1,34 +1,38 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../utils';
 import { apiUrl } from '../../../constants';
-import { EVENT } from '../constants';
+import { EVENT_REMOVE } from '../constants';
 
-const reset = createAction(EVENT, () => ({
+
+const reset = createAction(EVENT_REMOVE, () => ({
   status: 'initial',
 }));
 
 
-const begin = createAction(EVENT, () => ({
+const begin = createAction(EVENT_REMOVE, () => ({
   status: 'pending',
 }));
 
 
-const success = createAction(EVENT, event => ({
+const success = createAction(EVENT_REMOVE, event => ({
   event,
   status: 'success',
 }));
 
 
-const fail = createAction(EVENT, error => ({
+const fail = createAction(EVENT_REMOVE, error => ({
   error,
   status: 'error',
 }));
 
 
-const get = (id) =>
+const remove = (id) =>
   (dispatch) => {
     dispatch(begin());
-    fetch({ url: `${apiUrl}/events/${id}` })
+    fetch({
+      url: `${apiUrl}/events/${id}`,
+      method: 'delete',
+    })
       .then(response => {
         response.json()
           .then(event => {
@@ -38,7 +42,7 @@ const get = (id) =>
         return response;
       })
       .catch(error => {
-        dispatch(fail(error.message));
+        dispatch(fail(error));
       });
   };
 
@@ -48,7 +52,7 @@ const actions = {
   begin,
   success,
   fail,
-  get,
+  remove,
 };
 
 

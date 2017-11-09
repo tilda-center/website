@@ -9,6 +9,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import Settings from '../../components/molecules/settings';
+import { isLoggedIn } from '../../utils';
 import styles from './styles';
 import actions from './actions.js';
 
@@ -28,6 +29,22 @@ class Template extends React.Component {
 
   static defaultProps = {
     settingsOpen: false,
+  }
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.handleHomeClick = () => {
+      if (isLoggedIn()) {
+        this.context.router.history.push('/');
+      } else {
+        this.context.router.history.push('/landing');
+      }
+    };
   }
 
   componentWillMount() {
@@ -51,7 +68,7 @@ class Template extends React.Component {
         <AppBar
           title="Tilda Center"
           iconElementLeft={
-            <IconButton onTouchTap={this.handleHomeTouchTap} >
+            <IconButton onClick={this.handleHomeClick} >
               <HomeIcon />
             </IconButton>
           }

@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Flask, Blueprint
 from flask_admin import Admin, AdminIndexView
 from flask_collect import Collect
 from flask_jwt import JWT
@@ -6,99 +6,76 @@ from flask_restplus import apidoc
 from flask_security import Security, PeeweeUserDatastore
 from flask_security.utils import verify_password
 from flask_pw import Peewee
+import db
 
 
-current_app = None
-
-
-class TildaCenter(object):
-    """
-    Tilda Center APP
-    """
-
+def create_app(config, app=None):
     class Result(object):
         def __init__(self, **kwargs):
             for k, v in kwargs.items():
                 setattr(self, k, v)
 
-    admin = Admin(
-        name='TildaCenter',
+    if app is None:
+        app = Flask(__name__)
+        app.config.from_object(config)
+
+    app.admin = Admin(
+        name='App',
         # base_template='admin_master.html',
         template_mode='bootstrap3',
         index_view=AdminIndexView(
             # template='admin/my_index.html',
         ),
     )
-    api = None
-    app = None
-    blueprint = None
-    collect = Collect()
-    db = None
-    jwt = JWT()
-    security = Security()
-    user_datastore = None
+    app.collect = Collect()
+    app.db = Peewee(app)
+    db.db = app.db
+    app.blueprint = Blueprint(
+        'app',
+        __name__,
+        template_folder='templates',
+        static_folder='static',
+        static_url_path='/static/app',
+    )
+    app.register_blueprint(app.blueprint)
 
-    def __init__(self, app=None):
-        global current_app
-        current_app = self
-        self.app = app
-        if self.app is not None:
-            self.init_app(app)
+    from api import api_v0, api
+    app.api = api
+    app.register_blueprint(api_v0)
+    app.register_blueprint(apidoc.apidoc)
 
-    def init_app(self, app):
-        self.app = app
-        self.db = Peewee(self.app)
+    from .models.auth import User, Role, UserRoles
+    app.user_datastore = PeeweeUserDatastore(
+        app.db,
+        User,
+        Role,
+        UserRoles,
+    )
+    app.security = Security(app, app.user_datastore)
 
-        self.jwt.init_app(app)
-        self.blueprint = Blueprint(
-            'tilda_center',
-            __name__,
-            template_folder='templates',
-            static_folder='static',
-            static_url_path='/static/tilda_center',
-        )
-        self.app.register_blueprint(self.blueprint)
+    app.admin.init_app(app)
 
-        from api import api_v0, api
-        self.api = api
-        self.app.register_blueprint(api_v0)
-        self.app.register_blueprint(apidoc.apidoc)
-
-
-        from .models import User, Role, UserRoles
-        self.user_datastore = PeeweeUserDatastore(
-            self.db,
-            User,
-            Role,
-            UserRoles,
-        )
-
-        self.security.init_app(
-            self.app,
-            self.user_datastore,
-        )
-
-        self.admin.init_app(self.app)
-
-    @jwt.authentication_handler
     def authenticate(username, password):
-        from .models import User
         try:
             user = User.get(email=username)
         except User.DoesNotExist:
             return None
-        result = TildaCenter.Result(
+        result = Result(
             id=user.id,
             email=user.email,
         )
         if verify_password(password, user.password):
             return result
 
-    @jwt.identity_handler
     def identity(payload):
-        from .models import User
         try:
             user = User.get(id=payload['identity'])
         except User.DoesNotExist:
             user = None
         return user
+
+    app.jwt = JWT(app, authenticate, identity)
+
+    from .api import auth, gallery, event, user
+
+    return app

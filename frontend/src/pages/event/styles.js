@@ -11,4 +11,14 @@ export default {
     textIndent: 10,
     marginBottom: 10,
   },
+
+  inlineBlock: {
+    display: 'inline-block',
+  },
+
+  flex: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  }
 };

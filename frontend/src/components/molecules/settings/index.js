@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import EventIcon from 'material-ui/svg-icons/action/event';
 import LogoutIcon from 'material-ui/svg-icons/action/input';
 import MenuItem from 'material-ui/MenuItem';
 import { isLoggedIn } from '../../../utils';
@@ -31,26 +32,41 @@ class Settings extends React.Component {
     this.handleLogin = () => {
       this.context.router.history.push('/login');
     };
+
+    this.handleEvents = () => {
+      this.context.router.history.push('/events');
+    };
   }
 
   render() {
-    const content = isLoggedIn() 
-                  ? (
-                    <MenuItem
-                      primaryText="Logout"
-                      leftIcon={<LogoutIcon />}
-                      onTouchTap={this.handleLogout}
-                      style={styles.settings.item}
-                    />
-                  ) : (
-                    <MenuItem
-                      primaryText="Login"
-                      leftIcon={<LogoutIcon />}
-                      onTouchTap={this.handleLogin}
-                      style={styles.settings.item}
-                    />
-                  );
-    return content;
+    const authComponent = isLoggedIn()
+                        ? (
+                          <MenuItem
+                            primaryText="Logout"
+                            leftIcon={<LogoutIcon />}
+                            onTouchTap={this.handleLogout}
+                            style={styles.settings.item}
+                          />
+                        ) : (
+                          <MenuItem
+                            primaryText="Login"
+                            leftIcon={<LogoutIcon />}
+                            onTouchTap={this.handleLogin}
+                            style={styles.settings.item}
+                          />
+                        );
+
+    return (
+      <div>
+        <MenuItem
+          primaryText="Events"
+          leftIcon={<EventIcon />}
+          onTouchTap={this.handleEvents}
+          style={styles.settings.item}
+        />
+        {authComponent}
+      </div>
+    );
   }
 }
 

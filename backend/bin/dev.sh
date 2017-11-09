@@ -9,5 +9,5 @@ echo "==============="
 . ~/.virtualenvs/${VIRTUALENV}/bin/activate
 cd ${PROJECT_ROOT}
 pip install -U -r requirements.txt
-./manage.py migrations migrate
+./manage.py db migrate
 ./manage.py runserver

@@ -8,9 +8,11 @@ const reset = createAction(LOGIN, () => ({
   status: 'initial',
 }));
 
+
 const begin = createAction(LOGIN, () => ({
   status: 'pending',
 }));
+
 
 const success = createAction(LOGIN, json => {
   window.localStorage[tokenName] = json.token;
@@ -19,6 +21,7 @@ const success = createAction(LOGIN, json => {
     status: 'success',
   };
 });
+
 
 const fail = createAction(LOGIN, error => ({
   error: error.message,
@@ -37,9 +40,13 @@ const login = (email, password) =>
       },
       method: 'POST',
     })
-      .then(token => {
-        dispatch(success(token));
-        return token;
+      .then(response => {
+        response.json()
+          .then(token => {
+            dispatch(success(token));
+            return token;
+          });
+        return response;
       })
       .catch(error => {
         dispatch(fail(error));
@@ -54,5 +61,6 @@ const actions = {
   fail,
   login,
 };
+
 
 export default actions;
