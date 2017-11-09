@@ -13,9 +13,32 @@ class Landing extends Component {
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
   }
-
+  
+  constructor(props) {
+    super(props);
+    
+    this.handleMouseOver = (item) => {
+      this.setState({ over: item });
+    };
+    
+    this.handleMouseLeave = () => {
+      this.setState({ over: undefined });
+    };
+  }
+  
+  state = {}
+  
   render() {
     const styles = getStyles(this.context.muiTheme);
+    const subscribeStyle = this.state.over === 'subscribe' 
+                         ? {...styles.contact.icon, color: 'red'} 
+                         : styles.contact.icon;
+    const emailStyle = this.state.over === 'email'
+                     ? {...styles.contact.icon, color: 'red'}
+                     : styles.contact.icon;
+    const ircStyle = this.state.over === 'irc'
+                   ? {...styles.contact.icon, color: 'red'}
+                   : styles.contact.icon;
     return (
     <div>
       <div style={styles.welcome}>
@@ -79,9 +102,27 @@ class Landing extends Component {
         </div>
       </div>
       <div style={styles.contact}>
-        <a href="https://lists.tilda.center/" target="blank" title="SUBSCRIBE"><Subscribe/></a>
-        <a href="mailto:office@tilda.center" title="EMAIL"><Email/></a>
-        <a href="http://webchat.freenode.net/?channels=tilda.center" target="blank" title="IRC"><IRC/></a>
+        <a href="https://lists.tilda.center/" target="blank" title="SUBSCRIBE">
+          <Subscribe 
+            style={subscribeStyle} 
+            onMouseOver={() => {this.handleMouseOver('subscribe')}}
+            onMouseLeave={this.handleMouseLeave}
+          />
+        </a>
+        <a href="mailto:office@tilda.center" title="EMAIL">
+          <Email 
+            style={emailStyle}
+            onMouseOver={() => {this.handleMouseOver('email')}}
+            onMouseLeave={this.handleMouseLeave}
+          />
+        </a>
+        <a href="http://webchat.freenode.net/?channels=tilda.center" target="blank" title="IRC">
+          <IRC 
+            style={ircStyle}
+            onMouseOver={() => {this.handleMouseOver('irc')}}
+            onMouseLeave={this.handleMouseLeave}
+          />
+        </a>
         Working hours may vary! <br />
         Please email us before stopping by to make sure someone is here to greet you. <br />
       </div>

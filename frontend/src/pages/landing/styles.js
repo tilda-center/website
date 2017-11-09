@@ -71,6 +71,11 @@ function getStyles(theme) {
       backgroundImage: `url("")`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100%',
+      icon: {
+        color: 'rgb(0,188,212)',
+        width: 100,
+        height: 100,
+      }
     },
     iframe: {
       border: '1px solid rgb(0,188,212)',
