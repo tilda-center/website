@@ -1,0 +1,12 @@
+---
+- name: install devel packages
+  with_items: "{{ devel_packages }}"
+  pkgng:
+    name: "{{ item.name }}"
+    state: present
+
+- name: install devel pip packages
+  with_items: "{{ devel_pip_packages }}"
+  pip:
+    name: "{{ item.name }}"
+

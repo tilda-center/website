@@ -4,3 +4,10 @@
 *.pid
 .DS_Store
 frontend/node_modules
+vars.mk
+cbsd.conf
+playbook/site.yml
+.provisioned
+playbook/group_vars/all
+playbook/inventory/inventory
+playbook/roles/onelove-roles.freebsd-common
