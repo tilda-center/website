@@ -3,7 +3,7 @@ Hackerspace in Novi Sad, Vojvodina, Serbia
 
 ### Prerequisites:
 * tmux
-* node/npm
+* node/yarn
 * python/pip
 * vex
 
