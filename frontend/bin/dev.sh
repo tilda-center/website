@@ -5,7 +5,7 @@ PROJECT_ROOT=`readlink -f "${BIN_DIR}/.."`
 export NODE_ENV="dev"
 cd ${PROJECT_ROOT}
 
-npm install
+yarn install
 echo "Tilda Frontend"
 echo "=============="
-npm start
+yarn start
