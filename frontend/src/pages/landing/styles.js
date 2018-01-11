@@ -67,14 +67,20 @@ function getStyles(theme) {
         fontSize: '27px',
       },
     },
+    center: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+    },
     contact: {
       backgroundImage: `url("")`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100%',
       icon: {
         color: 'rgb(0,188,212)',
-        width: 100,
-        height: 100,
+        width: 50,
+        height: 50,
       }
     },
     iframe: {
