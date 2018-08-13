@@ -10,10 +10,22 @@ Hackerspace in Novi Sad, Vojvodina, Serbia
 To initialize your environment:
 ```bash
 bin/init.sh
-```
+bilo sta```
 
-To run development server:
+Tdsads
+
+
+
+
+
+sadsad
+:sq!
+o run development server:
 ```bash
 bin/dev.sh
 ```
+
 fahrfwfnjthcdbsb
+
+
+Dodatak
