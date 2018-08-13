@@ -10,6 +10,8 @@ Hackerspace in Novi Sad, Vojvodina, Serbia
 To initialize your environment:
 ```bash
 bin/init.sh
+```
+bla bla truc
 bilo sta```
 
 Tdsads
