@@ -11,6 +11,7 @@ To initialize your environment:
 ```bash
 bin/init.sh
 ```
+bla bla truc
 
 To run development server:
 ```bash
