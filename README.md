@@ -11,23 +11,8 @@ To initialize your environment:
 ```bash
 bin/init.sh
 ```
-bla bla truc
-bilo sta```
 
-Tdsads
-
-
-
-
-
-sadsad
-:sq!
-o run development server:
+To run development server:
 ```bash
 bin/dev.sh
 ```
-
-fahrfwfnjthcdbsb
-
-
-Dodatak
