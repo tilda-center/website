@@ -1,6 +1,0 @@
--r requirements.txt
-factory-boy
-ipdb
-ipython
-nose
-pep8
