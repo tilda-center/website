@@ -1,6 +1,6 @@
 import os
 
-from application import cli, create_app
+from tilda import cli, create_app
 from config import configs
 
 config_name = os.getenv('FLASK_ENV') or 'default'
