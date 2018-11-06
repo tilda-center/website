@@ -1,6 +1,9 @@
-SERVICE = tilda
 REGGAE_PATH = /usr/local/share/reggae
-CUSTOM_TEMPLATES = templates
+SERVICES = backend https://github.com/mekanix/backend-startkit \
+	   frontend https://github.com/mekanix/frontend-startkit
 
-.include <${REGGAE_PATH}/mk/ansible.mk>
-.include <${REGGAE_PATH}/mk/service.mk>
+.include <${REGGAE_PATH}/mk/project.mk>
+
+
+collect: up
+	@bin/collect.sh

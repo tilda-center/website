@@ -1,9 +1,0 @@
----
-devel_packages:
-  - name: tmux
-  - name: yarn
-  - name: py27-pip
-  - name: py27-sqlite3
-
-devel_pip_packages:
-  - name: vex
