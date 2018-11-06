@@ -21,6 +21,8 @@ services/frontend/coverage
 services/frontend/ansible/group_vars/all
 services/frontend/ansible/inventory/inventory
 services/frontend/ansible/roles/*
+services/frontend/project.conf
+services/frontend/node_modules
 !services/frontend/ansible/roles/.keep
 !services/frontend/ansible/roles/devel
 
@@ -28,9 +30,7 @@ build/*
 !build/.keep
 cbsd.conf
 database.db
-node_modules
 package.json
-project.conf
 site.retry
 site.yml
 test.db
