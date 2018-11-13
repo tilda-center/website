@@ -1,9 +1,0 @@
-# -*- mode: ansible -*-
-# vi: set ft=ansible :
-
----
-- name: tildaback provisioning
-  hosts: tildaback
-  roles:
-    - onelove-roles.freebsd-common
-    - devel

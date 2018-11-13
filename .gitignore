@@ -21,6 +21,7 @@ services/frontend/coverage
 services/frontend/ansible/group_vars/all
 services/frontend/ansible/inventory/inventory
 services/frontend/ansible/roles/*
+services/frontend/playbooks/*
 services/frontend/project.conf
 services/frontend/node_modules
 !services/frontend/ansible/roles/.keep
