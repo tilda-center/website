@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 //import Button from '@material-ui/core/Button'
 import Template from 'templates/default'
 import titleActions from 'templates/default/actions'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
 
 const mapStateToProps = () => ({})
@@ -17,6 +19,16 @@ class About extends Component {
   render() {
     return (
       <Template>
+        <div>
+          <Paper>
+            <Typography variant="h5" component="h3">
+            This is a sheet of paper.
+            </Typography>
+            <Typography component="p">
+             Paper can be used to build surface or other elements for your application.
+            </Typography>
+          </Paper>
+        </div>
         <div>
           <iframe
             title="map"
@@ -44,6 +56,7 @@ class About extends Component {
 
 About.propTypes = {
   requestTitle: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 }
 
 
