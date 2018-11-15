@@ -6,6 +6,7 @@ import Template from 'templates/default'
 import titleActions from 'templates/default/actions'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import styles from './styles'
 
 
 const mapStateToProps = () => ({})
@@ -16,10 +17,28 @@ class About extends Component {
     this.props.requestTitle('About')
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {value:''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+
   render() {
     return (
       <Template>
-        <div>
+        <div style={styles.aboutText}>
           <Paper>
             <Typography variant="h5" component="h3">
             This is a sheet of paper.
@@ -29,7 +48,7 @@ class About extends Component {
             </Typography>
           </Paper>
         </div>
-        <div>
+        <div style={styles.mapGoogle}>
           <iframe
             title="map"
             width={425}
@@ -47,6 +66,15 @@ class About extends Component {
               </a>
             </small>
           </div>
+        </div>
+        <div style={styles.textarea} id="textarea">
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Send us a massage:
+              <textarea type="text" value={this.state.value} onChange={this.handleChange} />
+            <input type="submit" value="Send" />
+            </label>
+          </form>
         </div>
       </Template>
     )
