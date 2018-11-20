@@ -38,16 +38,14 @@ class About extends Component {
   render() {
     return (
       <Template>
-        <div style={styles.aboutText}>
-          <Paper>
-            <Typography variant="h5" component="h3">
-            This is a sheet of paper.
-            </Typography>
-            <Typography component="p">
-             Paper can be used to build surface or other elements for your application.
-            </Typography>
-          </Paper>
-        </div>
+        <Paper style={styles.aboutText}>
+          <Typography variant="h5" component="h3" style={styles.aboutText.typography}>
+          This is a sheet of paper.
+          </Typography>
+          <Typography component="p" style={styles.aboutText.typography}>
+           Paper can be used to build surface or other elements for your application.
+          </Typography>
+        </Paper>
         <div style={styles.mapGoogle}>
           <iframe
             title="map"
@@ -67,11 +65,11 @@ class About extends Component {
             </small>
           </div>
         </div>
-        <div style={styles.textarea} id="textarea">
+        <div>
           <form onSubmit={this.handleSubmit}>
             <label>
               Send us a massage:
-              <textarea type="text" value={this.state.value} onChange={this.handleChange} />
+              <textarea type="text" value={this.state.value} onChange={this.handleChange} style={styles.textarea} />
             <input type="submit" value="Send" />
             </label>
           </form>

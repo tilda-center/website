@@ -3,16 +3,17 @@ export default {
     display: 'flex',
     justifyContent: 'left',
     alignItems: 'left',
-    height: '200hv',
-    width: 100,
+    height: 260,
+    width: 460,
   },
 
   aboutText: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '50hv',
+    backgroundColor: 'gray',
+    typography: {
+      color: 'white',
+    },
   },
+
   mapGoogle: {
     display: 'flex',
     justifyContent: 'right',
