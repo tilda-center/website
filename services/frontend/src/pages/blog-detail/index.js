@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
+import ReactMarkdown from 'react-markdown'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import BoldIcon from '@material-ui/icons/FormatBold'
+import StrikeThroughIcon from '@material-ui/icons/StrikethroughS'
+import ItalicIcon from '@material-ui/icons/FormatItalic'
 import Template from 'templates/default'
 import titleActions from 'templates/default/actions'
 import errorActions from 'templates/empty/actions'
@@ -13,8 +17,34 @@ const mapStateToProps = () => ({})
 
 
 class BlogDetail extends Component {
+  state = {
+    input: '# This is a header\n\nAnd this is a paragraph',
+    selectionStart: 0,
+    selectionEnd: 0,
+  }
+
   componentWillMount() {
-    this.props.requestTitle('Blog Title (slug)')
+    this.props.requestTitle('Title')
+  }
+
+  handleFormat = (formatString) => () => {
+    const { selectionStart, selectionEnd } = this.state
+    if (selectionEnd - selectionStart > 0) {
+      const before = this.state.input.slice(0, selectionStart)
+      const selection = this.state.input.slice(selectionStart, selectionEnd)
+      const after = this.state.input.slice(selectionEnd, this.state.input.length)
+      const input = `${before}${formatString}${selection}${formatString}${after}`
+      this.setState({ input })
+    }
+  }
+
+  handleSelect = (event) => {
+    const { selectionStart, selectionEnd } = event.target
+    this.setState({ selectionStart, selectionEnd })
+  }
+
+  handleEdit = (event) => {
+    this.setState({ input: event.target.value })
   }
 
   render() {
@@ -26,53 +56,30 @@ class BlogDetail extends Component {
             Apr 1, 2019 by meka
           </span>
         </div>
+        <div>
+          <Button variant="outlined" onClick={this.handleFormat('**')}>
+            <BoldIcon />
+          </Button>
+          <Button variant="outlined" onClick={this.handleFormat('*')}>
+            <ItalicIcon />
+          </Button>
+          <Button variant="outlined" onClick={this.handleFormat('~~')}>
+            <StrikeThroughIcon />
+          </Button>
+          <TextField
+            value={this.state.input}
+            onChange={this.handleEdit}
+            onSelect={this.handleSelect}
+            multiline
+            fullWidth
+          />
+        </div>
         <img
           src="https://tilda.center/static/images/logo.png"
           alt="logo"
           style={styles.image}
         />
-        <p>
-          Vero hic ab quia deleniti blanditiis facilis quod quod. Voluptatem
-          amet accusamus velit earum. Voluptates fugit veritatis quia libero
-          sit deserunt aperiam velit. Dolore nostrum facere molestiae
-          consequuntur accusantium sunt. Et sed libero eaque quod laboriosam
-          est. Nobis commodi est molestiae modi voluptatum.
-        </p>
-        <p>
-          Dolor aut non voluptatum officia velit et voluptas. Enim maxime
-          veniam quis libero autem et quo animi. Vitae eligendi et voluptatem
-          occaecati. Pariatur voluptatem sit aspernatur non hic consequatur.
-        </p>
-        <p>
-          Officiis commodi nam accusantium sint dolor quidem tenetur aut.
-          Voluptatem non odio dolor. Similique cum natus distinctio atque amet.
-          Sit et unde fugit voluptas aliquid accusantium qui numquam. Ratione
-          aut ea quo consequatur iste iusto earum.
-        </p>
-        <p>
-          Et quasi porro quaerat in earum rerum ab. Dolorem voluptatem tempore
-          illo rem voluptate voluptatibus a consequuntur. Nihil quia rerum non
-          repellat rerum hic eligendi esse. Id pariatur praesentium occaecati.
-          Velit aut nesciunt error incidunt et ipsa sit quae.
-        </p>
-        <p>
-          Soluta odio culpa debitis dolore corporis. Et repudiandae explicabo
-          facilis sapiente dolor omnis quo necessitatibus. Et non occaecati
-          inventore ut eaque accusantium dolor.
-        </p>
-        <div style={styles.comment}>
-          <form style={styles.comment.form}>
-            <TextField label="email" required fullWidth />
-            <TextField label="comment" required multiline rows={4} fullWidth />
-            <Button
-              type="submit"
-              variant="outlined"
-              style={styles.comment.button}
-            >
-              Send
-            </Button>
-          </form>
-        </div>
+        <ReactMarkdown source={this.state.input} />
       </Template>
     )
   }
