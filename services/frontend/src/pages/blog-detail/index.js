@@ -23,41 +23,6 @@ class BlogDetail extends Component {
     this.props.requestTitle('Title')
   }
 
-  handleFormat = (formatString) => () => {
-    const { selectionStart, selectionEnd } = this.state
-    if (selectionEnd - selectionStart > 0) {
-      const before = this.state.input.slice(0, selectionStart)
-      const selection = this.state.input.slice(selectionStart, selectionEnd)
-      const after = this.state.input.slice(selectionEnd, this.state.input.length)
-      const input = `${before}${formatString}${selection}${formatString}${after}`
-      this.setState({ input })
-    }
-  }
-
-  handleSelect = (event) => {
-    const { selectionStart, selectionEnd } = event.target
-    this.setState({ selectionStart, selectionEnd })
-  }
-
-  handleEdit = (event) => {
-    this.setState({ input: event.target.value })
-  }
-
-  handleLink = (prefix = '', suffix = '') => () => {
-    const { selectionStart, selectionEnd } = this.state
-    let selection
-    const before = this.state.input.slice(0, selectionStart)
-    const after = this.state.input.slice(selectionEnd, this.state.input.length)
-    if (selectionEnd - selectionStart > 0) {
-      const oldSelection = this.state.input.slice(selectionStart, selectionEnd)
-      selection = `${prefix}[${oldSelection}](https://pyser.org/${suffix})`
-    } else {
-      selection = `${prefix}[link text](https://pyser.org/${suffix})`
-    }
-    const input = `${before}${selection}${after}`
-    this.setState({ input })
-  }
-
   render() {
     return (
       <Template>
