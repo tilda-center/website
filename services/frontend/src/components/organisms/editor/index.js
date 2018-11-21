@@ -110,7 +110,6 @@ Editor.propTypes = {
       selectionEnd: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
-  requestError: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 }
 

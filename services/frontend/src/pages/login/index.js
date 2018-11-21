@@ -22,6 +22,14 @@ class Login extends Component {
     password: '',
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.status === 200) {
+      this.context.router.history.push('/')
+    } else if (nextProps.status === 403) {
+      this.props.requestError(nextProps.error)
+    }
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.requestLogin({
@@ -36,14 +44,6 @@ class Login extends Component {
 
   handlePassword = (event) => {
     this.setState({ password: event.target.value })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.status === 200) {
-      this.context.router.history.push('/')
-    } else if (nextProps.status === 403) {
-      this.props.requestError(nextProps.error)
-    }
   }
 
   render() {
@@ -99,7 +99,7 @@ Login.propTypes = {
 
 
 Login.contextTypes = {
-  router: PropTypes.object.isRequired,
+  router: PropTypes.shape({}).isRequired,
 }
 
 

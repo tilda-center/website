@@ -15,7 +15,9 @@ const mapStateToProps = () => ({})
 class BlogDetail extends Component {
   state = {
     input: '# This is a header\n\nAnd this is a paragraph',
+    // eslint-disable-next-line react/no-unused-state
     selectionStart: 0,
+    // eslint-disable-next-line react/no-unused-state
     selectionEnd: 0,
   }
 
@@ -46,7 +48,7 @@ class BlogDetail extends Component {
 
 
 BlogDetail.propTypes = {
-  requestError: PropTypes.func.isRequired,
+  // requestError: PropTypes.func.isRequired,
   requestTitle: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({

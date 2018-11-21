@@ -13,7 +13,7 @@ export default createStore(
   greenApp,
   initialState,
   composeWithDevTools(
-    applyMiddleware(greenMiddleware)
+    applyMiddleware(greenMiddleware),
   ),
 )
 
