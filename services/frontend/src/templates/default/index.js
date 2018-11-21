@@ -70,7 +70,7 @@ class Template extends Component {
             <IconButton color="inherit" onClick={menuButtonAction}>
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" style={styles.flex}>
+            <Typography variant="h5" color="inherit" style={styles.flex}>
               {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
               Tilda Center - {this.props.title}
             </Typography>
