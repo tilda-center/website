@@ -7,3 +7,16 @@ export function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift()
   return null
 }
+
+
+export function linkTarget(url) {
+  if (url.length < 4) {
+    return '_blank'
+  }
+  if (url[0] === '/') {
+    if (url[1] !== '/') {
+      return ''
+    }
+  }
+  return '_blank'
+}

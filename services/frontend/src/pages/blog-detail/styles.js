@@ -24,16 +24,8 @@ export default {
     width: 100,
   },
 
-  comment: {
+  button: {
     ...center,
-    form: {
-      ...center,
-      flexDirection: 'column',
-      maxWidth: 500,
-      width: '100%',
-    },
-    button: {
-      marginTop: 10,
-    },
+    marginTop: 20,
   },
 }
