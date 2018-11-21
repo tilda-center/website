@@ -18,17 +18,17 @@ class Editor extends Component {
   handleFormat = (formatString) => () => {
     const { selectionStart, selectionEnd } = this.props.component.state
     if (selectionEnd - selectionStart > 0) {
-      const before = this.props.component.state.input.slice(0, selectionStart)
-      const selection = this.props.component.state.input.slice(
+      const before = this.props.component.state.content.slice(0, selectionStart)
+      const selection = this.props.component.state.content.slice(
         selectionStart,
         selectionEnd,
       )
-      const after = this.props.component.state.input.slice(
+      const after = this.props.component.state.content.slice(
         selectionEnd,
-        this.props.component.state.input.length,
+        this.props.component.state.content.length,
       )
-      const input = `${before}${formatString}${selection}${formatString}${after}`
-      this.props.component.setState({ input })
+      const content = `${before}${formatString}${selection}${formatString}${after}`
+      this.props.component.setState({ content })
     }
   }
 
@@ -38,19 +38,19 @@ class Editor extends Component {
   }
 
   handleEdit = (event) => {
-    this.props.component.setState({ input: event.target.value })
+    this.props.component.setState({ content: event.target.value })
   }
 
   handleLink = (prefix = '', suffix = '') => () => {
     const { selectionStart, selectionEnd } = this.props.component.state
     let selection
-    const before = this.props.component.state.input.slice(0, selectionStart)
-    const after = this.props.component.state.input.slice(
+    const before = this.props.component.state.content.slice(0, selectionStart)
+    const after = this.props.component.state.content.slice(
       selectionEnd,
-      this.props.component.state.input.length,
+      this.props.component.state.content.length,
     )
     if (selectionEnd - selectionStart > 0) {
-      const oldSelection = this.props.component.state.input.slice(
+      const oldSelection = this.props.component.state.content.slice(
         selectionStart,
         selectionEnd,
       )
@@ -58,8 +58,8 @@ class Editor extends Component {
     } else {
       selection = `${prefix}[link text](https://pyser.org/${suffix})`
     }
-    const input = `${before}${selection}${after}`
-    this.props.component.setState({ input })
+    const content = `${before}${selection}${after}`
+    this.props.component.setState({ content })
   }
 
   render() {
@@ -105,7 +105,7 @@ Editor.propTypes = {
   component: PropTypes.shape({
     setState: PropTypes.func.isRequired,
     state: PropTypes.shape({
-      input: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
       selectionStart: PropTypes.number.isRequired,
       selectionEnd: PropTypes.number.isRequired,
     }).isRequired,

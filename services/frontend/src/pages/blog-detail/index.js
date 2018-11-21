@@ -2,13 +2,20 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import EditIcon from '@material-ui/icons/Edit'
 import ReactMarkdown from 'react-markdown'
 import Template from 'templates/default'
 import ProtectedComponent from 'components/atoms/protected'
 import Editor from 'components/organisms/editor'
 import titleActions from 'templates/default/actions'
 import errorActions from 'templates/empty/actions'
-import { linkTarget } from 'utils'
+import {
+  linkTarget,
+  handleOver,
+  handleEdit,
+  handleValue,
+} from 'utils'
 import styles from './styles'
 
 
@@ -19,12 +26,14 @@ const mapStateToProps = (state) => ({
 
 class BlogDetail extends Component {
   state = {
-    edit: false,
-    input: 'Corporis ea neque enim illo cumque eos praesentium. Quam tempore perferendis deserunt est esse. Reiciendis necessitatibus corporis amet quis minima aut. Aliquid sit dolorem autem et sunt et totam dolor. Aut temporibus quia voluptas aut.\n\nReiciendis inventore error necessitatibus quidem neque dolores. Aut ut sit sunt sit in molestiae. Dolorem sit sit est aut voluptate ut doloremque. Iure nihil qui voluptate repellendus.\n\nItaque ut reiciendis et placeat. Iure et dolorem ut consequuntur aut amet. Et aut perferendis et omnis sed. Necessitatibus harum sit dolores.\n\nDolores delectus qui sint eligendi et facilis corporis nostrum. Excepturi laudantium et enim necessitatibus magni. Cupiditate voluptas et ex. Hic quis recusandae perspiciatis aut vel. Distinctio excepturi voluptatem mollitia numquam.\n\nEst occaecati ut nesciunt impedit animi eos ullam. Necessitatibus tempora sit molestiae illum. Voluptatem est repellat sed.',
-    // eslint-disable-next-line react/no-unused-state
-    selectionStart: 0,
+    content: 'Corporis ea neque enim illo cumque eos praesentium. Quam tempore perferendis deserunt est esse. Reiciendis necessitatibus corporis amet quis minima aut. Aliquid sit dolorem autem et sunt et totam dolor. Aut temporibus quia voluptas aut.\n\nReiciendis inventore error necessitatibus quidem neque dolores. Aut ut sit sunt sit in molestiae. Dolorem sit sit est aut voluptate ut doloremque. Iure nihil qui voluptate repellendus.\n\nItaque ut reiciendis et placeat. Iure et dolorem ut consequuntur aut amet. Et aut perferendis et omnis sed. Necessitatibus harum sit dolores.\n\nDolores delectus qui sint eligendi et facilis corporis nostrum. Excepturi laudantium et enim necessitatibus magni. Cupiditate voluptas et ex. Hic quis recusandae perspiciatis aut vel. Distinctio excepturi voluptatem mollitia numquam.\n\nEst occaecati ut nesciunt impedit animi eos ullam. Necessitatibus tempora sit molestiae illum. Voluptatem est repellat sed.',
+    editContent: false,
+    over: null,
     // eslint-disable-next-line react/no-unused-state
     selectionEnd: 0,
+    // eslint-disable-next-line react/no-unused-state
+    selectionStart: 0,
+    title: 'Title',
   }
 
   componentWillMount() {
@@ -33,33 +42,38 @@ class BlogDetail extends Component {
 
   handleEdit = () => {
     this.setState(prevState => ({
-      edit: true,
-      oldInput: prevState.input,
+      editContent: true,
+      oldContent: prevState.content,
     }))
   }
 
   handleSave = () => {
     this.setState({
-      edit: false,
-      oldInput: null,
+      editContent: false,
+      oldContent: null,
     })
   }
 
   handleCancel = () => {
     this.setState(prevState => ({
-      edit: false,
-      input: prevState.oldInput,
-      oldInput: null,
+      editContent: false,
+      content: prevState.oldContent,
+      oldContent: null,
     }))
   }
 
+  handleSubmit = (item) => (event) => {
+    event.preventDefault()
+    handleEdit(item, false, this)()
+  }
+
   render() {
-    const editor = this.state.edit
-      ? <Editor component={this} value={this.state.input} />
+    const editor = this.state.editContent
+      ? <Editor component={this} value={this.state.content} />
       : ''
     let button
     if (this.props.auth) {
-      button = this.state.edit
+      button = this.state.editContent
         ? (
           <div>
             <Button
@@ -85,11 +99,54 @@ class BlogDetail extends Component {
           </Button>
         )
     }
+    let title
+    if (this.state.edit === 'title') {
+      title = (
+        <form style={styles.title} onSubmit={this.handleSubmit('title')}>
+          <TextField
+            value={this.state.title}
+            onChange={handleValue('title', this)}
+            label="title"
+            required
+            autoFocus
+          />
+          <Button type="submit">
+            Save
+          </Button>
+          <Button onClick={handleEdit('title', false, this)}>
+            Cancel
+          </Button>
+        </form>
+      )
+    } else {
+      title = (
+        <div
+          onClick={handleEdit('title', true, this)}
+          onKeyDown={handleEdit('title', true, this)}
+          tabIndex={0}
+          role="button"
+        >
+          <h1
+            style={styles.title}
+            onMouseOver={handleOver('title', true, this)}
+            onFocus={handleOver('title', true, this)}
+            onMouseOut={handleOver('title', false, this)}
+            onBlur={handleOver('title', false, this)}
+          >
+            {this.state.title}
+          </h1>
+          {this.state.over === 'title'
+            ? <EditIcon />
+            : ''
+          }
+        </div>
+      )
+    }
     return (
       <Template>
         <ProtectedComponent redirect={false} />
         <div style={styles.root}>
-          <h1>Title</h1>
+          {title}
           <span style={styles.date}>
             Apr 1, 2019 by meka
           </span>
@@ -101,7 +158,7 @@ class BlogDetail extends Component {
           style={styles.image}
         />
         <ReactMarkdown
-          source={this.state.input}
+          source={this.state.content}
           linkTarget={linkTarget}
         />
         <div style={styles.button}>

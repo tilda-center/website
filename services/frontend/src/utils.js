@@ -20,3 +20,28 @@ export function linkTarget(url) {
   }
   return '_blank'
 }
+
+export const handleOver = (item, over, component) => () => {
+  if (over) {
+    component.setState({ over: item })
+  } else {
+    component.setState({ over: null })
+  }
+}
+
+
+export const handleEdit = (item, edit, component) => () => {
+  handleOver(item, false, component)()
+  if (edit) {
+    component.setState({ edit: item })
+  } else {
+    component.setState({ edit: null })
+  }
+}
+
+
+export const handleValue = (item, component) => (event) => {
+  const state = {}
+  state[item] = event.target.value
+  component.setState(state)
+}

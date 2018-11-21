@@ -77,7 +77,7 @@ class Template extends Component {
             {AuthButton}
           </Toolbar>
         </AppBar>
-        <EmptyTemplate secure={this.props.secure}>
+        <EmptyTemplate secure={this.props.secure} style={this.props.style}>
           {this.props.children}
           <Drawer open={this.state.showMenu} onClose={this.handleMenuClose}>
             <AppBar position="static">
@@ -121,6 +121,7 @@ Template.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   requestLogout: PropTypes.func.isRequired,
   secure: PropTypes.bool,
+  style: PropTypes.shape({}),
   title: PropTypes.string,
 }
 

@@ -28,4 +28,8 @@ export default {
     ...center,
     marginTop: 20,
   },
+
+  title: {
+    display: 'inline',
+  },
 }
