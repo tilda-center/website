@@ -70,14 +70,14 @@ class Template extends Component {
             <IconButton color="inherit" onClick={menuButtonAction}>
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" style={styles.flex}>
+            <Typography variant="h5" color="inherit" style={styles.flex}>
               {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
               Tilda Center - {this.props.title}
             </Typography>
             {AuthButton}
           </Toolbar>
         </AppBar>
-        <EmptyTemplate secure={this.props.secure}>
+        <EmptyTemplate secure={this.props.secure} style={this.props.style}>
           {this.props.children}
           <Drawer open={this.state.showMenu} onClose={this.handleMenuClose}>
             <AppBar position="static">
@@ -121,6 +121,7 @@ Template.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   requestLogout: PropTypes.func.isRequired,
   secure: PropTypes.bool,
+  style: PropTypes.shape({}),
   title: PropTypes.string,
 }
 
