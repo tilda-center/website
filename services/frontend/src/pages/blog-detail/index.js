@@ -2,12 +2,8 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import ReactMarkdown from 'react-markdown'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import BoldIcon from '@material-ui/icons/FormatBold'
-import StrikeThroughIcon from '@material-ui/icons/StrikethroughS'
-import ItalicIcon from '@material-ui/icons/FormatItalic'
 import Template from 'templates/default'
+import Editor from 'components/organisms/editor'
 import titleActions from 'templates/default/actions'
 import errorActions from 'templates/empty/actions'
 import styles from './styles'
@@ -47,6 +43,21 @@ class BlogDetail extends Component {
     this.setState({ input: event.target.value })
   }
 
+  handleLink = (prefix = '', suffix = '') => () => {
+    const { selectionStart, selectionEnd } = this.state
+    let selection
+    const before = this.state.input.slice(0, selectionStart)
+    const after = this.state.input.slice(selectionEnd, this.state.input.length)
+    if (selectionEnd - selectionStart > 0) {
+      const oldSelection = this.state.input.slice(selectionStart, selectionEnd)
+      selection = `${prefix}[${oldSelection}](https://pyser.org/${suffix})`
+    } else {
+      selection = `${prefix}[link text](https://pyser.org/${suffix})`
+    }
+    const input = `${before}${selection}${after}`
+    this.setState({ input })
+  }
+
   render() {
     return (
       <Template>
@@ -56,24 +67,7 @@ class BlogDetail extends Component {
             Apr 1, 2019 by meka
           </span>
         </div>
-        <div>
-          <Button variant="outlined" onClick={this.handleFormat('**')}>
-            <BoldIcon />
-          </Button>
-          <Button variant="outlined" onClick={this.handleFormat('*')}>
-            <ItalicIcon />
-          </Button>
-          <Button variant="outlined" onClick={this.handleFormat('~~')}>
-            <StrikeThroughIcon />
-          </Button>
-          <TextField
-            value={this.state.input}
-            onChange={this.handleEdit}
-            onSelect={this.handleSelect}
-            multiline
-            fullWidth
-          />
-        </div>
+        <Editor component={this} value={this.state.input} />
         <img
           src="https://tilda.center/static/images/logo.png"
           alt="logo"
@@ -91,7 +85,10 @@ BlogDetail.propTypes = {
   requestTitle: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      year: PropTypes.string.isRequired,
+      month: PropTypes.string.isRequired,
+      day: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 }

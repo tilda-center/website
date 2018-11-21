@@ -22,7 +22,7 @@ export default class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={Dashboard} />
-              <Route exact path="/blog/:id" component={BlogDetail} />
+              <Route exact path="/blog/:year/:month/:day/:slug" component={BlogDetail} />
               <Route exact path="/landing" component={Landing} />
               <Route exact path="/login" component={Login} />
               <Route path="*" component={NoPage} />
