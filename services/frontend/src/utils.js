@@ -1,7 +1,7 @@
 export const API_ROOT = '/api/v0'
 
 
-export function getCookie(name) {
+export const getCookie = (name) => {
   const value = `; ${document.cookie}`
   const parts = value.split(`; ${name}=`)
   if (parts.length === 2) return parts.pop().split(';').shift()
@@ -9,7 +9,7 @@ export function getCookie(name) {
 }
 
 
-export function linkTarget(url) {
+export const linkTarget = (url) => {
   if (url.length < 4) {
     return '_blank'
   }
@@ -20,6 +20,7 @@ export function linkTarget(url) {
   }
   return '_blank'
 }
+
 
 export const handleOver = (item, over, component) => () => {
   if (over) {
@@ -33,15 +34,24 @@ export const handleOver = (item, over, component) => () => {
 export const handleEdit = (item, edit, component) => () => {
   handleOver(item, false, component)()
   if (edit) {
-    component.setState({ edit: item })
+    component.setState(prevState => ({
+      edit: item,
+      [`${item}Old`]: prevState[item],
+    }))
   } else {
     component.setState({ edit: null })
   }
 }
 
 
-export const handleValue = (item, component) => (event) => {
-  const state = {}
-  state[item] = event.target.value
-  component.setState(state)
+export const handleValue = (item, component, reset = false) => (event) => {
+  if (reset) {
+    component.setState(prevState => ({
+      [item]: prevState[`${item}Old`],
+      [`${item}Old`]: null,
+    }))
+    handleEdit(item, false, component)()
+  } else {
+    component.setState({ [item]: event.target.value })
+  }
 }
