@@ -113,7 +113,7 @@ class BlogDetail extends Component {
           <Button type="submit">
             Save
           </Button>
-          <Button onClick={handleEdit('title', false, this)}>
+          <Button onClick={handleValue('title', this, true)}>
             Cancel
           </Button>
         </form>
