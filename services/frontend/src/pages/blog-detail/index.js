@@ -32,11 +32,25 @@ class BlogDetail extends Component {
   }
 
   handleEdit = () => {
-    this.setState({ edit: true })
+    this.setState(prevState => ({
+      edit: true,
+      oldInput: prevState.input,
+    }))
   }
 
   handleSave = () => {
-    this.setState({ edit: false })
+    this.setState({
+      edit: false,
+      oldInput: null,
+    })
+  }
+
+  handleCancel = () => {
+    this.setState(prevState => ({
+      edit: false,
+      input: prevState.oldInput,
+      oldInput: null,
+    }))
   }
 
   render() {
@@ -47,12 +61,20 @@ class BlogDetail extends Component {
     if (this.props.auth) {
       button = this.state.edit
         ? (
-          <Button
-            onClick={this.handleSave}
-            variant="outlined"
-          >
-            Save
-          </Button>
+          <div>
+            <Button
+              onClick={this.handleCancel}
+              variant="outlined"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={this.handleSave}
+              variant="outlined"
+            >
+              Save
+            </Button>
+          </div>
         )
         : (
           <Button
