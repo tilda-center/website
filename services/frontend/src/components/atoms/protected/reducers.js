@@ -31,7 +31,7 @@ export function logoutReducer(state = {}, action) {
     case LOGOUT:
       return {
         ...state,
-        peding: true,
+        pending: true,
         error: null,
         status: null,
       }

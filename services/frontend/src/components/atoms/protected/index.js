@@ -83,7 +83,7 @@ ProtectedComponent.propTypes = {
 
 
 ProtectedComponent.defaultProps = {
-  redirect: true,
+  redirect: false,
 }
 
 

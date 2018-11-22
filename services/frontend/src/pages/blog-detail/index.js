@@ -7,7 +7,6 @@ import TextField from '@material-ui/core/TextField'
 import EditIcon from '@material-ui/icons/Edit'
 import ReactMarkdown from 'react-markdown'
 import Template from 'templates/default'
-import ProtectedComponent from 'components/atoms/protected'
 import Editor from 'components/organisms/editor'
 import titleActions from 'templates/default/actions'
 import errorActions from 'templates/empty/actions'
@@ -211,7 +210,6 @@ class BlogDetail extends Component {
     }
     return (
       <Template>
-        <ProtectedComponent redirect={false} />
         <div style={styles.root}>
           {title}
           <span style={styles.date}>
@@ -239,7 +237,7 @@ class BlogDetail extends Component {
 }
 
 
-const blogProps = PropTypes.shape({
+export const blogProps = PropTypes.shape({
   author: PropTypes.shape({
     email: PropTypes.string.isRequired,
   }).isRequired,

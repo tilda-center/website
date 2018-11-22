@@ -10,6 +10,7 @@ import {
 
 // pages
 import { blogDetailReducer, blogDetailEditReducer } from 'pages/blog-detail/reducers'
+import { blogListReducer } from 'pages/blog-list/reducers'
 import loginReducer from 'pages/login/reducers'
 
 // templates
@@ -20,6 +21,7 @@ export default combineReducers({
   auth: authReducer,
   blogDetail: blogDetailReducer,
   blogDetailEdit: blogDetailEditReducer,
+  blogList: blogListReducer,
   error: errorReducer,
   login: loginReducer,
   logout: logoutReducer,
