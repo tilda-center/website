@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-//import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 import Template from 'templates/default'
-import titleActions from 'templates/default/actions'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import titleActions from 'templates/default/actions'
+import errorActions from 'templates/empty/actions'
 import styles from './styles'
 
 
@@ -13,25 +15,35 @@ const mapStateToProps = () => ({})
 
 
 class About extends Component {
+  state = {
+    email: '',
+    message: '',
+  }
+
   componentWillMount() {
     this.props.requestTitle('About')
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {value:''};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  handleEmail = (event) => {
+    this.setState({ email: event.target.value });
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleMessage = (event) => {
+    this.setState({ message: event.target.value });
   }
 
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+  handleSubmit = (event) => {
     event.preventDefault();
+    // this.props.requestError(`Message from ${this.state.email} containing ${this.state.message} sent`)
+    this.props.requestError('Sending your message')
+    // this.props.requestSendMessage(
+    //   this.state.email,
+    //   this.state.message,
+    // )
+    this.setState({
+      email: '',
+      message: '',
+    })
   }
 
 
@@ -67,11 +79,28 @@ class About extends Component {
         </div>
         <div>
           <form onSubmit={this.handleSubmit}>
-            <label>
-              Send us a massage:
-              <textarea type="text" value={this.state.value} onChange={this.handleChange} style={styles.textarea} />
-            <input type="submit" value="Send" />
-            </label>
+            <div>
+              <TextField
+                label="Your Email"
+                value={this.state.email}
+                type="email"
+                margin="large"
+                onChange={this.handleEmail}
+              />
+            </div>
+            <div>
+              <TextField
+                label="Your Message"
+                value={this.state.message}
+                multiline
+                rowsMax="20"
+                margin="large"
+                onChange={this.handleMessage}
+              />
+            </div>
+            <Button variant="contained" color="primary" type="submit">
+               Send
+            </Button>
           </form>
         </div>
       </Template>
@@ -81,11 +110,11 @@ class About extends Component {
 
 
 About.propTypes = {
+  requestError: PropTypes.func.isRequired,
   requestTitle: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
 }
 
 
-export default connect(mapStateToProps, titleActions)(
+export default connect(mapStateToProps, { ...errorActions, ...titleActions })(
   About,
 )

@@ -6,6 +6,7 @@
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
+    "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -31,6 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "pretest": "eslint src",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
