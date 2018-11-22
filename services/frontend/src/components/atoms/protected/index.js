@@ -53,7 +53,7 @@ class ProtectedComponent extends Component {
         )
         this.props.requestError(error)
         clearInterval(this.interval)
-      } else {
+      } else if (this.props.redirect) {
         this.props.history.push('/landing')
       }
     }
@@ -74,10 +74,16 @@ ProtectedComponent.propTypes = {
   auth: PropTypes.func.isRequired,
   expire: PropTypes.number,
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  redirect: PropTypes.bool,
   refreshExpire: PropTypes.number,
   requestError: PropTypes.func.isRequired,
   requestRefresh: PropTypes.func.isRequired,
   status: PropTypes.number,
+}
+
+
+ProtectedComponent.defaultProps = {
+  redirect: true,
 }
 
 

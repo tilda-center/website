@@ -7,3 +7,6 @@ SERVICES = backend https://github.com/mekanix/backend-startkit \
 
 collect: up
 	@bin/collect.sh
+
+shell: up
+	@sudo cbsd jexec user=devel jname=tildaback /usr/src/bin/shell.sh

@@ -2,7 +2,7 @@ import click
 from flask.cli import AppGroup
 from peewee_migrate import Router
 
-migration = AppGroup('migration')
+migration = AppGroup('migration', short_help='Migration management')
 
 
 def register(app):
@@ -16,7 +16,7 @@ def register(app):
     @migration.command()
     @click.argument('name')
     def create(name):
-        router.create(name, 'app.models')
+        router.create(name, 'tilda.models')
 
     @migration.command()
     def run():
