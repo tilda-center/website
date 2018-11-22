@@ -13,7 +13,6 @@ import styles from './styles'
 
 
 const mapStateToProps = (state) => ({
-  auth: state.auth.state,
   blogs: state.blogList.result,
   error: state.blogList.error,
   status: state.blogList.status,
@@ -69,7 +68,6 @@ class BlogList extends Component {
 
 
 BlogList.propTypes = {
-  auth: PropTypes.bool,
   blogs: PropTypes.shape({
     data: PropTypes.arrayOf(blogProps),
   }),

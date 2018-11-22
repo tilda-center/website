@@ -42,8 +42,10 @@ class Template extends Component {
     if (nextProps.logoutStatus === 200) {
       this.props.auth(false)
       this.props.history.push('/landing')
+      this.props.requestLogoutReset()
     } else if (nextProps.logoutStatus >= 400) {
       this.props.requestError(nextProps.logoutError)
+      this.props.requestLogoutReset()
     }
   }
 
@@ -60,23 +62,66 @@ class Template extends Component {
   }
 
   render() {
-    const AnonButton = (
+    const LoginButton = (
       <Link to="/login" style={styles.login}>
         <Button color="inherit">Login</Button>
       </Link>
     )
-    const LoggedinButton = (
+    const LogoutButton = (
       <Button color="inherit" onClick={this.handleLogout}>
         Logout
       </Button>
     )
-    const AuthButton = this.props.authState ? LoggedinButton : AnonButton
-    const menuButtonAction = this.props.authState ? this.handleMenuOpen : null
+    const AuthButton = this.props.authState ? LogoutButton : LoginButton
+    const anonMenu = (
+      <Link to="/blog" style={styles.a}>
+        <MenuItem>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          Blog
+        </MenuItem>
+      </Link>
+    )
+    const loggedInMenu = (
+      <Link to="/" style={styles.a}>
+        <MenuItem>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          Dashboard
+        </MenuItem>
+      </Link>
+    )
+    const menu = this.props.authState
+      ? (
+        <div
+          role="button"
+          onClick={this.handleMenuClose}
+          style={styles.menu}
+          tabIndex={0}
+          onKeyDown={this.handleMenuClose}
+        >
+          {anonMenu}
+          {loggedInMenu}
+        </div>
+      )
+      : (
+        <div
+          role="button"
+          onClick={this.handleMenuClose}
+          style={styles.menu}
+          tabIndex={0}
+          onKeyDown={this.handleMenuClose}
+        >
+          {anonMenu}
+        </div>
+      )
     return (
       <div>
         <AppBar position="static">
           <Toolbar>
-            <IconButton color="inherit" onClick={menuButtonAction}>
+            <IconButton color="inherit" onClick={this.handleMenuOpen}>
               <MenuIcon />
             </IconButton>
             <Typography variant="h5" color="inherit" style={styles.flex}>
@@ -92,7 +137,7 @@ class Template extends Component {
           <Drawer open={this.state.showMenu} onClose={this.handleMenuClose}>
             <AppBar position="static">
               <Toolbar>
-                <Typography variant="title" color="inherit" style={styles.flex}>
+                <Typography variant="h5" color="inherit" style={styles.flex}>
                   &nbsp;
                 </Typography>
                 <IconButton color="inherit" onClick={this.handleMenuClose}>
@@ -100,22 +145,7 @@ class Template extends Component {
                 </IconButton>
               </Toolbar>
             </AppBar>
-            <div
-              role="button"
-              onClick={this.handleMenuClose}
-              style={styles.menu}
-              tabIndex={0}
-              onKeyDown={this.handleMenuClose}
-            >
-              <Link to="/" style={styles.a}>
-                <MenuItem>
-                  <ListItemIcon>
-                    <DashboardIcon />
-                  </ListItemIcon>
-                  Dashboard
-                </MenuItem>
-              </Link>
-            </div>
+            {menu}
           </Drawer>
         </EmptyTemplate>
       </div>
@@ -133,6 +163,7 @@ Template.propTypes = {
   logoutStatus: PropTypes.number,
   requestError: PropTypes.func.isRequired,
   requestLogout: PropTypes.func.isRequired,
+  requestLogoutReset: PropTypes.func.isRequired,
   secure: PropTypes.bool,
   style: PropTypes.shape({}),
   title: PropTypes.string,
