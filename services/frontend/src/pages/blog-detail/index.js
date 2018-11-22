@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import EditIcon from '@material-ui/icons/Edit'
@@ -11,33 +12,67 @@ import Editor from 'components/organisms/editor'
 import titleActions from 'templates/default/actions'
 import errorActions from 'templates/empty/actions'
 import {
-  linkTarget,
-  handleOver,
   handleEdit,
+  handleOver,
   handleValue,
+  linkTarget,
 } from 'utils'
+import actions from './actions'
 import styles from './styles'
 
 
 const mapStateToProps = (state) => ({
   auth: state.auth.state,
+  blog: state.blogDetail.result,
+  blogEdit: state.blogDetailEdit.result,
+  error: state.blogDetail.error,
+  errorEdit: state.blogDetailEdit.error,
+  status: state.blogDetail.status,
+  statusEdit: state.blogDetailEdit.status,
 })
 
 
 class BlogDetail extends Component {
   state = {
-    content: 'Corporis ea neque enim illo cumque eos praesentium. Quam tempore perferendis deserunt est esse. Reiciendis necessitatibus corporis amet quis minima aut. Aliquid sit dolorem autem et sunt et totam dolor. Aut temporibus quia voluptas aut.\n\nReiciendis inventore error necessitatibus quidem neque dolores. Aut ut sit sunt sit in molestiae. Dolorem sit sit est aut voluptate ut doloremque. Iure nihil qui voluptate repellendus.\n\nItaque ut reiciendis et placeat. Iure et dolorem ut consequuntur aut amet. Et aut perferendis et omnis sed. Necessitatibus harum sit dolores.\n\nDolores delectus qui sint eligendi et facilis corporis nostrum. Excepturi laudantium et enim necessitatibus magni. Cupiditate voluptas et ex. Hic quis recusandae perspiciatis aut vel. Distinctio excepturi voluptatem mollitia numquam.\n\nEst occaecati ut nesciunt impedit animi eos ullam. Necessitatibus tempora sit molestiae illum. Voluptatem est repellat sed.',
     editContent: false,
-    over: null,
     // eslint-disable-next-line react/no-unused-state
     selectionEnd: 0,
     // eslint-disable-next-line react/no-unused-state
     selectionStart: 0,
-    title: 'Title',
   }
 
   componentWillMount() {
-    this.props.requestTitle('Title')
+    const {
+      year,
+      month,
+      day,
+      slug,
+    } = this.props.match.params
+    this.props.requestBlogDetail(year, month, day, slug)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.status === 200) {
+      this.setState({
+        content: nextProps.blog.content,
+        title: nextProps.blog.title,
+      })
+      this.props.requestTitle(nextProps.blog.title)
+      this.props.requestBlogDetailReset()
+    } else if (nextProps.status >= 400) {
+      this.props.requestError(nextProps.error)
+      this.props.requestBlogDetailReset()
+    } else if (nextProps.statusEdit === 200) {
+      this.setState({
+        content: nextProps.blogEdit.content,
+        title: nextProps.blogEdit.title,
+      })
+      this.props.requestTitle(nextProps.blogEdit.title)
+      this.props.requestBlogDetailEditReset()
+    } else if (nextProps.statusEdit >= 400) {
+      this.props.requestError(nextProps.errorEdit)
+      this.props.requestBlogDetailEditReset()
+    }
   }
 
   handleEdit = () => {
@@ -48,6 +83,19 @@ class BlogDetail extends Component {
   }
 
   handleSave = () => {
+    const {
+      year,
+      month,
+      day,
+      slug,
+    } = this.props.match.params
+    this.props.requestBlogDetailEdit(
+      year,
+      month,
+      day,
+      slug,
+      { content: this.state.content },
+    )
     this.setState({
       editContent: false,
       oldContent: null,
@@ -63,7 +111,22 @@ class BlogDetail extends Component {
   }
 
   handleSubmit = (item) => (event) => {
+    const {
+      year,
+      month,
+      day,
+      slug,
+    } = this.props.match.params
     event.preventDefault()
+    if (item === 'title') {
+      this.props.requestBlogDetailEdit(
+        year,
+        month,
+        day,
+        slug,
+        { title: this.state.title },
+      )
+    }
     handleEdit(item, false, this)()
   }
 
@@ -71,6 +134,7 @@ class BlogDetail extends Component {
     const editor = this.state.editContent
       ? <Editor component={this} value={this.state.content} />
       : ''
+    const date = moment(this.props.blog.date).calendar()
     let button
     if (this.props.auth) {
       button = this.state.editContent
@@ -119,6 +183,12 @@ class BlogDetail extends Component {
         </form>
       )
     } else {
+      let editIcon = ''
+      if (this.props.auth) {
+        editIcon = this.state.over === 'title'
+          ? <EditIcon />
+          : ''
+      }
       title = (
         <div
           onClick={handleEdit('title', true, this)}
@@ -135,10 +205,7 @@ class BlogDetail extends Component {
           >
             {this.state.title}
           </h1>
-          {this.state.over === 'title'
-            ? <EditIcon />
-            : ''
-          }
+          {editIcon}
         </div>
       )
     }
@@ -148,7 +215,9 @@ class BlogDetail extends Component {
         <div style={styles.root}>
           {title}
           <span style={styles.date}>
-            Apr 1, 2019 by meka
+            {date}
+            &nbsp;
+            {this.props.blog.author.email}
           </span>
         </div>
         {editor}
@@ -170,10 +239,23 @@ class BlogDetail extends Component {
 }
 
 
+const blogProps = PropTypes.shape({
+  author: PropTypes.shape({
+    email: PropTypes.string.isRequired,
+  }).isRequired,
+  id: PropTypes.number.isRequired,
+  content: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+})
+
+
 BlogDetail.propTypes = {
   auth: PropTypes.bool,
-  // requestError: PropTypes.func.isRequired,
-  requestTitle: PropTypes.func.isRequired,
+  blog: blogProps,
+  blogEdit: blogProps,
+  error: PropTypes.string,
+  errorEdit: PropTypes.string,
   match: PropTypes.shape({
     params: PropTypes.shape({
       year: PropTypes.string.isRequired,
@@ -182,9 +264,30 @@ BlogDetail.propTypes = {
       slug: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+  requestBlogDetail: PropTypes.func.isRequired,
+  requestBlogDetailEdit: PropTypes.func.isRequired,
+  requestBlogDetailEditReset: PropTypes.func.isRequired,
+  requestBlogDetailReset: PropTypes.func.isRequired,
+  requestError: PropTypes.func.isRequired,
+  requestTitle: PropTypes.func.isRequired,
+  status: PropTypes.number,
+  statusEdit: PropTypes.number,
 }
 
 
-export default connect(mapStateToProps, { ...errorActions, ...titleActions })(
+BlogDetail.defaultProps = {
+  blog: {
+    author: {
+      email: '',
+    },
+    id: 0,
+    content: '',
+    date: '2018-11-22T09:01:38',
+    title: '',
+  },
+}
+
+
+export default connect(mapStateToProps, { ...errorActions, ...titleActions, ...actions })(
   BlogDetail,
 )
