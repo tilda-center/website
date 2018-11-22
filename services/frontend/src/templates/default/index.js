@@ -20,12 +20,15 @@ import MenuIcon from '@material-ui/icons/Menu'
 
 import EmptyTemplate from 'templates/empty'
 import actions from 'components/atoms/protected/actions'
+import errorActions from 'templates/empty/actions'
 import styles from './styles'
 
 
 const mapStateToProps = state => ({
-  open: state.error.open,
   authState: state.auth.state,
+  logoutError: state.logout.error,
+  logoutStatus: state.logout.status,
+  open: state.error.open,
   title: state.title.title,
 })
 
@@ -33,6 +36,15 @@ const mapStateToProps = state => ({
 class Template extends Component {
   state = {
     showMenu: false,
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.logoutStatus === 200) {
+      this.props.auth(false)
+      this.props.history.push('/landing')
+    } else if (nextProps.logoutStatus >= 400) {
+      this.props.requestError(nextProps.logoutError)
+    }
   }
 
   handleMenuOpen = () => {
@@ -44,10 +56,7 @@ class Template extends Component {
   }
 
   handleLogout = () => {
-    const { auth, requestLogout, history } = this.props
-    auth(false)
-    requestLogout()
-    history.push('/landing')
+    this.props.requestLogout()
   }
 
   render() {
@@ -120,6 +129,9 @@ Template.propTypes = {
   authState: PropTypes.bool,
   children: PropTypes.node,
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  logoutError: PropTypes.string,
+  logoutStatus: PropTypes.number,
+  requestError: PropTypes.func.isRequired,
   requestLogout: PropTypes.func.isRequired,
   secure: PropTypes.bool,
   style: PropTypes.shape({}),
@@ -127,4 +139,7 @@ Template.propTypes = {
 }
 
 
-export default connect(mapStateToProps, actions)(withRouter(Template))
+export default connect(
+  mapStateToProps,
+  { ...errorActions, ...actions },
+)(withRouter(Template))
