@@ -25,10 +25,11 @@ class Blog(Model):
     title = TextField()
 
     def save(self, *args, **kwargs):
-        result = []
-        for word in _punct_re.split(self.title.lower()):
-            result.extend(unidecode(word).split())
-        self.slug = '-'.join(result)
+        if self.slug is None:
+            result = []
+            for word in _punct_re.split(self.title.lower()):
+                result.extend(unidecode(word).split())
+            self.slug = '-'.join(result)
         super(Blog, self).save(*args, **kwargs)
 
     @classmethod
