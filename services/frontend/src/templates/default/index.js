@@ -71,8 +71,9 @@ class Template extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h5" color="inherit" style={styles.flex}>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              Tilda Center - {this.props.title}
+              Tilda Center -
+              &nbsp;
+              {this.props.title}
             </Typography>
             {AuthButton}
           </Toolbar>

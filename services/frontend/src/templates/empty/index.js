@@ -15,10 +15,9 @@ const mapStateToProps = state => ({
 
 class EmptyTemplate extends Component {
   render() {
-    const Secure = this.props.secure ? <ProtectedComponent /> : <div />
     return (
       <div style={this.props.style}>
-        {Secure}
+        <ProtectedComponent redirect={this.props.secure} />
         {this.props.children}
         <Snackbar
           autoHideDuration={5000}
