@@ -57,6 +57,9 @@ class About extends Component {
           <Typography component="p" style={styles.aboutText.typography}>
            Paper can be used to build surface or other elements for your application.
           </Typography>
+          <Typography component="p" component="h5" style={styles.aboutText.typography}>
+            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+          </Typography>
         </Paper>
         <div style={styles.mapGoogle}>
           <iframe

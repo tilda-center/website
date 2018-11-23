@@ -10,6 +10,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-leaflet": "^2.1.2",
     "react-markdown": "^4.0.3",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
