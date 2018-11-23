@@ -1,27 +1,27 @@
 from flask import current_app
-from flask_jwt_extended import get_jwt_identity, jwt_required
+from flask_jwt_extended import get_jwt_identity, jwt_optional, jwt_required
 from flask_restplus import Resource
 
 from ..models.auth import User
 from ..models.blog import Blog
 from .namespaces import ns_blog
+from .pagination import paginate, parser
 from .schemas import BlogSchema
 
 
 @ns_blog.route('', endpoint='blogs')
 class BlogListAPI(Resource):
+    @ns_blog.expect(parser)
+    @jwt_optional
     def get(self):
         """List blog"""
         email = get_jwt_identity()
-        schema = BlogSchema(many=True)
+        print(email)
         if email is None:
-            query = Blog.select().where(Blog.published == True)
+            query = Blog.select().where(Blog.published == True)  # noqa: E712
         else:
-            query = Blog.select().where()
-        response, errors = schema.dump(query)
-        if errors:
-            return errors, 409
-        return response
+            query = Blog.select()
+        return paginate(query, BlogSchema())
 
     @ns_blog.expect(BlogSchema.fields())
     @jwt_required
@@ -72,7 +72,9 @@ class BlogAPI(Resource):
             return errors, 409
         blog.title = data.title or blog.title
         blog.content = data.content or blog.content
-        blog.published = data.published or blog.published
+        published = getattr(data, 'published', None)
+        if published is not None:
+            blog.published = published
         blog.save()
         return schema.dump(blog)
 
