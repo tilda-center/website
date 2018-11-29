@@ -8,11 +8,14 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import titleActions from 'templates/default/actions'
 import errorActions from 'templates/empty/actions'
+import { render } from 'react-dom'
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import styles from './styles'
 
 
 const mapStateToProps = () => ({})
-
+const position = [51.505, -0.09]
+const map = () => ({})
 
 class About extends Component {
   state = {
@@ -61,25 +64,18 @@ class About extends Component {
             It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
           </Typography>
         </Paper>
-        <div style={styles.mapGoogle}>
-          <iframe
-            title="map"
-            width={425}
-            height={350}
-            frameBorder={0}
-            scrolling="no"
-            marginHeight={0}
-            marginWidth={0}
-            src="https://www.openstreetmap.org/export/embed.html?bbox=19.829316437244415%2C45.26147803261633%2C19.83229905366898%2C45.262544704742105&amp;layer=mapnik&amp;marker=45.26201231514193%2C19.830807745456696"
-          />
-          <div>
-            <small>
-              <a href="https://www.openstreetmap.org/?mlat=45.26201&amp;mlon=19.83081#map=19/45.26201/19.83081">
-                View Larger Map
-              </a>
-            </small>
-          </div>
-        </div>
+          <Map center={position} zoom={13}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            />
+            <Marker position={position}>
+              <Popup> A pretty CSS3 popup.
+                <br />
+                Easily customizable.
+              </Popup>
+            </Marker>
+          </Map>
         <div>
           <form onSubmit={this.handleSubmit}>
             <div>
