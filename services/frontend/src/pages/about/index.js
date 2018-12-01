@@ -8,14 +8,12 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import titleActions from 'templates/default/actions'
 import errorActions from 'templates/empty/actions'
-import { render } from 'react-dom'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import styles from './styles'
 
 
 const mapStateToProps = () => ({})
 const position = [51.505, -0.09]
-const map = () => ({})
 
 class About extends Component {
   state = {
