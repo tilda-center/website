@@ -11,8 +11,6 @@ import Dashboard from 'pages/dashboard'
 import Landing from 'pages/landing'
 import Login from 'pages/login'
 import NoPage from 'pages/nopage'
-import ProfileList from 'pages/profile-list'
-import ProfileDetail from 'pages/profile-detail'
 
 import store from 'store'
 import theme from 'theme'
@@ -29,8 +27,6 @@ export default class App extends Component {
               <Route exact path="/blog" component={BlogList} />
               <Route exact path="/blog/:year/:month/:day/:slug" component={BlogDetail} />
               <Route exact path="/landing" component={Landing} />
-              <Route exact path="/profile-list" component={ProfileList} />
-              <Route exact path="/profile-detail" component={ProfileDetail} />
               <Route exact path="/about" component={About} />
               <Route exact path="/login" component={Login} />
               <Route path="*" component={NoPage} />
