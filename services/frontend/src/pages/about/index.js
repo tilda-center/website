@@ -50,7 +50,7 @@ class About extends Component {
     return (
       <Template>
         <Paper style={styles.aboutText}>
-          <Typography variant="h5" component="h3" style={styles.aboutText.typography}>
+          <Typography variant="h5" style={styles.aboutText.typography}>
             Mission/Vision
           </Typography>
           <Typography component="p" style={styles.aboutText.typography}>
@@ -59,7 +59,6 @@ class About extends Component {
             Vision Statement:
             <p> Our Vision is a future where education, digital tools and knowledge empower people to share ideas and technical skills. </p>
             Value In all its actions and efforts, Tilda Center is guided by these values:
-
             <p>Collaboration:</p>
             <p> Working effectively across disciplines, organizations and communities to
               combine efforts and share information in pursuit of shared goals; </p>
@@ -77,7 +76,24 @@ class About extends Component {
               origin, religion, sexual orientation, gender identity, disability, marital status or socioeconomic status; </p>
           </Typography>
         </Paper>
-        <div style={styles.mapGoogle}>
+        <Paper style={styles.sidebarAboutBox}>
+          <Typography variant="h4" gutterBottom>
+           CONTACTS
+          </Typography>
+          <Typography>
+            <p>Address:</p>
+            <p>Bulevar Oslobođenja 12, 5th floor, apartment 21</p>
+            <p>Phone:</p>
+            <p>+381 (0) 65 2 474 626</p>
+            <p>EMAIL:</p>
+            <p>office@tilda.center</p>
+            <p>IRC:</p>
+            <p>#tilda.center @ irc.freenode.net</p>
+            <p>LIST:</p>
+            <p>Mailing List</p>
+          </Typography>
+        </Paper>
+        <div style={styles.mapOSM}>
           <iframe
             title="map"
             width={425}

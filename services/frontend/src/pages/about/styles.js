@@ -14,10 +14,17 @@ export default {
     },
   },
 
-  mapGoogle: {
+  sidebarAboutBox: {
+    display: 'table',
+    backgroundColor: 'lightgrey',
+    justifyContent: 'left',
+    alignItems: 'left',
+  },
+
+  mapOSM: {
     display: 'flex',
     justifyContent: 'right',
     alignItems: 'right',
-    height: '50hv',
+    height: '150hv',
   },
 }
