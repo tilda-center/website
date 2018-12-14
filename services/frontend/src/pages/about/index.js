@@ -51,13 +51,30 @@ class About extends Component {
       <Template>
         <Paper style={styles.aboutText}>
           <Typography variant="h5" component="h3" style={styles.aboutText.typography}>
-          This is a sheet of paper.
+            Mission/Vision
           </Typography>
           <Typography component="p" style={styles.aboutText.typography}>
-           Paper can be used to build surface or other elements for your application.
-          </Typography>
-          <Typography component="p" component="h5" style={styles.aboutText.typography}>
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+            Mission Statement:
+            <p> Our mission is to work for a better society by promoting open hardware, software, networks, data and knowledge. </p>
+            Vision Statement:
+            <p> Our Vision is a future where education, digital tools and knowledge empower people to share ideas and technical skills. </p>
+            Value In all its actions and efforts, Tilda Center is guided by these values:
+
+            <p>Collaboration:</p>
+            <p> Working effectively across disciplines, organizations and communities to
+              combine efforts and share information in pursuit of shared goals; </p>
+            Excellence:
+            <p>Maintaining our commitment to quality and pursuit of the highest standards; </p>
+            Innovation:
+            <p> Constantly seeking and applying leading edge ideas, practices and knowledge; </p>
+            Integrity:
+            <p> Following standards and best practices for confidentiality, safety, protection of privacy and ethical conduct; </p>
+            Passion:
+            <p> Effectively translating unwavering dedication to our mission into practical, relevant,
+              high quality actions that make a positive difference; </p>
+            Respect:
+            <p> Tilda Center does not discriminate on the basis of age, race, color, sex, national
+              origin, religion, sexual orientation, gender identity, disability, marital status or socioeconomic status; </p>
           </Typography>
         </Paper>
         <div style={styles.mapGoogle}>
