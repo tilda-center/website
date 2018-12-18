@@ -4,6 +4,11 @@ import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Template from 'templates/default'
+import Home from '@material-ui/icons/Home'
+import Call from '@material-ui/icons/Call'
+import Email from '@material-ui/icons/Email'
+import Chat from '@material-ui/icons/Chat'
+import List from '@material-ui/icons/List'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import titleActions from 'templates/default/actions'
@@ -58,6 +63,10 @@ class About extends Component {
             <p> Our mission is to work for a better society by promoting open hardware, software, networks, data and knowledge. </p>
             Vision Statement:
             <p> Our Vision is a future where education, digital tools and knowledge empower people to share ideas and technical skills. </p>
+          </Typography>
+        </Paper>
+        <Paper style={styles.aboutText2}>
+          <Typography component="p" style={styles.aboutText2.typography}>
             Value In all its actions and efforts, Tilda Center is guided by these values:
             <p>Collaboration:</p>
             <p> Working effectively across disciplines, organizations and communities to
@@ -76,20 +85,20 @@ class About extends Component {
               origin, religion, sexual orientation, gender identity, disability, marital status or socioeconomic status; </p>
           </Typography>
         </Paper>
-        <Paper style={styles.sidebarAboutBox}>
+        <Paper style={styles.contactBox}>
           <Typography variant="h4" gutterBottom>
            CONTACTS
           </Typography>
           <Typography>
-            <p>Address:</p>
+            <Home></Home>Address:
             <p>Bulevar Oslobođenja 12, 5th floor, apartment 21</p>
-            <p>Phone:</p>
-            <p>+381 (0) 65 2 474 626</p>
-            <p>EMAIL:</p>
+            <Call></Call>Phone:
+              <p>+381 (0) 65 2 474 626</p>
+            <Email></Email>Email:
             <p>office@tilda.center</p>
-            <p>IRC:</p>
+            <Chat></Chat>IRC:
             <p>#tilda.center @ irc.freenode.net</p>
-            <p>LIST:</p>
+            <List></List>List:
             <p>Mailing List</p>
           </Typography>
         </Paper>

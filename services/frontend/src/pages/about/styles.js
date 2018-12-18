@@ -9,12 +9,26 @@ export default {
 
   aboutText: {
     backgroundColor: 'gray',
+    padding: 20,
+    paddingLeft: 20,
+    paddingBottom: 10,
+    marginBottom: 20,
     typography: {
       color: 'white',
     },
   },
 
-  sidebarAboutBox: {
+  aboutText2: {
+    backgroundColor: 'gray',
+    padding: 20,
+    marginBottom: 20,
+    typography: {
+      color: 'white',
+    },
+  },
+
+  contactBox: {
+    padding: 20,
     display: 'table',
     backgroundColor: 'lightgrey',
     justifyContent: 'left',
