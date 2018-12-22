@@ -10,6 +10,7 @@ import Email from '@material-ui/icons/Email'
 import Chat from '@material-ui/icons/Chat'
 import List from '@material-ui/icons/List'
 import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import titleActions from 'templates/default/actions'
 import errorActions from 'templates/empty/actions'
@@ -54,37 +55,43 @@ class About extends Component {
   render() {
     return (
       <Template>
-        <Paper style={styles.aboutText}>
-          <Typography variant="h5" style={styles.aboutText.typography}>
-            Mission/Vision
-          </Typography>
-          <Typography component="p" style={styles.aboutText.typography}>
-            Mission Statement:
-            <p> Our mission is to work for a better society by promoting open hardware, software, networks, data and knowledge. </p>
-            Vision Statement:
-            <p> Our Vision is a future where education, digital tools and knowledge empower people to share ideas and technical skills. </p>
-          </Typography>
-        </Paper>
-        <Paper style={styles.aboutText2}>
-          <Typography component="p" style={styles.aboutText2.typography}>
-            Value In all its actions and efforts, Tilda Center is guided by these values:
-            <p>Collaboration:</p>
-            <p> Working effectively across disciplines, organizations and communities to
-              combine efforts and share information in pursuit of shared goals; </p>
-            Excellence:
-            <p>Maintaining our commitment to quality and pursuit of the highest standards; </p>
-            Innovation:
-            <p> Constantly seeking and applying leading edge ideas, practices and knowledge; </p>
-            Integrity:
-            <p> Following standards and best practices for confidentiality, safety, protection of privacy and ethical conduct; </p>
-            Passion:
-            <p> Effectively translating unwavering dedication to our mission into practical, relevant,
-              high quality actions that make a positive difference; </p>
-            Respect:
-            <p> Tilda Center does not discriminate on the basis of age, race, color, sex, national
-              origin, religion, sexual orientation, gender identity, disability, marital status or socioeconomic status; </p>
-          </Typography>
-        </Paper>
+        <div>
+          <Grid>
+            <Paper style={styles.aboutText}>
+              <Typography variant="h5" style={styles.aboutText.typography}>
+                Mission/Vision
+              </Typography>
+              <Typography component="p" style={styles.aboutText.typography}>
+                <font size="4">Mission Statement:</font>
+                <p> Our mission is to work for a better society by promoting open <br /> hardware, software, networks, data and knowledge. </p>
+                <font size="4">Vision Statement:</font>
+                <p> Our Vision is a future where education, digital tools and knowledge <br /> empower people to share ideas and technical skills. </p>
+              </Typography>
+            </Paper>
+            <Paper style={styles.aboutText2}>
+              <Typography component="p" style={styles.aboutText2.typography}>
+              <Typography variant="h5" style={styles.aboutText2.typography}>
+                Value In all its actions and efforts,<br /> Tilda Center is guided by these values:
+              </Typography>
+              <p><font size="4">Collaboration:</font></p>
+                <p> Working effectively across disciplines, organizations and communities to <br />
+                  combine efforts and share information in pursuit of shared goals; </p>
+                <font size="4">Excellence:</font>
+                <p>Maintaining our commitment to quality and pursuit of the highest standards; </p>
+                <font size="4">Innovation:</font>
+                <p> Constantly seeking and applying leading edge ideas, practices and knowledge; </p>
+                <font size="4">Integrity:</font>
+                <p> Following standards and best practices for confidentiality, <br /> safety, protection of privacy and ethical conduct; </p>
+                <font size="4">Passion:</font>
+                <p> Effectively translating unwavering dedication to our mission into practical, <br />relevant,
+                  high quality actions that make a positive difference; </p>
+                <font size="4">Respect:</font>
+                <p> Tilda Center does not discriminate on the basis of age, race, <br />color, sex, national
+                  origin, religion, sexual orientation, gender identity, disability, <br /> marital status or socioeconomic status; </p>
+              </Typography>
+            </Paper>
+          </Grid>
+        </div>
         <Paper style={styles.contactBox}>
           <Typography variant="h4" gutterBottom>
            CONTACTS

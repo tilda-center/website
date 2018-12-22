@@ -8,7 +8,8 @@ export default {
   },
 
   aboutText: {
-    backgroundColor: 'gray',
+    backgroundColor: 'blue',
+    display: 'table',
     padding: 20,
     paddingLeft: 20,
     paddingBottom: 10,
@@ -19,7 +20,8 @@ export default {
   },
 
   aboutText2: {
-    backgroundColor: 'gray',
+    backgroundColor: 'blue',
+    display: 'table',
     padding: 20,
     marginBottom: 20,
     typography: {
@@ -30,7 +32,7 @@ export default {
   contactBox: {
     padding: 20,
     display: 'table',
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'lightblue',
     justifyContent: 'left',
     alignItems: 'left',
   },
