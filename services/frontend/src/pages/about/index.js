@@ -62,9 +62,9 @@ class About extends Component {
                 Mission/Vision
               </Typography>
               <Typography component="p" style={styles.aboutText.typography}>
-                <font size="4">Mission Statement:</font>
+                <font size="4"><u>Mission Statement:</u></font>
                 <p> Our mission is to work for a better society by promoting open <br /> hardware, software, networks, data and knowledge. </p>
-                <font size="4">Vision Statement:</font>
+                <font size="4"><u>Vision Statement:</u></font>
                 <p> Our Vision is a future where education, digital tools and knowledge <br /> empower people to share ideas and technical skills. </p>
               </Typography>
             </Paper>
@@ -73,19 +73,19 @@ class About extends Component {
               <Typography variant="h5" style={styles.aboutText2.typography}>
                 Value In all its actions and efforts,<br /> Tilda Center is guided by these values:
               </Typography>
-              <p><font size="4">Collaboration:</font></p>
+              <p><font size="4"><u>Collaboration:</u></font></p>
                 <p> Working effectively across disciplines, organizations and communities to <br />
                   combine efforts and share information in pursuit of shared goals; </p>
-                <font size="4">Excellence:</font>
+                <font size="4"><u>Excellence:</u></font>
                 <p>Maintaining our commitment to quality and pursuit of the highest standards; </p>
-                <font size="4">Innovation:</font>
+                <font size="4"><u>Innovation:</u></font>
                 <p> Constantly seeking and applying leading edge ideas, practices and knowledge; </p>
-                <font size="4">Integrity:</font>
+                <font size="4"><u>Integrity:</u></font>
                 <p> Following standards and best practices for confidentiality, <br /> safety, protection of privacy and ethical conduct; </p>
-                <font size="4">Passion:</font>
+                <font size="4"><u>Passion:</u></font>
                 <p> Effectively translating unwavering dedication to our mission into practical, <br />relevant,
                   high quality actions that make a positive difference; </p>
-                <font size="4">Respect:</font>
+                <font size="4"><u>Respect:</u></font>
                 <p> Tilda Center does not discriminate on the basis of age, race, <br />color, sex, national
                   origin, religion, sexual orientation, gender identity, disability, <br /> marital status or socioeconomic status; </p>
               </Typography>
