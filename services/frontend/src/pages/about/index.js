@@ -109,7 +109,7 @@ class About extends Component {
                 <Chat></Chat>IRC:
                 <p><a href="https://webchat.freenode.net/?channels=tilda.center"> #tilda.center @ irc.freenode.net</a></p>
                 <List></List>Mailing List:
-                <p><a href="list.tilda.center">Our List</a></p>
+                <p><a href="https://lists.tilda.center">Our Lists</a></p>
                 <Public></Public>Public Networks:
                 <p><a href="https://facebook.com/tildacenter">Facebook</a></p>
                 <p><a href="https://twitter.com/tildacenter">Twitter</a></p>
