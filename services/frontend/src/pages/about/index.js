@@ -10,6 +10,7 @@ import Email from '@material-ui/icons/Email'
 import Chat from '@material-ui/icons/Chat'
 import List from '@material-ui/icons/List'
 import Paper from '@material-ui/core/Paper'
+import Public from '@material-ui/icons/Public'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import titleActions from 'templates/default/actions'
@@ -55,9 +56,9 @@ class About extends Component {
   render() {
     return (
       <Template>
-        <div>
-          <Grid>
-            <Paper style={styles.aboutText}>
+        <Grid container>
+          <Paper style={styles.aboutText}>
+            <Grid>
               <Typography variant="h5" style={styles.aboutText.typography}>
                 Mission/Vision
               </Typography>
@@ -67,13 +68,15 @@ class About extends Component {
                 <font size="4"><u>Vision Statement:</u></font>
                 <p> Our Vision is a future where education, digital tools and knowledge <br /> empower people to share ideas and technical skills. </p>
               </Typography>
-            </Paper>
-            <Paper style={styles.aboutText2}>
+            </Grid>
+          </Paper>
+          <Paper style={styles.aboutText2}>
+            <Grid>
               <Typography component="p" style={styles.aboutText2.typography}>
-              <Typography variant="h5" style={styles.aboutText2.typography}>
-                Value In all its actions and efforts,<br /> Tilda Center is guided by these values:
-              </Typography>
-              <p><font size="4"><u>Collaboration:</u></font></p>
+                <Typography variant="h5" style={styles.aboutText2.typography}>
+                  Value In all its actions and efforts,<br /> Tilda Center is guided by these values
+                </Typography>
+                <p><font size="4"><u>Collaboration:</u></font></p>
                 <p> Working effectively across disciplines, organizations and communities to <br />
                   combine efforts and share information in pursuit of shared goals; </p>
                 <font size="4"><u>Excellence:</u></font>
@@ -89,30 +92,36 @@ class About extends Component {
                 <p> Tilda Center does not discriminate on the basis of age, race, <br />color, sex, national
                   origin, religion, sexual orientation, gender identity, disability, <br /> marital status or socioeconomic status; </p>
               </Typography>
-            </Paper>
+            </Grid>
+          </Paper>
+          <Paper style={styles.contactBox}>
+            <Grid>
+              <Typography variant="h4" gutterBottom>
+               CONTACTS
+              </Typography>
+              <Typography>
+                <Home></Home>Address:
+                <p>Bulevar Oslobođenja 12, 5th floor, apartment 21</p>
+                <Call></Call>Phone:
+                <p><a href="tel:+381652474626">+381 (0) 65 2 474 626</a></p>
+                <Email></Email>Email:
+                <p><a href="mailto:office@tilda.center">office@tilda.center</a></p>
+                <Chat></Chat>IRC:
+                <p><a href="https://webchat.freenode.net/?channels=tilda.center"> #tilda.center @ irc.freenode.net</a></p>
+                <List></List>Mailing List:
+                <p><a href="list.tilda.center">Our List</a></p>
+                <Public></Public>Public Networks:
+                <p><a href="https://facebook.com/tildacenter">Facebook</a></p>
+                <p><a href="https://twitter.com/tildacenter">Twitter</a></p>
+                <p><a href="https://instagram.com/tildacenter">Instagram</a></p>
+              </Typography>
           </Grid>
-        </div>
-        <Paper style={styles.contactBox}>
-          <Typography variant="h4" gutterBottom>
-           CONTACTS
-          </Typography>
-          <Typography>
-            <Home></Home>Address:
-            <p>Bulevar Oslobođenja 12, 5th floor, apartment 21</p>
-            <Call></Call>Phone:
-              <p>+381 (0) 65 2 474 626</p>
-            <Email></Email>Email:
-            <p>office@tilda.center</p>
-            <Chat></Chat>IRC:
-            <p>#tilda.center @ irc.freenode.net</p>
-            <List></List>List:
-            <p>Mailing List</p>
-          </Typography>
-        </Paper>
+          </Paper>
+        </Grid>
         <div style={styles.mapOSM}>
           <iframe
             title="map"
-            width={425}
+            width={1625}
             height={350}
             frameBorder={0}
             scrolling="no"

@@ -13,7 +13,7 @@ export default {
     padding: 20,
     paddingLeft: 20,
     paddingBottom: 10,
-    marginBottom: 20,
+    margin: 10,
     typography: {
       color: 'white',
     },
@@ -23,7 +23,7 @@ export default {
     backgroundColor: 'blue',
     display: 'table',
     padding: 20,
-    marginBottom: 20,
+    margin: 10,
     typography: {
       color: 'white',
     },
@@ -34,13 +34,16 @@ export default {
     display: 'table',
     backgroundColor: 'lightblue',
     justifyContent: 'left',
-    alignItems: 'left',
+    margin: 10,
   },
 
   mapOSM: {
     display: 'flex',
     justifyContent: 'right',
     alignItems: 'right',
+    padding: 20,
+    backgroundColor:'lightblue',
+    margin: 10,
     height: '150hv',
   },
 }
