@@ -7,13 +7,25 @@ export default {
     width: 460,
   },
 
-  aboutText: {
+  aboutUS: {
     backgroundColor: 'blue',
-    display: 'table',
+    display: 'grid',
     padding: 20,
     paddingLeft: 20,
     paddingBottom: 10,
-    margin: 10,
+    margin: 15,
+    typography: {
+      color: 'white',
+    },
+  },
+
+  aboutText: {
+    backgroundColor: 'blue',
+    display: 'grid',
+    padding: 20,
+    paddingLeft: 20,
+    paddingBottom: 10,
+    margin: 15,
     typography: {
       color: 'white',
     },
@@ -21,9 +33,9 @@ export default {
 
   aboutText2: {
     backgroundColor: 'blue',
-    display: 'table',
+    display: 'grid',
     padding: 20,
-    margin: 10,
+    margin: 15,
     typography: {
       color: 'white',
     },
@@ -31,10 +43,10 @@ export default {
 
   contactBox: {
     padding: 20,
-    display: 'table',
+    display: 'grid',
     backgroundColor: 'lightblue',
     justifyContent: 'left',
-    margin: 10,
+    margin: 15,
   },
 
   mapOSM: {
@@ -43,7 +55,7 @@ export default {
     alignItems: 'right',
     padding: 20,
     backgroundColor:'lightblue',
-    margin: 10,
+    margin: 15,
     height: '150hv',
   },
 }

@@ -59,14 +59,28 @@ class About extends Component {
         <Grid container>
           <Paper style={styles.aboutText}>
             <Grid>
+              <Typography variant="h5" style={styles.aboutUS.typography}>
+               About Us
+              </Typography>
+              <Typography component="p" style={styles.aboutUS.typography}>
+              <p>Tilda Center is an open space in Novi Sad, Serbia where people gather to share resources and knowledge, work on projects and develop their IT/technical solutions.</p>
+              <p>It is a collaborative studio for creative individuals who want to enhance informal education through conversation, exploration and enlargement of experience.</p>
+              <p>Tilda Center is a combination of a lab for personal projects, open workshop space and a conference room for a community gatherings.</p>
+              <p>We encourage compelling argumentation on relevant subjects and learning through hands-on exploration.</p>
+              <p>We embrace arts as well as the sciences, and accelerate a new energy that is building around multidisciplinary collaborative efforts.</p>
+              </Typography>
+            </Grid>
+          </Paper>
+          <Paper style={styles.aboutText}>
+            <Grid>
               <Typography variant="h5" style={styles.aboutText.typography}>
                 Mission/Vision
               </Typography>
               <Typography component="p" style={styles.aboutText.typography}>
-                <font size="4"><u>Mission Statement:</u></font>
-                <p> Our mission is to work for a better society by promoting open <br /> hardware, software, networks, data and knowledge. </p>
-                <font size="4"><u>Vision Statement:</u></font>
-                <p> Our Vision is a future where education, digital tools and knowledge <br /> empower people to share ideas and technical skills. </p>
+                <h3><u>Mission Statement:</u></h3>
+                <p> Our mission is to work for a better society by promoting open hardware, software, networks, data and knowledge. </p>
+                <h3><u>Vision Statement:</u></h3>
+                <p> Our Vision is a future where education, digital tools and knowledge empower people to share ideas and technical skills. </p>
               </Typography>
             </Grid>
           </Paper>
@@ -74,29 +88,29 @@ class About extends Component {
             <Grid>
               <Typography component="p" style={styles.aboutText2.typography}>
                 <Typography variant="h5" style={styles.aboutText2.typography}>
-                  Value In all its actions and efforts,<br /> Tilda Center is guided by these values
+                  Value In all its actions and efforts, Tilda Center is guided by these values
                 </Typography>
-                <p><font size="4"><u>Collaboration:</u></font></p>
-                <p> Working effectively across disciplines, organizations and communities to <br />
+                <h3><u>Collaboration:</u></h3>
+                <p> Working effectively across disciplines, organizations and communities to
                   combine efforts and share information in pursuit of shared goals; </p>
-                <font size="4"><u>Excellence:</u></font>
+                <h3><u>Excellence:</u></h3>
                 <p>Maintaining our commitment to quality and pursuit of the highest standards; </p>
-                <font size="4"><u>Innovation:</u></font>
+                <h3><u>Innovation:</u></h3>
                 <p> Constantly seeking and applying leading edge ideas, practices and knowledge; </p>
-                <font size="4"><u>Integrity:</u></font>
-                <p> Following standards and best practices for confidentiality, <br /> safety, protection of privacy and ethical conduct; </p>
-                <font size="4"><u>Passion:</u></font>
-                <p> Effectively translating unwavering dedication to our mission into practical, <br />relevant,
+                <h3><u>Integrity:</u></h3>
+                <p> Following standards and best practices for confidentiality,safety, protection of privacy and ethical conduct; </p>
+                <h3><u>Passion:</u></h3>
+                <p> Effectively translating unwavering dedication to our mission into practical, relevant,
                   high quality actions that make a positive difference; </p>
-                <font size="4"><u>Respect:</u></font>
-                <p> Tilda Center does not discriminate on the basis of age, race, <br />color, sex, national
-                  origin, religion, sexual orientation, gender identity, disability, <br /> marital status or socioeconomic status; </p>
+                <h3><u>Respect:</u></h3>
+                <p> Tilda Center does not discriminate on the basis of age, race, color, sex, national
+                  origin, religion, sexual orientation, gender identity, disability, marital status or socioeconomic status; </p>
               </Typography>
             </Grid>
           </Paper>
           <Paper style={styles.contactBox}>
             <Grid>
-              <Typography variant="h4" gutterBottom>
+              <Typography variant="h5" gutterBottom>
                CONTACTS
               </Typography>
               <Typography>
@@ -115,7 +129,7 @@ class About extends Component {
                 <p><a href="https://twitter.com/tildacenter">Twitter</a></p>
                 <p><a href="https://instagram.com/tildacenter">Instagram</a></p>
               </Typography>
-          </Grid>
+            </Grid>
           </Paper>
         </Grid>
         <div style={styles.mapOSM}>
