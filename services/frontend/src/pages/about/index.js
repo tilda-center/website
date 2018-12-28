@@ -57,7 +57,7 @@ class About extends Component {
     return (
       <Template>
         <Grid container>
-          <Grid item sm>
+          <Grid item md>
             <Paper style={styles.aboutText}>
                 <Typography variant="h5" style={styles.aboutUS.typography}>
                  About Us
@@ -70,8 +70,6 @@ class About extends Component {
                 <p>We embrace arts as well as the sciences, and accelerate a new energy that is building around multidisciplinary collaborative efforts.</p>
                 </Typography>
             </Paper>
-          </Grid>
-          <Grid item sm>
           <Paper style={styles.aboutText}>
               <Typography variant="h5" style={styles.aboutText.typography}>
                 Mission/Vision
@@ -84,7 +82,7 @@ class About extends Component {
               </Typography>
           </Paper>
             </Grid>
-            <Grid item sm>
+            <Grid item md>
           <Paper style={styles.aboutText2}>
               <Typography component="p" style={styles.aboutText2.typography}>
                 <Typography variant="h5" style={styles.aboutText2.typography}>
