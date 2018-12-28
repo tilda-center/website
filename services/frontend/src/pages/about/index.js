@@ -57,22 +57,22 @@ class About extends Component {
     return (
       <Template>
         <Grid container>
+          <Grid item sm>
+            <Paper style={styles.aboutText}>
+                <Typography variant="h5" style={styles.aboutUS.typography}>
+                 About Us
+                </Typography>
+                <Typography component="p" style={styles.aboutUS.typography}>
+                <p>Tilda Center is an open space in Novi Sad, Serbia where people gather to share resources and knowledge, work on projects and develop their IT/technical solutions.</p>
+                <p>It is a collaborative studio for creative individuals who want to enhance informal education through conversation, exploration and enlargement of experience.</p>
+                <p>Tilda Center is a combination of a lab for personal projects, open workshop space and a conference room for a community gatherings.</p>
+                <p>We encourage compelling argumentation on relevant subjects and learning through hands-on exploration.</p>
+                <p>We embrace arts as well as the sciences, and accelerate a new energy that is building around multidisciplinary collaborative efforts.</p>
+                </Typography>
+            </Paper>
+          </Grid>
+          <Grid item sm>
           <Paper style={styles.aboutText}>
-            <Grid>
-              <Typography variant="h5" style={styles.aboutUS.typography}>
-               About Us
-              </Typography>
-              <Typography component="p" style={styles.aboutUS.typography}>
-              <p>Tilda Center is an open space in Novi Sad, Serbia where people gather to share resources and knowledge, work on projects and develop their IT/technical solutions.</p>
-              <p>It is a collaborative studio for creative individuals who want to enhance informal education through conversation, exploration and enlargement of experience.</p>
-              <p>Tilda Center is a combination of a lab for personal projects, open workshop space and a conference room for a community gatherings.</p>
-              <p>We encourage compelling argumentation on relevant subjects and learning through hands-on exploration.</p>
-              <p>We embrace arts as well as the sciences, and accelerate a new energy that is building around multidisciplinary collaborative efforts.</p>
-              </Typography>
-            </Grid>
-          </Paper>
-          <Paper style={styles.aboutText}>
-            <Grid>
               <Typography variant="h5" style={styles.aboutText.typography}>
                 Mission/Vision
               </Typography>
@@ -82,10 +82,10 @@ class About extends Component {
                 <h3><u>Vision Statement:</u></h3>
                 <p> Our Vision is a future where education, digital tools and knowledge empower people to share ideas and technical skills. </p>
               </Typography>
-            </Grid>
           </Paper>
+            </Grid>
+            <Grid item sm>
           <Paper style={styles.aboutText2}>
-            <Grid>
               <Typography component="p" style={styles.aboutText2.typography}>
                 <Typography variant="h5" style={styles.aboutText2.typography}>
                   Value In all its actions and efforts, Tilda Center is guided by these values
@@ -106,10 +106,10 @@ class About extends Component {
                 <p> Tilda Center does not discriminate on the basis of age, race, color, sex, national
                   origin, religion, sexual orientation, gender identity, disability, marital status or socioeconomic status; </p>
               </Typography>
-            </Grid>
           </Paper>
-          <Paper style={styles.contactBox}>
+            </Grid>
             <Grid>
+          <Paper style={styles.contactBox}>
               <Typography variant="h5" gutterBottom>
                CONTACTS
               </Typography>
@@ -129,8 +129,8 @@ class About extends Component {
                 <p><a href="https://twitter.com/tildacenter">Twitter</a></p>
                 <p><a href="https://instagram.com/tildacenter">Instagram</a></p>
               </Typography>
-            </Grid>
           </Paper>
+            </Grid>
         </Grid>
         <div style={styles.mapOSM}>
           <iframe
