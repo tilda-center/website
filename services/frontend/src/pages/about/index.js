@@ -81,54 +81,55 @@ class About extends Component {
                 <p> Our Vision is a future where education, digital tools and knowledge empower people to share ideas and technical skills. </p>
               </Typography>
           </Paper>
-            </Grid>
-            <Grid item md>
-          <Paper style={styles.aboutText2}>
-              <Typography component="p" style={styles.aboutText2.typography}>
-                <Typography variant="h5" style={styles.aboutText2.typography}>
-                  Value In all its actions and efforts, Tilda Center is guided by these values
+          </Grid>
+          <Grid item md>
+            <Paper style={styles.aboutText2}>
+                <Typography component="p" style={styles.aboutText2.typography}>
+                  <Typography variant="h5" style={styles.aboutText2.typography}>
+                    Value
+                    <p>In all its actions and efforts, Tilda Center is guided by these values</p>
+                  </Typography>
+                  <h3><u>Collaboration:</u></h3>
+                  <p> Working effectively across disciplines, organizations and communities to
+                    combine efforts and share information in pursuit of shared goals; </p>
+                  <h3><u>Excellence:</u></h3>
+                  <p>Maintaining our commitment to quality and pursuit of the highest standards; </p>
+                  <h3><u>Innovation:</u></h3>
+                  <p> Constantly seeking and applying leading edge ideas, practices and knowledge; </p>
+                  <h3><u>Integrity:</u></h3>
+                  <p> Following standards and best practices for confidentiality,safety, protection of privacy and ethical conduct; </p>
+                  <h3><u>Passion:</u></h3>
+                  <p> Effectively translating unwavering dedication to our mission into practical, relevant,
+                    high quality actions that make a positive difference; </p>
+                  <h3><u>Respect:</u></h3>
+                  <p> Tilda Center does not discriminate on the basis of age, race, color, sex, national
+                    origin, religion, sexual orientation, gender identity, disability, marital status or socioeconomic status; </p>
                 </Typography>
-                <h3><u>Collaboration:</u></h3>
-                <p> Working effectively across disciplines, organizations and communities to
-                  combine efforts and share information in pursuit of shared goals; </p>
-                <h3><u>Excellence:</u></h3>
-                <p>Maintaining our commitment to quality and pursuit of the highest standards; </p>
-                <h3><u>Innovation:</u></h3>
-                <p> Constantly seeking and applying leading edge ideas, practices and knowledge; </p>
-                <h3><u>Integrity:</u></h3>
-                <p> Following standards and best practices for confidentiality,safety, protection of privacy and ethical conduct; </p>
-                <h3><u>Passion:</u></h3>
-                <p> Effectively translating unwavering dedication to our mission into practical, relevant,
-                  high quality actions that make a positive difference; </p>
-                <h3><u>Respect:</u></h3>
-                <p> Tilda Center does not discriminate on the basis of age, race, color, sex, national
-                  origin, religion, sexual orientation, gender identity, disability, marital status or socioeconomic status; </p>
-              </Typography>
-          </Paper>
-            </Grid>
-            <Grid>
-          <Paper style={styles.contactBox}>
-              <Typography variant="h5" gutterBottom>
-               CONTACTS
-              </Typography>
-              <Typography>
-                <Home></Home>Address:
-                <p>Bulevar Oslobođenja 12, 5th floor, apartment 21</p>
-                <Call></Call>Phone:
-                <p><a href="tel:+381652474626">+381 (0) 65 2 474 626</a></p>
-                <Email></Email>Email:
-                <p><a href="mailto:office@tilda.center">office@tilda.center</a></p>
-                <Chat></Chat>IRC:
-                <p><a href="https://webchat.freenode.net/?channels=tilda.center"> #tilda.center @ irc.freenode.net</a></p>
-                <List></List>Mailing List:
-                <p><a href="https://lists.tilda.center">Our Lists</a></p>
-                <Public></Public>Public Networks:
-                <p><a href="https://facebook.com/tildacenter">Facebook</a></p>
-                <p><a href="https://twitter.com/tildacenter">Twitter</a></p>
-                <p><a href="https://instagram.com/tildacenter">Instagram</a></p>
-              </Typography>
-          </Paper>
-            </Grid>
+            </Paper>
+          </Grid>
+          <Grid>
+            <Paper style={styles.contactBox}>
+                <Typography variant="h5" gutterBottom>
+                 CONTACTS
+                </Typography>
+                <Typography>
+                  <Home></Home>Address:
+                  <p>Bulevar Oslobođenja 12, 5th floor, apartment 21</p>
+                  <Call></Call>Phone:
+                  <p><a href="tel:+381652474626">+381 (0) 65 2 474 626</a></p>
+                  <Email></Email>Email:
+                  <p><a href="mailto:office@tilda.center">office@tilda.center</a></p>
+                  <Chat></Chat>IRC:
+                  <p><a href="https://webchat.freenode.net/?channels=tilda.center"> #tilda.center @ irc.freenode.net</a></p>
+                  <List></List>Mailing List:
+                  <p><a href="https://lists.tilda.center">Our Lists</a></p>
+                  <Public></Public>Public Networks:
+                  <p><a href="https://facebook.com/tildacenter">Facebook</a></p>
+                  <p><a href="https://twitter.com/tildacenter">Twitter</a></p>
+                  <p><a href="https://instagram.com/tildacenter">Instagram</a></p>
+                </Typography>
+            </Paper>
+          </Grid>
         </Grid>
         <div style={styles.mapOSM}>
           <iframe
@@ -150,30 +151,32 @@ class About extends Component {
           </div>
         </div>
         <div>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <TextField
-                label="Your Email"
-                value={this.state.email}
-                type="email"
-                margin="large"
-                onChange={this.handleEmail}
-              />
-            </div>
-            <div>
-              <TextField
-                label="Your Message"
-                value={this.state.message}
-                multiline
-                rowsMax="20"
-                margin="large"
-                onChange={this.handleMessage}
-              />
-            </div>
-            <Button variant="contained" color="primary" type="submit">
-               Send
-            </Button>
-          </form>
+          <Paper style={styles.sendMessages}>
+            <form onSubmit={this.handleSubmit}>
+              <div>
+                <TextField
+                  label="Your Email"
+                  value={this.state.email}
+                  type="email"
+                  margin="large"
+                  onChange={this.handleEmail}
+                />
+              </div>
+              <div>
+                <TextField
+                  label="Your Message"
+                  value={this.state.message}
+                  multiline
+                  rowsMax="20"
+                  margin="large"
+                  onChange={this.handleMessage}
+                />
+              </div>
+              <Button style={styles.sendButton}>
+                 Send
+              </Button>
+            </form>
+          </Paper>
         </div>
       </Template>
     )

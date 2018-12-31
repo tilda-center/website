@@ -5,6 +5,7 @@ export default {
     alignItems: 'left',
     height: 260,
     width: 460,
+    transition: 'all 0.3s easy-in-out',
   },
 
   aboutUS: {
@@ -47,6 +48,22 @@ export default {
     backgroundColor: 'lightblue',
     justifyContent: 'left',
     margin: 15,
+  },
+
+  sendMessages: {
+    padding: 20,
+    display: 'grid',
+    backgroundColor: 'lightblue',
+    justifyContent: 'left',
+    margin: 15,
+  },
+
+  sendButton: {
+    variant: 'contained',
+    background: 'blue',
+    color: 'white',
+    type: 'submit',
+    marginTop: 20,
   },
 
   mapOSM: {
