@@ -54,7 +54,7 @@ export default {
     padding: 20,
     display: 'grid',
     backgroundColor: 'lightblue',
-    justifyContent: 'left',
+    justifyContent: 'right',
     margin: 15,
   },
 
@@ -68,11 +68,10 @@ export default {
 
   mapOSM: {
     display: 'flex',
-    justifyContent: 'right',
-    alignItems: 'right',
+    justifyContent: 'left',
+    alignItems: 'left',
+    backgroundColor:'lightgreen',
     padding: 20,
-    backgroundColor:'lightblue',
     margin: 15,
-    height: '150hv',
   },
 }

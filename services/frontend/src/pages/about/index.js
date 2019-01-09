@@ -11,6 +11,7 @@ import Chat from '@material-ui/icons/Chat'
 import List from '@material-ui/icons/List'
 import Paper from '@material-ui/core/Paper'
 import Public from '@material-ui/icons/Public'
+import PriceBox from 'components/organisms/price-box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import titleActions from 'templates/default/actions'
@@ -58,56 +59,73 @@ class About extends Component {
       <Template>
         <Grid container>
           <Grid item md>
+            <PriceBox
+              name="About Us"
+              backgroundColor="lightblue"
+            >
             <Paper style={styles.aboutText}>
-                <Typography variant="h5" style={styles.aboutUS.typography}>
-                 About Us
-                </Typography>
-                <Typography component="p" style={styles.aboutUS.typography}>
-                <p>Tilda Center is an open space in Novi Sad, Serbia where people gather to share resources and knowledge, work on projects and develop their IT/technical solutions.</p>
-                <p>It is a collaborative studio for creative individuals who want to enhance informal education through conversation, exploration and enlargement of experience.</p>
-                <p>Tilda Center is a combination of a lab for personal projects, open workshop space and a conference room for a community gatherings.</p>
-                <p>We encourage compelling argumentation on relevant subjects and learning through hands-on exploration.</p>
-                <p>We embrace arts as well as the sciences, and accelerate a new energy that is building around multidisciplinary collaborative efforts.</p>
-                </Typography>
+              <Typography variant="h5" style={styles.aboutUS.typography}>
+               About Us
+              </Typography>
+              <Typography component="p" style={styles.aboutUS.typography}>
+              <p>Tilda Center is an open space in Novi Sad, Serbia where people gather to share resources and knowledge, work on projects and develop their IT/technical solutions.</p>
+              <p>It is a collaborative studio for creative individuals who want to enhance informal education through conversation, exploration and enlargement of experience.</p>
+              <p>Tilda Center is a combination of a lab for personal projects, open workshop space and a conference room for a community gatherings.</p>
+              <p>We encourage compelling argumentation on relevant subjects and learning through hands-on exploration.</p>
+              <p>We embrace arts as well as the sciences, and accelerate a new energy that is building around multidisciplinary collaborative efforts.</p>
+              </Typography>
             </Paper>
-          <Paper style={styles.aboutText}>
-              <Typography variant="h5" style={styles.aboutText.typography}>
-                Mission/Vision
-              </Typography>
-              <Typography component="p" style={styles.aboutText.typography}>
-                <h3><u>Mission Statement:</u></h3>
-                <p> Our mission is to work for a better society by promoting open hardware, software, networks, data and knowledge. </p>
-                <h3><u>Vision Statement:</u></h3>
-                <p> Our Vision is a future where education, digital tools and knowledge empower people to share ideas and technical skills. </p>
-              </Typography>
-          </Paper>
+            </PriceBox>
+            <PriceBox
+              name="Mission/Vision"
+              backgroundColor="#ffb66e"
+            >
+              <Paper style={styles.aboutText}>
+                  <Typography variant="h5" style={styles.aboutText.typography}>
+                    Mission/Vision
+                  </Typography>
+                  <Typography component="p" style={styles.aboutText.typography}>
+                    <h3><u>Mission Statement:</u></h3>
+                    <p> Our mission is to work for a better society by promoting open hardware, software, networks, data and knowledge. </p>
+                    <h3><u>Vision Statement:</u></h3>
+                    <p> Our Vision is a future where education, digital tools and knowledge empower people to share ideas and technical skills. </p>
+                  </Typography>
+              </Paper>
+            </PriceBox>
           </Grid>
           <Grid item md>
-            <Paper style={styles.aboutText2}>
-                <Typography component="p" style={styles.aboutText2.typography}>
-                  <Typography variant="h5" style={styles.aboutText2.typography}>
-                    Value
-                    <p>In all its actions and efforts, Tilda Center is guided by these values</p>
+            <PriceBox
+              name="Values"
+              backgroundColor="#adb3c1"
+            >
+              <Paper style={styles.aboutText2}>
+                  <Typography component="p" style={styles.aboutText2.typography}>
+                    <Typography variant="h5" style={styles.aboutText2.typography}>
+                      Value
+                      <p>In all its actions and efforts, Tilda Center is guided by these values</p>
+                    </Typography>
+                    <h3><u>Collaboration:</u></h3>
+                    <p> Working effectively across disciplines, organizations and communities to
+                      combine efforts and share information in pursuit of shared goals; </p>
+                    <h3><u>Excellence:</u></h3>
+                    <p>Maintaining our commitment to quality and pursuit of the highest standards; </p>
+                    <h3><u>Innovation:</u></h3>
+                    <p> Constantly seeking and applying leading edge ideas, practices and knowledge; </p>
+                    <h3><u>Integrity:</u></h3>
+                    <p> Following standards and best practices for confidentiality,safety, protection of privacy and ethical conduct; </p>
+                    <h3><u>Passion:</u></h3>
+                    <p> Effectively translating unwavering dedication to our mission into practical, relevant,
+                      high quality actions that make a positive difference; </p>
+                    <h3><u>Respect:</u></h3>
+                    <p> Tilda Center does not discriminate on the basis of age, race, color, sex, national
+                      origin, religion, sexual orientation, gender identity, disability, marital status or socioeconomic status; </p>
                   </Typography>
-                  <h3><u>Collaboration:</u></h3>
-                  <p> Working effectively across disciplines, organizations and communities to
-                    combine efforts and share information in pursuit of shared goals; </p>
-                  <h3><u>Excellence:</u></h3>
-                  <p>Maintaining our commitment to quality and pursuit of the highest standards; </p>
-                  <h3><u>Innovation:</u></h3>
-                  <p> Constantly seeking and applying leading edge ideas, practices and knowledge; </p>
-                  <h3><u>Integrity:</u></h3>
-                  <p> Following standards and best practices for confidentiality,safety, protection of privacy and ethical conduct; </p>
-                  <h3><u>Passion:</u></h3>
-                  <p> Effectively translating unwavering dedication to our mission into practical, relevant,
-                    high quality actions that make a positive difference; </p>
-                  <h3><u>Respect:</u></h3>
-                  <p> Tilda Center does not discriminate on the basis of age, race, color, sex, national
-                    origin, religion, sexual orientation, gender identity, disability, marital status or socioeconomic status; </p>
-                </Typography>
-            </Paper>
-          </Grid>
-          <Grid>
+              </Paper>
+            </PriceBox>
+            <PriceBox
+              name="Contacts"
+              backgroundColor="#d3af37"
+            >
             <Paper style={styles.contactBox}>
                 <Typography variant="h5" gutterBottom>
                  CONTACTS
@@ -129,55 +147,55 @@ class About extends Component {
                   <p><a href="https://instagram.com/tildacenter">Instagram</a></p>
                 </Typography>
             </Paper>
+            </PriceBox>
           </Grid>
         </Grid>
-        <div style={styles.mapOSM}>
-          <iframe
-            title="map"
-            width={1625}
-            height={350}
-            frameBorder={0}
-            scrolling="no"
-            marginHeight={0}
-            marginWidth={0}
-            src="https://www.openstreetmap.org/export/embed.html?bbox=19.829316437244415%2C45.26147803261633%2C19.83229905366898%2C45.262544704742105&amp;layer=mapnik&amp;marker=45.26201231514193%2C19.830807745456696"
-          />
-          <div>
-            <small>
-              <a href="https://www.openstreetmap.org/?mlat=45.26201&amp;mlon=19.83081#map=19/45.26201/19.83081">
-                View Larger Map
-              </a>
-            </small>
-          </div>
-        </div>
-        <div>
-          <Paper style={styles.sendMessages}>
-            <form onSubmit={this.handleSubmit}>
-              <div>
-                <TextField
-                  label="Your Email"
-                  value={this.state.email}
-                  type="email"
-                  margin="large"
-                  onChange={this.handleEmail}
-                />
-              </div>
-              <div>
-                <TextField
-                  label="Your Message"
-                  value={this.state.message}
-                  multiline
-                  rowsMax="20"
-                  margin="large"
-                  onChange={this.handleMessage}
-                />
-              </div>
-              <Button style={styles.sendButton}>
-                 Send
-              </Button>
-            </form>
-          </Paper>
-        </div>
+        <Grid container>
+          <Grid item md>
+            <div style={styles.mapOSM}>
+              <iframe
+                title="map"
+                width={525}
+                height={350}
+                frameBorder={0}
+                scrolling="no"
+                marginHeight={0}
+                marginWidth={0}
+                src="https://www.openstreetmap.org/export/embed.html?bbox=19.829316437244415%2C45.26147803261633%2C19.83229905366898%2C45.262544704742105&amp;layer=mapnik&amp;marker=45.26201231514193%2C19.830807745456696"
+              />
+            </div>
+          </Grid>
+          <Grid>
+            <div>
+              <Paper style={styles.sendMessages}>
+                <form onSubmit={this.handleSubmit}>
+                  <div>
+                    <TextField
+                      label="Your Email"
+                      value={this.state.email}
+                      type="email"
+                      margin="large"
+                      onChange={this.handleEmail}
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label="Your Message"
+                      value={this.state.message}
+                      multiline
+                      rowsMax="20"
+                      margin="large"
+                      onChange={this.handleMessage}
+                    />
+                  </div>
+                  <Button style={styles.sendButton}>
+                     Send
+                  </Button>
+                </form>
+              </Paper>
+            </div>
+          </Grid>
+        </Grid>
       </Template>
     )
   }

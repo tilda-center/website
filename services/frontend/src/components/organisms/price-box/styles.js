@@ -20,7 +20,7 @@ export default (backgroundColor = null) => {
     },
 
     content: {
-      padding: 40,
+      padding: 10,
     },
 
     toolbar: {
