@@ -70,7 +70,7 @@ export default {
     display: 'flex',
     justifyContent: 'left',
     alignItems: 'left',
-    backgroundColor:'lightgreen',
+    backgroundColor: 'lightgreen',
     padding: 20,
     margin: 15,
   },

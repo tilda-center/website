@@ -57,16 +57,13 @@ class About extends Component {
   render() {
     return (
       <Template>
-        <Grid container>
-          <Grid item md>
+        <Grid container spacing={24}>
+          <Grid item md={6}>
             <PriceBox
               name="About Us"
               backgroundColor="lightblue"
             >
             <Paper style={styles.aboutText}>
-              <Typography variant="h5" style={styles.aboutUS.typography}>
-               About Us
-              </Typography>
               <Typography component="p" style={styles.aboutUS.typography}>
               <p>Tilda Center is an open space in Novi Sad, Serbia where people gather to share resources and knowledge, work on projects and develop their IT/technical solutions.</p>
               <p>It is a collaborative studio for creative individuals who want to enhance informal education through conversation, exploration and enlargement of experience.</p>
@@ -81,9 +78,6 @@ class About extends Component {
               backgroundColor="#ffb66e"
             >
               <Paper style={styles.aboutText}>
-                  <Typography variant="h5" style={styles.aboutText.typography}>
-                    Mission/Vision
-                  </Typography>
                   <Typography component="p" style={styles.aboutText.typography}>
                     <h3><u>Mission Statement:</u></h3>
                     <p> Our mission is to work for a better society by promoting open hardware, software, networks, data and knowledge. </p>
@@ -93,17 +87,14 @@ class About extends Component {
               </Paper>
             </PriceBox>
           </Grid>
-          <Grid item md>
+          <Grid item md={6}>
             <PriceBox
               name="Values"
               backgroundColor="#adb3c1"
             >
               <Paper style={styles.aboutText2}>
                   <Typography component="p" style={styles.aboutText2.typography}>
-                    <Typography variant="h5" style={styles.aboutText2.typography}>
-                      Value
                       <p>In all its actions and efforts, Tilda Center is guided by these values</p>
-                    </Typography>
                     <h3><u>Collaboration:</u></h3>
                     <p> Working effectively across disciplines, organizations and communities to
                       combine efforts and share information in pursuit of shared goals; </p>
@@ -127,9 +118,6 @@ class About extends Component {
               backgroundColor="#d3af37"
             >
             <Paper style={styles.contactBox}>
-                <Typography variant="h5" gutterBottom>
-                 CONTACTS
-                </Typography>
                 <Typography>
                   <Home></Home>Address:
                   <p>Bulevar Oslobođenja 12, 5th floor, apartment 21</p>

@@ -1,6 +1,6 @@
 const priceBox = {
   width: '100%',
-  height: 500,
+  height: 800,
   margin: 5,
   textAlign: 'left',
   transition: 'all 0.3s ease-in-out',
@@ -15,7 +15,7 @@ export default (backgroundColor = null) => {
       maxHeight: 64,
       focused: {
         ...priceBox,
-        maxHeight: 400,
+        maxHeight: 750,
       },
     },
 
