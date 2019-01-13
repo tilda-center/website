@@ -138,52 +138,46 @@ class About extends Component {
             </PriceBox>
           </Grid>
         </Grid>
-        <Grid container>
-          <Grid item md>
-            <div style={styles.mapOSM}>
-              <iframe
-                title="map"
-                width={525}
-                height={350}
-                frameBorder={0}
-                scrolling="no"
-                marginHeight={0}
-                marginWidth={0}
-                src="https://www.openstreetmap.org/export/embed.html?bbox=19.829316437244415%2C45.26147803261633%2C19.83229905366898%2C45.262544704742105&amp;layer=mapnik&amp;marker=45.26201231514193%2C19.830807745456696"
-              />
-            </div>
-          </Grid>
-          <Grid>
-            <div>
-              <Paper style={styles.sendMessages}>
-                <form onSubmit={this.handleSubmit}>
-                  <div>
-                    <TextField
-                      label="Your Email"
-                      value={this.state.email}
-                      type="email"
-                      margin="large"
-                      onChange={this.handleEmail}
-                    />
-                  </div>
-                  <div>
-                    <TextField
-                      label="Your Message"
-                      value={this.state.message}
-                      multiline
-                      rowsMax="20"
-                      margin="large"
-                      onChange={this.handleMessage}
-                    />
-                  </div>
-                  <Button style={styles.sendButton}>
-                     Send
-                  </Button>
-                </form>
-              </Paper>
-            </div>
-          </Grid>
-        </Grid>
+        <div style={styles.mapOSM}>
+          <iframe
+            title="map"
+            width={1525}
+            height={350}
+            frameBorder={0}
+            scrolling="no"
+            marginHeight={0}
+            marginWidth={0}
+            src="https://www.openstreetmap.org/export/embed.html?bbox=19.829316437244415%2C45.26147803261633%2C19.83229905366898%2C45.262544704742105&amp;layer=mapnik&amp;marker=45.26201231514193%2C19.830807745456696"
+          />
+        </div>
+        <div>
+          <Paper style={styles.sendMessages}>
+            <form onSubmit={this.handleSubmit}>
+              <div>
+                <TextField
+                  label="Your Email"
+                  value={this.state.email}
+                  type="email"
+                  margin="large"
+                  onChange={this.handleEmail}
+                />
+              </div>
+              <div>
+                <TextField
+                  label="Your Message"
+                  value={this.state.message}
+                  multiline
+                  rowsMax="20"
+                  margin="large"
+                  onChange={this.handleMessage}
+                />
+              </div>
+              <Button style={styles.sendButton}>
+                 Send
+              </Button>
+            </form>
+          </Paper>
+        </div>
       </Template>
     )
   }

@@ -1,6 +1,5 @@
 const priceBox = {
   width: '100%',
-  height: 800,
   margin: 5,
   textAlign: 'left',
   transition: 'all 0.3s ease-in-out',

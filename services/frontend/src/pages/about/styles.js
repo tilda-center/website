@@ -9,43 +9,30 @@ export default {
   },
 
   aboutUS: {
-    backgroundColor: 'blue',
     display: 'grid',
     padding: 20,
     paddingLeft: 20,
     paddingBottom: 10,
     margin: 15,
-    typography: {
-      color: 'white',
-    },
   },
 
   aboutText: {
-    backgroundColor: 'blue',
     display: 'grid',
     padding: 20,
     paddingLeft: 20,
     paddingBottom: 10,
     margin: 15,
-    typography: {
-      color: 'white',
-    },
   },
 
   aboutText2: {
-    backgroundColor: 'blue',
     display: 'grid',
     padding: 20,
     margin: 15,
-    typography: {
-      color: 'white',
-    },
   },
 
   contactBox: {
     padding: 20,
     display: 'grid',
-    backgroundColor: 'lightblue',
     justifyContent: 'left',
     margin: 15,
   },
@@ -53,8 +40,7 @@ export default {
   sendMessages: {
     padding: 20,
     display: 'grid',
-    backgroundColor: 'lightblue',
-    justifyContent: 'right',
+    justifyContent: 'left',
     margin: 15,
   },
 
@@ -70,7 +56,6 @@ export default {
     display: 'flex',
     justifyContent: 'left',
     alignItems: 'left',
-    backgroundColor: 'lightgreen',
     padding: 20,
     margin: 15,
   },
