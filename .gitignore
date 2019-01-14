@@ -28,6 +28,8 @@ services/frontend/node_modules
 !services/frontend/ansible/roles/.keep
 !services/frontend/ansible/roles/devel
 
+node_modules/
+
 build/*
 !build/.keep
 cbsd.conf
