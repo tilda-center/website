@@ -11,7 +11,6 @@ import Dashboard from 'pages/dashboard'
 import Landing from 'pages/landing'
 import Login from 'pages/login'
 import NoPage from 'pages/nopage'
-import CfS from 'pages/cfs'
 
 import store from 'store'
 import theme from 'theme'
@@ -26,7 +25,6 @@ export default class App extends Component {
             <Switch>
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/blog" component={BlogList} />
-              <Route exact path="/cfs" component={CfS} />
               <Route exact path="/blog/:year/:month/:day/:slug" component={BlogDetail} />
               <Route exact path="/landing" component={Landing} />
               <Route exact path="/about" component={About} />
