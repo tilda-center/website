@@ -1,22 +1,19 @@
 import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
-import { connect } from 'react-redux'
+import { observer } from 'mobx-react'
 import Button from '@material-ui/core/Button'
 import Template from 'templates/default'
-import titleActions from 'templates/default/actions'
-import errorActions from 'templates/empty/actions'
+import store from 'store'
 
 
-const mapStateToProps = () => ({})
-
-
+@observer
 class Landing extends Component {
   componentWillMount() {
-    this.props.requestTitle('Landing')
+    store.title.title = 'Landing'
   }
 
   handleError = () => {
-    this.props.requestError('Landing')
+    store.error.message = 'Landing'
+    store.error.open = true
   }
 
   render() {
@@ -31,12 +28,4 @@ class Landing extends Component {
 }
 
 
-Landing.propTypes = {
-  requestError: PropTypes.func.isRequired,
-  requestTitle: PropTypes.func.isRequired,
-}
-
-
-export default connect(mapStateToProps, { ...errorActions, ...titleActions })(
-  Landing,
-)
+export default Landing

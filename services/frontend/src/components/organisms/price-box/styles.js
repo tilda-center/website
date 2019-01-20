@@ -14,12 +14,12 @@ export default (backgroundColor = null) => {
       maxHeight: 64,
       focused: {
         ...priceBox,
-        maxHeight: 750,
+        maxHeight: 800,
       },
     },
 
     content: {
-      padding: 10,
+      padding: 40,
     },
 
     toolbar: {
