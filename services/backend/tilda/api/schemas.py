@@ -6,6 +6,7 @@ from flask_restplus.model import Model
 from marshmallow import Schema, fields, post_load, pre_dump
 
 from ..date import datetime_format, peewee_datetime_format
+from ..models.about import About
 from ..models.auth import Role, User, UserRoles
 from ..models.blog import Blog
 from ..models.parsing import TokenModel
@@ -140,7 +141,18 @@ class BlogSchema(BaseSchema):
         name = 'Blog'
 
 
+class AboutSchema(BaseSchema):
+    id = fields.Integer(description='ID', dump_only=True)
+    email = fields.String(description='About email')
+    message = fields.String(description='About message')
+
+    class Meta:
+        model = About
+        name = 'About'
+
+
 schemas = [
+    AboutSchema,
     BlogSchema,
     RoleSchema,
     TokenSchema,

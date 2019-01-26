@@ -1,9 +1,15 @@
 #  from datetime import timedelta
-
+import os
 SECRET_KEY = 'iQfPvB6sZaNHqVFI5CJa9rM1xOEVHKIM0LwifT04yLsPlZhSSvaDuZXOgJFSpJVq'
 
 
 class CommonConfig:
+    MAIL_SERVER = 'mail.tilda.center'
+    MAIL_PORT = '587'
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    MAIL_ADDRESS = 'office@tilda.center'
     DEBUG = False
     SECURITY_PASSWORD_SALT = 'tilda'
     SECRET_KEY = SECRET_KEY
