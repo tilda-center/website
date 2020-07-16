@@ -5,5 +5,4 @@ BIN_DIR=`dirname $0`
 . "${BIN_DIR}/common.sh"
 setup
 
-
-"${PACKAGE_MANAGER}" test --coverage --color
+env CI=true "${PACKAGE_MANAGER}" test --coverage --color

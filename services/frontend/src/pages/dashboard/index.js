@@ -1,38 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { withTheme } from '@material-ui/core/styles'
-import Template from 'templates/default'
-import store from 'store'
-import getStyles from './styles'
+import detail from './detail'
 
 
-class Dashboard extends React.Component {
-  componentWillMount() {
-    store.title.title = 'Dashboard'
-  }
-
-  render() {
-    const styles = getStyles(this.props.theme, 4)
-    return (
-      <Template secure={this.props.secure}>
-        <div style={styles.root}>
-          Dashboard
-        </div>
-      </Template>
-    )
-  }
+export default {
+  detail,
 }
-
-
-Dashboard.propTypes = {
-  secure: PropTypes.bool,
-  theme: PropTypes.shape().isRequired,
-}
-
-
-Dashboard.defaultProps = {
-  secure: true,
-}
-
-
-export default withTheme()(Dashboard)
