@@ -17,6 +17,8 @@ services/backend/pulsar/static
 !services/backend/ansible/roles/devel
 !services/backend/playbooks/.keep
 
+services/frontend/ansible/roles/*
+services/frontend/playbook.retry
 services/frontend/build
 services/frontend/coverage
 services/frontend/ansible/group_vars/all
@@ -34,7 +36,6 @@ build/*
 !build/.keep
 cbsd.conf
 database.db
-package.json
 site.retry
 site.yml
 test.db
