@@ -33,3 +33,9 @@
     src: login_conf.j2
     dest: /usr/home/devel/.login_conf
   when: devel_home.stat.exists == True
+
+- name: configure cshrc
+  template:
+    src: cshrc.j2
+    dest: /usr/home/devel/.cshrc
+  when: devel_home.stat.exists == True

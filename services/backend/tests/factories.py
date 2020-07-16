@@ -1,17 +1,24 @@
-import factory
+from importlib import import_module
+
 from flask_security.utils import hash_password
-from tilda.models.auth import Role, User
+
+import factory
+from name import app_name
+
+user = import_module(f'{app_name}.models.user')
+role = import_module(f'{app_name}.models.role')
 
 
 class UserFactory(factory.Factory):
     class Meta:
-        model = User
+        model = user.User
 
     first_name = factory.Faker('first_name')
     last_name = factory.Faker('last_name')
     email = factory.Faker('email')
     password = factory.LazyAttribute(lambda a: hash_password('Sekrit'))
     username = factory.Faker('name')
+    active = True
 
 
 class AdminFactory(UserFactory):
@@ -20,6 +27,6 @@ class AdminFactory(UserFactory):
 
 class RoleFactory(factory.Factory):
     class Meta:
-        model = Role
+        model = role.Role
 
     name = factory.Faker('first_name')
