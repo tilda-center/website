@@ -1,1 +1,1 @@
-freenit[sql]
+freenit[ldap]
