@@ -1,18 +1,17 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-// Pages
 import {
   Auth,
   Profile,
   NoPage,
   rest,
 } from 'freenit'
-import Dashboard from 'pages/dashboard'
-import Landing from 'pages/landing'
-import Mail from 'pages/mail'
-import Role from 'pages/role'
-import User from 'pages/user'
+import {
+  Dashboard,
+  Landing,
+  Mail,
+} from 'pages'
 
 
 const API_ROOT = '/api/v0'
@@ -32,12 +31,6 @@ const Routing = () => {
       <Route exact path="/register" component={Auth.register} />
       <Route exact path="/reset" component={Auth.reset} />
       <Route exact path="/reset/:token" component={Auth.changePassword} />
-      <Route exact path="/role/:id" component={Role.detail} />
-      <Route exact path="/roles" component={Role.list} />
-      <Route exact path="/roles/:page" component={Role.list} />
-      <Route exact path="/user/:id" component={User.detail} />
-      <Route exact path="/users" component={User.list} />
-      <Route exact path="/users/:page" component={User.list} />
       <Route path="*" component={NoPage.detail} />
     </Switch>
   )
