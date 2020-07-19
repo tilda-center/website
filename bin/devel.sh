@@ -13,11 +13,12 @@ if [ "${1}" = "reggae" ]; then
   REGGAE="yes"
 fi
 
+
 cd "${PROJECT_ROOT}"
 if [ "${REGGAE}" = "yes" ]; then
   backend_hostname=$(sudo cbsd jexec user=devel "jname=${backend_app_name}" hostname)
-  make offline=${OFFLINE} SYSPKG=${SYSPKG} -C services/backend init
-  sudo tmux new-session -s "${backend_app_name}" -d "make offline=${OFFLINE} SYSPKG=${SYSPKG} -C services/backend devel || sleep 10"
+  make offline=${OFFLINE} -C services/backend init
+  sudo tmux new-session -s "${backend_app_name}" -d "make offline=${OFFLINE} -C services/backend devel"
   sudo tmux split-window -h -p 50 -t 0 "make OFFLINE=${OFFLINE} BACKEND_URL=http://${backend_hostname}:5000 -C services/frontend devel || sleep 10"
   sudo tmux a -t "${backend_app_name}"
 else
