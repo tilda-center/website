@@ -1,5 +1,7 @@
-from freenit.schemas.role import RoleSchema as BaseRoleSchema
+from freenit.schemas.role import RoleBaseSchema
+from marshmallow import fields
 
 
-class RoleSchema(BaseRoleSchema):
-    pass
+class RoleSchema(RoleBaseSchema):
+    description = fields.String(description='Description')
+    name = fields.String(description='Name')
