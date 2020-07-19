@@ -1,15 +1,15 @@
 from datetime import datetime
 
-from flask import current_app, jsonify
+from flask import current_app, jsonify, request
 from flask.views import MethodView
 from flask_jwt_extended import (create_access_token, create_refresh_token,
                                 decode_token, get_jwt_identity,
                                 jwt_refresh_token_required, set_access_cookies,
                                 set_refresh_cookies, unset_jwt_cookies)
-from flask_security.utils import verify_password
 from flask_smorest import Blueprint, abort
 
 from ldap3 import Connection, Server
+from ldap3.core.exceptions import LDAPSocketOpenError
 
 from ..schemas.user import (LoginSchema, RefreshSchema, ResetSchema,
                             TokenSchema, UserSchema)
@@ -33,12 +33,15 @@ class AuthLoginAPI(MethodView):
         user = email[:atSign]
         domain = email[atSign + 1:]
         identity = f'uid={user},ou={domain},dc=ldap'
-        server = Server(current_app.config['LDAP']['server'])
-        conn = Connection(server, identity, password)
-        if current_app.config['LDAP']['tls']:
-            conn.start_tls()
-        if not conn.bind():
-            abort(403, mesage='No such user or email/password wrong')
+        try:
+            server = Server(current_app.config['LDAP']['server'])
+            conn = Connection(server, identity, password)
+            if current_app.config['LDAP']['tls']:
+                conn.start_tls()
+            if not conn.bind():
+                abort(403, mesage='No such user or email/password wrong')
+        except LDAPSocketOpenError:
+            abort(409, message='Connection to LDAP server failed')
         access_token = create_access_token(identity=identity)
         refresh_token = create_refresh_token(identity=identity)
         access_expire = current_app.config['JWT_ACCESS_TOKEN_EXPIRES']
@@ -60,4 +63,40 @@ class AuthLoginAPI(MethodView):
             httponly=True,
             secure=refresh_secure,
         )
+        return resp
+
+
+@blueprint.route('/logout', endpoint='logout')
+class AuthLogoutAPI(MethodView):
+    def post(self):
+        """Logout"""
+        resp = jsonify({})
+        unset_jwt_cookies(resp)
+        return resp
+
+
+@blueprint.route('/refresh', endpoint='refresh')
+class AuthRefreshAPI(MethodView):
+    @blueprint.response(RefreshSchema)
+    @jwt_refresh_token_required
+    def post(self):
+        """Refresh access token"""
+        identity = get_jwt_identity()
+        server = Server(current_app.config['LDAP']['server'])
+        conn = Connection(server, identity)
+        if current_app.config['LDAP']['tls']:
+            conn.start_tls()
+        #  conn.bind()
+        if not conn.search(identity, '(objectclass=person)'):
+            abort(403, message='No such user')
+        access_expire = current_app.config['JWT_ACCESS_TOKEN_EXPIRES']
+        access_token = create_access_token(identity=identity)
+        refresh_expire_date = datetime.strptime(
+            request.cookies['refresh_expire'], '%Y-%m-%d %H:%M:%S.%f')
+        refresh_delta = refresh_expire_date - datetime.now()
+        resp = jsonify({
+            'accessExpire': int(access_expire.total_seconds()),
+            'refreshExpire': int(refresh_delta.total_seconds()),
+        })
+        set_access_cookies(resp, access_token)
         return resp

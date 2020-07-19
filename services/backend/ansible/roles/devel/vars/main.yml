@@ -6,4 +6,5 @@ python_version_short: "{{ python_major }}{{ python_minor }}"
 python_prefix: "py{{ python_version_short }}"
 devel_packages:
   - name: "{{ python_prefix }}-freenit"
+  - name: "{{ python_prefix }}-ldap3"
   - name: "{{ python_prefix }}-sqlite3"
