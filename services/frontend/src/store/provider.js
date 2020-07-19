@@ -9,7 +9,9 @@ import {
   Store,
   User,
 } from 'freenit'
-import Landing from 'pages/landing'
+import {
+  Mail,
+} from 'pages'
 import { withRouter } from 'react-router-dom'
 
 // Templates
@@ -23,7 +25,7 @@ const StoreProvider = (props) => {
   const store = {
     auth: new Auth.store(useState(Auth.initial.detail)),
     history: props.history,
-    landing: new Landing.store(useState(Landing.initial.detail)),
+    mail: new Mail.store(useState(Mail.initial.detail)),
     notification: new EmptyTemplate.store(
       useState(EmptyTemplate.initial.detail),
     ),
