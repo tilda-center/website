@@ -4,10 +4,7 @@ import {
   Button,
   IconButton,
   List,
-  ListItem,
-  ListItemText,
   Collapse,
-  Checkbox,
 } from '@material-ui/core'
 import {
   Refresh,
@@ -17,6 +14,10 @@ import {
 } from '@material-ui/icons'
 import { withStore } from 'freenit'
 import Template from 'templates/default/detail'
+import {
+  MailDir,
+  MailThread,
+} from 'components'
 
 
 class Page extends React.Component {
@@ -48,43 +49,22 @@ class Page extends React.Component {
         <div style={{ height: "calc(100vh - 2 * 65px)", display: "grid", gridTemplateColumns: "200px 300px auto" }}>
           <div style={{ backgroundColor: "#eee", borderRight: "1px solid #ccc" }}>
             <List disablePadding>
-              <ListItem>
-                <ListItemText primary="Inbox" />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary="Sent" />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary="Lists" />
-              </ListItem>
+              <MailDir name="Inbox" />
+              <MailDir name="Sent" />
+              <MailDir name="Lists" />
               <Collapse in timeout="auto" unmountOnExit style={{ marginLeft: 10 }}>
                 <List disablePadding>
-                  <ListItem>
-                    <ListItemText primary="Tilda" />
-                  </ListItem>
-                </List>
-                <List disablePadding>
-                  <ListItem>
-                    <ListItemText primary="PySer" />
-                  </ListItem>
+                  <MailDir name="Tilda" />
+                  <MailDir name="PySer" />
                 </List>
               </Collapse>
             </List>
           </div>
           <div style={{ borderRight: "1px solid #ccc" }}>
             <List disablePadding>
-              <ListItem>
-                <Checkbox color="primary" />
-                <ListItemText primary="Goran Mekić" secondary="Some Subject" />
-              </ListItem>
-              <ListItem>
-                <Checkbox color="primary" />
-                <ListItemText primary="John Doe" secondary="Who am I?" />
-              </ListItem>
-              <ListItem>
-                <Checkbox color="primary" />
-                <ListItemText primary="Jane Doe" secondary="Where am I?" />
-              </ListItem>
+              <MailThread from="Goran Mekić" subject="Some Subject" />
+              <MailThread from="John Doe" subject="Who am I?" />
+              <MailThread from="Jane Doe" subject="Where am I?" />
             </List>
           </div>
           <div style={{ backgroundColor: "#eef" }}>
