@@ -11,6 +11,7 @@ from flask_smorest import Blueprint, abort
 from ldap3 import Connection, Server
 from ldap3.core.exceptions import LDAPSocketOpenError
 
+from ..models.user import LDAPUser
 from ..schemas.user import (LoginSchema, RefreshSchema, ResetSchema,
                             TokenSchema, UserSchema)
 
@@ -30,9 +31,9 @@ class AuthLoginAPI(MethodView):
         atSign = email.find('@')
         if atSign < 0:
             abort(409, message='Wrong mail format')
-        user = email[:atSign]
-        domain = email[atSign + 1:]
-        identity = f'uid={user},ou={domain},dc=ldap'
+        user = LDAPUser(email[:atSign], email[atSign + 1:])
+        ldap_config = current_app.config['LDAP']
+        identity = ldap_config['dn'].format(user=user)
         try:
             server = Server(current_app.config['LDAP']['server'])
             conn = Connection(server, identity, password)
