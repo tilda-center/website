@@ -55,6 +55,7 @@ class Config:
     LDAP = {
         'server': 'ldap.example.com',
         'tls': True,
+        'dn': 'uid={user.uid},ou={user.domain},dc=ldap',
     }
 
     @staticmethod
