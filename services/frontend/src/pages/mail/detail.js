@@ -15,17 +15,30 @@ import {
 import { withStore } from 'freenit'
 import Template from 'templates/default/detail'
 import {
+  MailCompose,
   MailDir,
   MailThread,
 } from 'components'
 
 
 class Page extends React.Component {
+  state = {
+    compose: false,
+  }
+
+  openCompose = () => {
+    this.setState({ compose: true })
+  }
+
+  closeCompose = () => {
+    this.setState({ compose: false })
+  }
+
   render() {
     return (
       <Template style={{}}>
         <Toolbar style={{ backgroundColor: "#eee", borderBottom: "1px solid #ccc" }}>
-          <Button variant="outlined">
+          <Button variant="outlined" onClick={this.openCompose}>
             Compose
           </Button>
           <div style={{ flex: 1 }}>
@@ -89,6 +102,7 @@ class Page extends React.Component {
             </div>
           </div>
         </div>
+        <MailCompose open={this.state.compose} onClose={this.closeCompose} />
       </Template>
     )
   }

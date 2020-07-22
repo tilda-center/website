@@ -20,6 +20,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard'
 import LoginIcon from '@material-ui/icons/Input'
 import LogoutIcon from '@material-ui/icons/PowerSettingsNew'
 import ProfileIcon from '@material-ui/icons/AccountCircle'
+import MailIcon from '@material-ui/icons/Email'
 import MenuIcon from '@material-ui/icons/Menu'
 import RoleIcon from '@material-ui/icons/People'
 import UserIcon from '@material-ui/icons/PeopleOutline'
@@ -123,6 +124,16 @@ class Template extends React.Component {
                 <ProfileIcon />
               </ListItemIcon>
               Profile
+            </MenuItem>
+          </Link>
+        ),
+        (
+          <Link to="/mail" key="mail">
+            <MenuItem>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              Mail
             </MenuItem>
           </Link>
         ),
