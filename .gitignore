@@ -12,7 +12,7 @@ services/backend/coverage.xml
 services/backend/local_config.py
 services/backend/playbook.retry
 services/backend/playbooks/*
-services/backend/pulsar/static
+services/backend/secret.key
 !services/backend/ansible/roles/.keep
 !services/backend/ansible/roles/devel
 !services/backend/playbooks/.keep
