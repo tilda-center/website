@@ -1,5 +1,7 @@
+import json
 from datetime import datetime
 
+from cryptography.fernet import Fernet
 from flask import current_app, jsonify, request
 from flask.views import MethodView
 from flask_jwt_extended import (create_access_token, create_refresh_token,
@@ -33,10 +35,24 @@ class AuthLoginAPI(MethodView):
             abort(409, message='Wrong mail format')
         user = LDAPUser(email[:atSign], email[atSign + 1:])
         ldap_config = current_app.config['LDAP']
-        identity = ldap_config['dn'].format(user=user)
+        data = {
+            'uid': user.uid,
+            'domain': user.domain,
+        }
+        root = current_app.config['PROJECT_ROOT']
+        key_path = f'{root}/secret.key'
+        with open(key_path, 'rb') as key_file:
+            key = key_file.read()
+            encoded_password = password.encode()
+            f = Fernet(key)
+            hashed_password = f.encrypt(encoded_password)
+            data['password'] = hashed_password.decode('utf-8')
+        identity = json.dumps(data)
+        #  print(f.decrypt(data['password'].encode()).decode('utf-8'))
+        dn = ldap_config['dn'].format(user=user)
         try:
             server = Server(current_app.config['LDAP']['server'])
-            conn = Connection(server, identity, password)
+            conn = Connection(server, dn, password)
             if current_app.config['LDAP']['tls']:
                 conn.start_tls()
             if not conn.bind():
@@ -83,12 +99,16 @@ class AuthRefreshAPI(MethodView):
     def post(self):
         """Refresh access token"""
         identity = get_jwt_identity()
+        data = json.loads(identity)
+        user = LDAPUser(data['uid'], data['domain'])
+        ldap_config = current_app.config['LDAP']
+        dn = ldap_config['dn'].format(user=user)
         server = Server(current_app.config['LDAP']['server'])
-        conn = Connection(server, identity)
+        conn = Connection(server, dn)
         if current_app.config['LDAP']['tls']:
             conn.start_tls()
         #  conn.bind()
-        if not conn.search(identity, '(objectclass=person)'):
+        if not conn.search(dn, '(objectclass=person)'):
             abort(403, message='No such user')
         access_expire = current_app.config['JWT_ACCESS_TOKEN_EXPIRES']
         access_token = create_access_token(identity=identity)
