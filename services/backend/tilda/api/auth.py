@@ -48,7 +48,6 @@ class AuthLoginAPI(MethodView):
             hashed_password = f.encrypt(encoded_password)
             data['password'] = hashed_password.decode('utf-8')
         identity = json.dumps(data)
-        #  print(f.decrypt(data['password'].encode()).decode('utf-8'))
         dn = ldap_config['dn'].format(user=user)
         try:
             server = Server(current_app.config['LDAP']['server'])

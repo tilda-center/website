@@ -43,8 +43,6 @@ class Config:
         #  'host': 'mail.example.com',
         #  'port': 587,
         #  'ssl': True,
-        #  'username': 'someone@example.com',
-        #  'password': 'Sekrit',
     }
     FROM_EMAIL = 'office@example.com'
     SUBJECTS = {

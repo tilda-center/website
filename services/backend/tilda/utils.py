@@ -1,12 +1,11 @@
 from smtplib import SMTP
 
 
-def sendmail(config, to, message):
+def sendmail(config, to, message, password):
     port = config['MAIL'].get('port', 587)
     ssl = config['MAIL'].get('ssl', True)
     host = config['MAIL'].get('host', None)
-    username = config['MAIL'].get('username', None)
-    password = config['MAIL'].get('password', None)
+    username = message['From']
     if None not in [host, username, password]:
         server = SMTP(host=host, port=port)
         if ssl:
@@ -20,8 +19,4 @@ def sendmail(config, to, message):
         if not isinstance(bcc, list):
             bcc = [bcc]
         to += bcc
-        server.sendmail(
-            message['From'],
-            to,
-            message.as_string().encode('utf-8'),
-        )
+        server.sendmail(username, to, message.as_string().encode('utf-8'))
