@@ -114,7 +114,7 @@ class MailCompose extends React.Component {
       )
     return (
       <Dialog open={this.props.open}>
-        <div style={{ height: "calc(100vh - 6px)", display: "flex", flexDirection: "column" }}>
+        <div style={{ height: "80vh", maxHeight: 700, display: "flex", flexDirection: "column" }}>
           <div style={{ padding: 20, backgroundColor: "#eee", borderBottom: "1px solid #aaa" }}>
             <TextField
               fullWidth
@@ -160,7 +160,7 @@ class MailCompose extends React.Component {
             </IconButton>
           </div>
           {view}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around", padding: 10, backgroundColor: "#eee" }}>
+          <div style={{ borderTop: "1px solid #aaa", display: "flex", alignItems: "center", justifyContent: "space-around", padding: 10, backgroundColor: "#eee" }}>
             <Button
               variant="outlined"
               style={{ backgroundColor: "white" }}
