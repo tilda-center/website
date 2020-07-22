@@ -15,6 +15,7 @@ import {
   AttachFile,
 } from '@material-ui/icons'
 import { withStore } from 'freenit'
+import { errors } from 'utils'
 
 
 const initialState = {
@@ -53,8 +54,9 @@ class MailCompose extends React.Component {
     this.props.onClose()
   }
 
-  send = () => {
+  send = async () => {
     let ok = true
+    const { mail, notification } = this.props.store
     if (this.state.to === '') {
       ok = false
       this.setState({ toError: 'Can not be empty' })
@@ -72,13 +74,17 @@ class MailCompose extends React.Component {
     }
     if (this.state.message === '') {
       ok = false
-      const { notification } = this.props.store
       notification.show('Message can not be empty')
     }
     if (!ok) { return }
-    const { mail } = this.props.store
     const { to, cc, bcc, subject, message } = this.state
-    mail.send(to, subject, message, cc, bcc)
+    const response = await mail.send(to, subject, message, cc, bcc)
+    if (!response.ok) {
+      const error = errors(response)
+      notification.show(`Error sending email: ${error.message}`)
+    } else {
+      this.close()
+    }
   }
 
   render() {
