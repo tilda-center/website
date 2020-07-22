@@ -76,7 +76,9 @@ class MailCompose extends React.Component {
       notification.show('Message can not be empty')
     }
     if (!ok) { return }
-    // Send the message
+    const { mail } = this.props.store
+    const { to, cc, bcc, subject, message } = this.state
+    mail.send(to, subject, message, cc, bcc)
   }
 
   render() {
