@@ -40,6 +40,10 @@ const initialState = {
 
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
+const k = 1024
+const M = 1024 * k
+const G = 1024 * M
+
 
 class MailCompose extends React.Component {
   state = initialState
@@ -135,7 +139,7 @@ class MailCompose extends React.Component {
       (message, file) => {
         const { notification } = this.props.store
         this.setState({ progress: 0, uploading: false })
-        const err = `Upload failed on file ${file}. Error message: ${message}`
+        const err = `Upload failed on file ${file}! Error message: ${message}`
         notification.show(err)
       },
     )
@@ -149,10 +153,6 @@ class MailCompose extends React.Component {
         if (!uploading) {
           notification.show('Files uploaded')
           this.setState({ files: [] })
-          // this.props.onClose(files)
-          // if (this.props.onSuccess) {
-            // this.props.onSuccess(files)
-          // }
         }
       },
     )
@@ -168,7 +168,7 @@ class MailCompose extends React.Component {
   render() {
     const view = this.state.pane === 'compose'
       ? (
-        <div style={{ padding: 10, flex: 1, marginBottom: 20 }}>
+        <div style={{ padding: 10, flex: 1 }}>
           <textarea
             style={{ resize: "none", width: "100%", height: "100%", border: "none" }}
             value={this.state.message}
@@ -176,7 +176,7 @@ class MailCompose extends React.Component {
           />
         </div>
       ) : (
-        <div style={{ flex: 1, position: "relative", padding: 10, display: "grid", gridTemplateColumns: "repeat(3, 130px)", alignItems: "start" }}>
+        <div style={{ flex: 1, position: "relative", padding: 10, display: "grid", gridTemplateColumns: "repeat(3, 130px)", alignItems: "start", gridGap: 10 }}>
           <Fab
             style={{ position: "absolute", bottom: 10, right: 10 }}
             color="primary"
@@ -185,19 +185,43 @@ class MailCompose extends React.Component {
             <Add />
           </Fab>
           {
-            this.state.files.map(file => (
-              <Paper style={{ width: 120, position: "relative" }} key={file.file.name}>
-                <div
-                  onClick={this.removeFile(file)}
-                  style={{ cursor: 'pointer', position: "absolute", top: 0, right: 5, color: "#888", zIndex: 100 }}
+            this.state.files.map(file => {
+              const name = file.file.name.length > 20
+                ? `${file.file.name.substring(1, 20)}...`
+                : file.file.name
+              let size
+              let suffix
+              if (file.file.size > G) {
+                size = file.file.size / G
+                suffix = 'GB'
+              } else if (file.file.size > M) {
+                size = file.file.size / M
+                suffix = 'MB'
+              } else if (file.file.size > k) {
+                size = file.file.size / k
+                suffix = 'kB'
+              } else {
+                size = file.file.size
+                suffix = 'B'
+              }
+              size = size.toFixed(2)
+              return (
+                <Paper
+                  style={{ height: '100%', width: '100%', position: "relative" }}
+                  key={`${file.file.name}`}
                 >
-                  x
-                </div>
-                <ListItem>
-                  <ListItemText primary={file.file.name} secondary={file.file.size} />
-                </ListItem>
-              </Paper>
-            ))
+                  <div
+                    onClick={this.removeFile(file)}
+                    style={{ cursor: 'pointer', position: "absolute", top: 0, right: 5, color: "#888", zIndex: 100 }}
+                  >
+                    x
+                  </div>
+                  <ListItem>
+                    <ListItemText primary={name} secondary={`${size}${suffix}`} />
+                  </ListItem>
+                </Paper>
+              )
+            })
           }
         </div>
       )
