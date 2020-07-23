@@ -1,4 +1,5 @@
 import React from 'react'
+import Resumable from 'resumablejs'
 import {
   Button,
   Dialog,
@@ -14,21 +15,27 @@ import {
   Message,
   AttachFile,
 } from '@material-ui/icons'
-import { withStore } from 'freenit'
+import {
+  getCookie,
+  withStore,
+} from 'freenit'
 import { errors } from 'utils'
 
 
 const initialState = {
-  pane: 'compose',
-  to: '',
-  toError: '',
-  cc: '',
-  ccError: '',
   bcc: '',
   bccError: '',
+  cc: '',
+  ccError: '',
+  files: [],
+  message: '',
+  pane: 'compose',
+  progress: 0,
   subject: '',
   subjectError: '',
-  message: '',
+  to: '',
+  toError: '',
+  uploading: false,
 }
 
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -36,6 +43,8 @@ const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@
 
 class MailCompose extends React.Component {
   state = initialState
+
+  fileInput = React.createRef()
 
   setPane = (pane) => () => {
     this.setState({ pane })
@@ -87,6 +96,75 @@ class MailCompose extends React.Component {
     }
   }
 
+  openAttach = () => {
+    this.fileInput.current.click()
+  }
+
+  attachFiles = (event) => {
+    this.setState({ progress: 0 })
+    for (let i = 0; i < event.target.files.length; ++i) {
+      const reader = new FileReader()
+      const file = event.target.files[i]
+      reader.onload = (e) => this.setState(
+        prevState => ({
+          files: [
+            ...prevState.files,
+            {
+              file,
+              data: e.target.result,
+            },
+          ],
+        }),
+      )
+      reader.readAsDataURL(event.target.files[i])
+    }
+  }
+
+  handleUploadStart = () => {
+    const cookie = getCookie('csrf_access_token')
+    const uploader = new Resumable({
+      simultaneousUploads: 1,
+      target: this.props.target,
+      testChunks: false,
+      headers: { 'X-CSRF-TOKEN': cookie },
+    })
+    this.setState({ uploading: true })
+    uploader.on('filesAdded', () => uploader.upload())
+    uploader.on(
+      'error',
+      (message, file) => {
+        const { notification } = this.props.store
+        this.setState({ progress: 0, uploading: false })
+        const err = `Upload failed on file ${file}. Error message: ${message}`
+        notification.show(err)
+      },
+    )
+    uploader.on(
+      'progress',
+      () => {
+        const { notification } = this.props.store
+        const progress = uploader.progress() * 100
+        const uploading = progress < 100
+        this.setState({ progress, uploading })
+        if (!uploading) {
+          notification.show('Files uploaded')
+          this.setState({ files: [] })
+          // this.props.onClose(files)
+          // if (this.props.onSuccess) {
+            // this.props.onSuccess(files)
+          // }
+        }
+      },
+    )
+    uploader.addFiles(this.state.files.map(file => file.file))
+  }
+
+  removeFile = (file) => () => {
+    const files = this.state.files.filter(f => f.file.name !== file.file.name)
+    this.setState({ files })
+  }
+
+
   render() {
     const view = this.state.pane === 'compose'
       ? (
@@ -99,25 +177,28 @@ class MailCompose extends React.Component {
         </div>
       ) : (
         <div style={{ flex: 1, position: "relative", padding: 10, display: "grid", gridTemplateColumns: "repeat(3, 130px)", alignItems: "start" }}>
-          <Fab style={{ position: "absolute", bottom: 10, right: 10 }} color="primary">
+          <Fab
+            style={{ position: "absolute", bottom: 10, right: 10 }}
+            color="primary"
+            onClick={this.openAttach}
+          >
             <Add />
           </Fab>
-          <Paper style={{ width: 120, position: "relative" }}>
-            <span style={{ position: "absolute", top: 0, right: 5, color: "#888" }}>
-              x
-            </span>
-            <ListItem>
-              <ListItemText primary="File name" secondary="100kB" />
-            </ListItem>
-          </Paper>
-          <Paper style={{ width: 120, position: "relative" }}>
-            <span style={{ position: "absolute", top: 0, right: 5, color: "#888" }}>
-              x
-            </span>
-            <ListItem>
-              <ListItemText primary="File name" secondary="100kB" />
-            </ListItem>
-          </Paper>
+          {
+            this.state.files.map(file => (
+              <Paper style={{ width: 120, position: "relative" }} key={file.file.name}>
+                <div
+                  onClick={this.removeFile(file)}
+                  style={{ cursor: 'pointer', position: "absolute", top: 0, right: 5, color: "#888", zIndex: 100 }}
+                >
+                  x
+                </div>
+                <ListItem>
+                  <ListItemText primary={file.file.name} secondary={file.file.size} />
+                </ListItem>
+              </Paper>
+            ))
+          }
         </div>
       )
     return (
@@ -193,6 +274,13 @@ class MailCompose extends React.Component {
             </Button>
           </div>
         </div>
+        <input
+          ref={this.fileInput}
+          type="file"
+          style={{ display: 'none' }}
+          multiple
+          onChange={this.attachFiles}
+        />
       </Dialog>
     )
   }
