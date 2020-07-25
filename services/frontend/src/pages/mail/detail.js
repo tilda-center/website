@@ -1,23 +1,22 @@
 import React from 'react'
 import {
-  Toolbar,
   Button,
   IconButton,
   List,
-  Collapse,
+  Toolbar,
 } from '@material-ui/core'
 import {
-  Refresh,
   Delete,
   FolderOpen,
   Menu,
+  Refresh,
 } from '@material-ui/icons'
 import { withStore } from 'freenit'
 import Template from 'templates/default/detail'
 import {
   MailCompose,
-  MailDir,
   MailThread,
+  Mailboxes,
 } from 'components'
 
 
@@ -60,18 +59,8 @@ class Page extends React.Component {
           </div>
         </Toolbar>
         <div style={{ height: "calc(100vh - 2 * 65px)", display: "grid", gridTemplateColumns: "200px 300px auto" }}>
-          <div style={{ backgroundColor: "#eee", borderRight: "1px solid #ccc" }}>
-            <List disablePadding>
-              <MailDir name="Inbox" />
-              <MailDir name="Sent" />
-              <MailDir name="Lists" />
-              <Collapse in timeout="auto" unmountOnExit style={{ marginLeft: 10 }}>
-                <List disablePadding>
-                  <MailDir name="Tilda" />
-                  <MailDir name="PySer" />
-                </List>
-              </Collapse>
-            </List>
+          <div style={{ backgroundColor: "#eee", borderRight: "1px solid #ccc", overflow: 'auto' }}>
+            <Mailboxes />
           </div>
           <div style={{ borderRight: "1px solid #ccc" }}>
             <List disablePadding>

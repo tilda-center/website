@@ -25,7 +25,7 @@ const StoreProvider = (props) => {
   const store = {
     auth: new Auth.store(useState(Auth.initial.detail)),
     history: props.history,
-    mail: new Mail.store(useState(Mail.initial.detail)),
+    mail: new Mail.store(useState(Mail.initial.folders)),
     notification: new EmptyTemplate.store(
       useState(EmptyTemplate.initial.detail),
     ),
