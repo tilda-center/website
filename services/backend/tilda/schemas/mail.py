@@ -9,3 +9,7 @@ class MailSchema(BaseSchema):
     message = fields.String(required=True, load_only=True)
     subject = fields.String(required=True)
     to = fields.Email(required=True)
+
+
+class MailDirSchema(BaseSchema):
+    folders = fields.Raw()

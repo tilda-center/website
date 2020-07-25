@@ -8,4 +8,5 @@ devel_packages:
   - name: "{{ python_prefix }}-cryptography"
   - name: "{{ python_prefix }}-freenit"
   - name: "{{ python_prefix }}-ldap3"
+  - name: "{{ python_prefix }}-sortedcontainers"
   - name: "{{ python_prefix }}-sqlite3"

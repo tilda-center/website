@@ -1,7 +1,7 @@
 export default class MailStore {
-  constructor(detail) {
-    this.detail = detail[0]
-    this.setDetail = detail[1]
+  constructor(folders) {
+    this.folders = folders[0]
+    this.setFolders = folders[1]
   }
 
   send = async (to, subject, message, cc = '', bcc = '') => {
@@ -15,9 +15,26 @@ export default class MailStore {
     try {
       const response = await window.rest.post('/mail', data)
       const result = {
-        ...response,
+        ...response.data,
         ok: true
       }
+      return result
+    } catch (error) {
+      return {
+        ...error,
+        ok: false,
+      }
+    }
+  }
+
+  fetchFolders = async () => {
+    try {
+      const response = await window.rest.get('/mail/folders')
+      const result = {
+        ...response.data,
+        ok: true
+      }
+      this.setFolders(result)
       return result
     } catch (error) {
       return {
