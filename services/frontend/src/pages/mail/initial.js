@@ -1,5 +1,5 @@
 export default {
-  folders: {
-    folders: {},
-  },
+  folders: { folders: {} },
+  selected: {},
+  email: {},
 }

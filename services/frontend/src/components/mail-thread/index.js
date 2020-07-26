@@ -5,12 +5,18 @@ import {
   ListItem,
   ListItemText,
 } from '@material-ui/core'
+import { withStore } from 'freenit'
 
 
 class MailThread extends React.Component {
+  readEmail = () => {
+    const { mail } = this.props.store
+    mail.setEmail(mail.selected.mails[this.props.identity])
+  }
+
   render() {
     return (
-      <ListItem>
+      <ListItem onClick={this.readEmail}>
         <Checkbox color="primary" />
         <ListItemText
           primary={this.props.from}
@@ -25,7 +31,8 @@ class MailThread extends React.Component {
 MailThread.propTypes = {
   from: PropTypes.string.isRequired,
   subject: PropTypes.string.isRequired,
+  identity: PropTypes.number.isRequired,
 }
 
 
-export default MailThread
+export default withStore(MailThread)
