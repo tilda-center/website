@@ -1,4 +1,5 @@
 export { default as MailCompose } from 'components/mail-compose'
 export { default as MailDir  } from 'components/mail-dir'
+export { default as MailList } from 'components/mail-list'
 export { default as MailThread } from 'components/mail-thread'
 export { default as Mailboxes } from 'components/mailboxes'
