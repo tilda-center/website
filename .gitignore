@@ -37,6 +37,10 @@ node_modules/
 
 build/*
 !build/.keep
+services/backend/build/*
+!services/backend/build/.keep
+services/frontend/build/*
+!services/frontend/build/.keep
 cbsd.conf
 database.db
 site.retry
