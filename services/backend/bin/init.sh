@@ -11,10 +11,3 @@ if [ "${OFFLINE}" = "yes" ]; then
 else
   setup
 fi
-if [ ! -e migrations/main/001_initial.py ]; then
-  flask migration create initial
-fi
-
-
-flask migration run
-flask admin create
