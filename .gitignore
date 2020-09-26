@@ -14,6 +14,7 @@ services/backend/playbook.retry
 services/backend/playbooks/*
 services/backend/secret.key
 services/backend/static/*
+services/backend/project.mk
 !services/backend/ansible/roles/.keep
 !services/backend/ansible/roles/tilda
 !services/backend/playbooks/.keep
@@ -28,6 +29,7 @@ services/frontend/ansible/roles/*
 services/frontend/playbooks/*
 services/frontend/project.conf
 services/frontend/node_modules
+services/frontend/project.mk
 !services/frontend/ansible/roles/.keep
 !services/frontend/ansible/roles/devel
 

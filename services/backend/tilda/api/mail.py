@@ -91,26 +91,28 @@ class MailDirAPI(ProtectedMethodView):
             resp, messages = imap.select(identity)
             if resp == 'OK':
                 message_number = int(messages[0])
-                for index in range(message_number, message_number - 10, -1):
+                minimum = max(message_number - 10, 0)
+                for index in range(message_number, minimum, -1):
                     resp, data = imap.fetch(str(index), '(RFC822)')
                     for response in data:
                         if isinstance(response, tuple):
                             message = email.message_from_bytes(response[1])
                             subject = decode_header(message['Subject'])[0][0]
                             fromAddr = decode_header(message['From'])[0][0]
-                            to = decode_header(message['To'])[0][0]
-                            mType = decode_header(
-                                message['Content-Type'])[0][0]
-                            semiPos = mType.find(';')
+                            rawto = message['To'] or ''
+                            to = decode_header(rawto)[0][0]
+                            rawType = message['Content-Type']
+                            mailType = decode_header(rawType)[0][0]
+                            semiPos = mailType.find(';')
                             if semiPos < 0:
-                                semiPos = len(mType)
+                                semiPos = len(mailType)
                             if isinstance(subject, bytes):
                                 subject = subject.decode()
                             mail = {
                                 'subject': subject,
                                 'fromAddr': fromAddr,
                                 'to': to,
-                                'type': mType[0:semiPos],
+                                'type': mailType[0:semiPos],
                             }
                             if message.is_multipart():
                                 mail['message'] = ''
@@ -128,8 +130,8 @@ class MailDirAPI(ProtectedMethodView):
                                             mail['message'] += body
                             else:
                                 content_type = message.get_content_type()
-                                body = message.get_payload(
-                                    decode=True).decode()
+                                payload = message.get_payload(decode=True)
+                                body = payload.decode('utf-8', 'ignore')
                                 mail['message'] = body
                             mails.append(mail)
         return {
