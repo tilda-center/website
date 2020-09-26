@@ -9,6 +9,7 @@ class MailSchema(BaseSchema):
     message = fields.String(required=True)
     subject = fields.String(required=True)
     to = fields.Email(required=True)
+    type = fields.String(dump_only=True)
 
 
 class MailDirSchema(BaseSchema):

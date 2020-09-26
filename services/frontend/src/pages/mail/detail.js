@@ -49,7 +49,7 @@ class Mail extends React.Component {
 
   render() {
     const { mail } = this.props.store
-    const { subject, fromAddr, to, message } = mail.email
+    const { subject, fromAddr, to, message, type } = mail.email
     return (
       <Template style={{}}>
         <Toolbar style={{ backgroundColor: "#eee", borderBottom: "1px solid #ccc" }}>
@@ -102,9 +102,15 @@ class Mail extends React.Component {
                       </div>
                     </div>
                     <div style={{ backgroundColor: "#fff", height: "calc(100vh - 2 * 65px - 111px - 40px)", padding: 10, overflow: 'auto' }}>
-                      <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
-                        {message}
-                      </pre>
+                      {
+                        type === 'text/html' || type === 'multipart/alternative'
+                          ? <div dangerouslySetInnerHTML={{ __html: message }} />
+                          : (
+                            <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+                              {message}
+                            </pre>
+                          )
+                      }
                     </div>
                   </div>
                 ) : null

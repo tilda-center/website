@@ -15,7 +15,7 @@ services/backend/playbooks/*
 services/backend/secret.key
 services/backend/static/*
 !services/backend/ansible/roles/.keep
-!services/backend/ansible/roles/devel
+!services/backend/ansible/roles/tilda
 !services/backend/playbooks/.keep
 
 services/frontend/ansible/roles/*
