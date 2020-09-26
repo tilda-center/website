@@ -101,12 +101,18 @@ class MailDirAPI(ProtectedMethodView):
                             fromAddr = decode_header(message['From'])[0][0]
                             rawto = message['To'] or ''
                             to = decode_header(rawto)[0][0]
+                            rawType = message['Content-Type']
+                            mailType = decode_header(rawType)[0][0]
+                            semiPos = mailType.find(';')
+                            if semiPos < 0:
+                                semiPos = len(mailType)
                             if isinstance(subject, bytes):
                                 subject = subject.decode()
                             mail = {
                                 'subject': subject,
                                 'fromAddr': fromAddr,
                                 'to': to,
+                                'type': mailType[0:semiPos],
                             }
                             if message.is_multipart():
                                 mail['message'] = ''
