@@ -16,6 +16,7 @@ import Template from 'templates/default/detail'
 import {
   MailCompose,
   MailList,
+  MailPart,
   Mailboxes,
 } from 'components'
 
@@ -49,7 +50,21 @@ class Mail extends React.Component {
 
   render() {
     const { mail } = this.props.store
-    const { subject, fromAddr, to, message, type } = mail.email
+    const { subject, fromAddr, to, message, multipart, parts, type } = mail.email
+    let body
+    if (multipart) {
+      body = parts.map((part, key) => <MailPart part={part} key={key} />)
+    } else {
+      if (type === 'text/html') {
+        body = <div dangerouslySetInnerHTML={{ __html: message }} />
+      } else {
+        body = (
+          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+            {message}
+          </pre>
+        )
+      }
+    }
     return (
       <Template style={{}}>
         <Toolbar style={{ backgroundColor: "#eee", borderBottom: "1px solid #ccc" }}>
@@ -102,15 +117,7 @@ class Mail extends React.Component {
                       </div>
                     </div>
                     <div style={{ backgroundColor: "#fff", height: "calc(100vh - 2 * 65px - 111px - 40px)", padding: 10, overflow: 'auto' }}>
-                      {
-                        type === 'text/html' || type === 'multipart/alternative'
-                          ? <div dangerouslySetInnerHTML={{ __html: message }} />
-                          : (
-                            <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
-                              {message}
-                            </pre>
-                          )
-                      }
+                      {body}
                     </div>
                   </div>
                 ) : null

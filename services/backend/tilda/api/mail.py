@@ -64,10 +64,10 @@ class MailDetailAPI(ProtectedMethodView):
         return mail
 
 
-@blueprint.route('/folders/<identity>', endpoint='folder')
+@blueprint.route('/folders/<folder>', endpoint='folder')
 class MailDirAPI(ProtectedMethodView):
     @blueprint.response(MailDirSelectSchema)
-    def get(self, identity):
+    def get(self, folder):
         root = current_app.config['PROJECT_ROOT']
         key_path = f'{root}/secret.key'
         with open(key_path, 'rb') as key_file:
@@ -88,7 +88,7 @@ class MailDirAPI(ProtectedMethodView):
             abort(403, message='Login failed!')
         mails = []
         if resp == 'OK':
-            resp, messages = imap.select(identity)
+            resp, messages = imap.select(folder)
             if resp == 'OK':
                 message_number = int(messages[0])
                 minimum = max(message_number - 10, 0)
@@ -101,33 +101,45 @@ class MailDirAPI(ProtectedMethodView):
                             fromAddr = decode_header(message['From'])[0][0]
                             rawto = message['To'] or ''
                             to = decode_header(rawto)[0][0]
-                            rawType = message['Content-Type']
-                            mailType = decode_header(rawType)[0][0]
-                            semiPos = mailType.find(';')
-                            if semiPos < 0:
-                                semiPos = len(mailType)
                             if isinstance(subject, bytes):
-                                subject = subject.decode()
+                                try:
+                                    subject = subject.decode()
+                                except UnicodeDecodeError:
+                                    subject = subject.decode('cp1250')
                             mail = {
                                 'subject': subject,
                                 'fromAddr': fromAddr,
                                 'to': to,
-                                'type': mailType[0:semiPos],
+                                'type': message.get_content_type(),
+                                'subtype': message.get_content_type(),
+                                'multipart': message.is_multipart(),
+                                'parts': [],
                             }
-                            if message.is_multipart():
+                            if mail['multipart']:
                                 mail['message'] = ''
                                 for part in message.walk():
-                                    content_type = part.get_content_type()
-                                    content_disposition = str(
-                                        part.get('Content-Disposition'))
+                                    mypart = {
+                                        'message': '',
+                                        'type': part.get_content_type(),
+                                    }
+                                    raw_dispo = part.get('Content-Disposition')
+                                    content_disposition = str(raw_dispo)
                                     try:
-                                        body = part.get_payload(
-                                            decode=True).decode()
+                                        body = part.get_payload(decode=True)
+                                        body = body.decode()
                                     except:
                                         pass
-                                    if content_type == 'text/plain':
+                                    if mypart['type'] == 'text/plain':
                                         if 'attachment' not in content_disposition:
-                                            mail['message'] += body
+                                            b = body
+                                            if isinstance(body, str):
+                                                mypart['message'] = b
+                                            else:
+                                                try:
+                                                    mypart['message'] = b.decode()
+                                                except UnicodeDecodeError:
+                                                    mypart['message'] = b.decode('cp1250')
+                                    mail['parts'].append(mypart)
                             else:
                                 content_type = message.get_content_type()
                                 payload = message.get_payload(decode=True)
@@ -136,8 +148,14 @@ class MailDirAPI(ProtectedMethodView):
                             mails.append(mail)
         return {
             'mails': mails,
-            'name': identity,
+            'name': folder,
         }
+
+    @blueprint.arguments(MailSchema)
+    @blueprint.response(MailSchema)
+    def post(self, args, folder):
+        print(args, folder)
+        return {}
 
 
 @blueprint.route('folders', endpoint='folders')
