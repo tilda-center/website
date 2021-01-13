@@ -20,7 +20,7 @@ fi
 if [ "${REGGAE}" = "yes" ]; then
   backend_hostname=$(sudo cbsd jexec user=devel "jname=${backend_app_name}" hostname)
   frontend_hostname=$(sudo cbsd jexec user=devel "jname=${frontend_app_name}front" hostname)
-  sudo tmux new-session -s "${backend_app_name}" -d "make -C services/backend devel || sleep 10"
+  sudo tmux new-session -s "${backend_app_name}" -d "make -C services/backend devel"
   sudo tmux split-window -h -p 50 -t 0 "make -C services/frontend BACKEND_URL=http://${backend_hostname}:5000 devel"
   sudo tmux a -t "${backend_app_name}"
 else
